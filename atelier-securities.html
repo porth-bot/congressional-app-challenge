@@ -1,0 +1,1680 @@
+<title>Atelier Securities</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F64EE'/%3E%3Cpath d='M6 16h4l2.5-6 4 12 2.5-6H26' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="description" content="Liveline by Atelier Securities: call screening for older adults, with a working call simulator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a product app. Fixed sidebar and solid top bar on desktop, flat tab bar on phones, details in a side drawer.
+   Neutral surfaces, one blue accent, status colors only where they carry meaning. Light and dark themes,
+   switchable in the app. Rose's phone keeps its own high-contrast light screen in both. Text never drops below 15px. */
+:root{
+  color-scheme:light;
+  --bg:#F5F6F8; --surface:#FFFFFF; --surface-2:#F2F4F7; --hover:#F3F5F8; --press:#E9EDF2;
+  --border:#E2E5EA; --border-strong:#CDD2DA;
+  --text:#0F1218; --text-2:#465061; --text-3:#5F6878;
+  --accent:#2F64EE; --accent-strong:#2152D4; --accent-soft:#ECF1FE; --on-accent:#FFFFFF;
+  --green:#0B7A45; --green-soft:#E6F5EC; --amber:#965800; --amber-soft:#FFF3DC; --red:#C2302A; --red-soft:#FCEBEA; --gray:#5D6676; --gray-soft:#EEF0F3;
+  --band-green:rgba(14,133,80,.07); --band-amber:rgba(214,140,0,.09); --band-red:rgba(194,48,42,.07);
+  --shadow-sm:0 1px 2px rgba(16,24,40,.05); --shadow-lg:0 24px 56px -16px rgba(16,24,40,.28);
+  --scrim:rgba(15,18,24,.38); --scope:#0A0F24; --scope-ink:rgba(220,228,255,.88); --cut:#F5A524;
+  --d-frame:#111318; --d-bg:#FBFAF7; --d-ink:#121212; --d-mute:#55555D; --d-line:#E3E1DB; --d-track:#EBE8E1; --d-listen:#B8B4AB; --d-white:#FFFFFF; --d-on:#FFFFFF;
+  --d-safe:#1F7A4A; --d-warn:#D99A10; --d-warn-ink:#7A5300; --d-warn-bg:#FDF3D6; --d-stop:#B3321F;
+  --f:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+  --t-min:.9375rem; --t-body:1rem; --t-row:1.0625rem;
+  --r-sm:8px; --r:10px; --r-lg:14px; --side:256px; --top:64px;
+  --ease:cubic-bezier(.2,.7,.15,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]):not([data-mode="light"]){
+    color-scheme:dark;
+    --bg:#0C0E13; --surface:#13161D; --surface-2:#1A1E27; --hover:#1A1F29; --press:#232936;
+    --border:#242A35; --border-strong:#343C4B;
+    --text:#ECEEF3; --text-2:#AAB2C0; --text-3:#8F98A7;
+    --accent:#6D95FF; --accent-strong:#8DADFF; --accent-soft:rgba(109,149,255,.14); --on-accent:#0C0E13;
+    --green:#41CC84; --green-soft:rgba(65,204,132,.12); --amber:#F0B54A; --amber-soft:rgba(240,181,74,.13); --red:#FF6F64; --red-soft:rgba(255,111,100,.13); --gray:#A0A8B6; --gray-soft:rgba(160,168,182,.12);
+    --band-green:rgba(65,204,132,.08); --band-amber:rgba(240,181,74,.09); --band-red:rgba(255,111,100,.09);
+    --shadow-sm:0 1px 0 rgba(0,0,0,.35); --shadow-lg:0 28px 64px -16px rgba(0,0,0,.7);
+    --scrim:rgba(0,0,0,.58); --d-frame:#000000;
+  }
+}
+:root[data-theme="dark"]:not([data-mode="light"]),:root[data-mode="dark"]{
+  color-scheme:dark;
+  --bg:#0C0E13; --surface:#13161D; --surface-2:#1A1E27; --hover:#1A1F29; --press:#232936;
+  --border:#242A35; --border-strong:#343C4B;
+  --text:#ECEEF3; --text-2:#AAB2C0; --text-3:#8F98A7;
+  --accent:#6D95FF; --accent-strong:#8DADFF; --accent-soft:rgba(109,149,255,.14); --on-accent:#0C0E13;
+  --green:#41CC84; --green-soft:rgba(65,204,132,.12); --amber:#F0B54A; --amber-soft:rgba(240,181,74,.13); --red:#FF6F64; --red-soft:rgba(255,111,100,.13); --gray:#A0A8B6; --gray-soft:rgba(160,168,182,.12);
+  --band-green:rgba(65,204,132,.08); --band-amber:rgba(240,181,74,.09); --band-red:rgba(255,111,100,.09);
+  --shadow-sm:0 1px 0 rgba(0,0,0,.35); --shadow-lg:0 28px 64px -16px rgba(0,0,0,.7);
+  --scrim:rgba(0,0,0,.58); --d-frame:#000000;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--f);font-size:var(--t-body);line-height:1.5;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01" on}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--text-2)}
+.i{width:20px;height:20px;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Shell ---------- */
+.side{position:fixed;inset:0 auto 0 0;width:var(--side);display:flex;flex-direction:column;gap:6px;padding:calc(16px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px));background:var(--surface);border-right:1px solid var(--border);z-index:20;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 10px 14px;text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.brand b{font-weight:600;font-size:1.25rem;letter-spacing:-.01em}
+.tag{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--gray-soft);color:var(--text-2);font-size:.8125rem;font-weight:600;letter-spacing:.01em}
+.brand .tag{margin-left:auto}
+.search{display:flex;align-items:center;gap:10px;width:100%;height:42px;padding:0 10px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface-2);color:var(--text-3);font-size:var(--t-min);font-weight:500;text-align:left;margin-bottom:10px}
+.search:hover{border-color:var(--border-strong);color:var(--text-2)}
+.search kbd{margin-left:auto;font-family:var(--mono);font-size:.8125rem;padding:1px 6px;border-radius:5px;border:1px solid var(--border-strong);color:var(--text-3);background:var(--surface)}
+.nav{display:grid;gap:2px}
+.nav-h{padding:16px 10px 6px;font-size:.8125rem;font-weight:600;color:var(--text-3)}
+.nav a{display:flex;align-items:center;gap:12px;height:42px;padding:0 10px;border-radius:var(--r);text-decoration:none;color:var(--text-2);font-weight:500;font-size:var(--t-body);transition:background-color .15s,color .15s}
+.nav a:hover{background:var(--hover);color:var(--text)}
+.nav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}
+.nav a[aria-current="page"] .i{color:var(--accent)}
+.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--red);color:#fff;font-size:.8125rem;font-weight:700;line-height:1}
+.nav .badge{margin-left:auto}
+.side-foot{margin-top:auto;border-top:1px solid var(--border);padding-top:12px}
+.me{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:var(--r);text-decoration:none}
+.me:hover{background:var(--hover)}
+.me-text{display:block;min-width:0}
+.me b{display:block;font-weight:600;font-size:var(--t-min);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.me-status{display:flex;align-items:center;gap:6px;font-size:var(--t-min);color:var(--text-3)}
+.av{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);font-weight:600;flex:none}
+.av.lg{width:64px;height:64px;font-size:1.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+
+.main{margin-left:var(--side);min-height:100vh}
+.top{position:sticky;top:0;z-index:15;display:flex;align-items:center;gap:12px;height:calc(var(--top) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) clamp(16px,3vw,32px) 0;background:var(--surface);border-bottom:1px solid var(--border)}
+.back{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);color:var(--text);flex:none}
+.back:hover{background:var(--hover)}
+.m-logo{display:none;width:28px;height:28px;flex:none}
+.title-wrap{display:flex;align-items:center;gap:8px;min-width:0}
+.crumb{color:var(--text-3);font-weight:500;font-size:1.25rem;text-decoration:none;white-space:nowrap}
+.crumb:hover{color:var(--text)}
+.crumb-sep{color:var(--border-strong);font-size:1.25rem}
+.top h1{font-weight:600;font-size:1.375rem;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);color:var(--text-2);flex:none;transition:background-color .15s,color .15s}
+.icon-btn:hover{background:var(--hover);color:var(--text)}
+.icon-btn .badge{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;font-size:.75rem;border:2px solid var(--surface)}
+.top-search{display:none}
+.content{padding:24px clamp(16px,3vw,32px) 64px;max-width:1240px}
+.screen{display:none}
+.screen.on{display:block;animation:enter .32s var(--ease) both}
+@keyframes enter{from{transform:translateY(6px)}to{transform:none}}
+
+.tabbar{display:none}
+@media (max-width:1023px){
+  .side{display:none}
+  .main{margin-left:0}
+  .m-logo{display:block}
+  .top-search{display:inline-grid}
+  .top h1,.crumb,.crumb-sep{font-size:1.25rem}
+  .content{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--border)}
+  .tabbar a,.tabbar button{position:relative;display:grid;justify-items:center;gap:2px;padding:6px 0;border:0;background:none;text-decoration:none;color:var(--text-3);font-size:.8125rem;font-weight:600}
+  .tabbar .i{width:24px;height:24px}
+  .tabbar [aria-current="page"]{color:var(--accent)}
+  .tabbar .badge{position:absolute;top:0;left:calc(50% + 4px);min-width:18px;height:18px;font-size:.75rem}
+}
+@media (max-width:520px){.crumb,.crumb-sep{display:none}}
+
+/* ---------- Building blocks ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);min-width:0}
+.pad{padding:20px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--border)}
+.card-head h2,.card-head h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.005em}
+.card-head .aside{font-size:var(--t-min);color:var(--text-3)}
+.card-head a{font-size:var(--t-min);font-weight:600;color:var(--accent);text-decoration:none}
+.card-foot{padding:14px 20px;border-top:1px solid var(--border);font-size:var(--t-min);color:var(--text-3)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.main-side{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.main-side{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.g2,.g3{grid-template-columns:minmax(0,1fr)}}
+.stack{display:grid;gap:16px;align-content:start}
+.section-title{font-size:1.0625rem;font-weight:600;margin:28px 0 12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:var(--r);border:1px solid transparent;font-weight:600;font-size:var(--t-body);text-decoration:none;white-space:nowrap;transition:background-color .15s,border-color .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn .i{width:18px;height:18px}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:var(--accent-strong)}
+.btn-secondary{background:var(--surface);border-color:var(--border-strong);color:var(--text)}
+.btn-secondary:hover{background:var(--hover)}
+.btn-danger{background:var(--red-soft);color:var(--red)}
+.btn-block{width:100%}
+.btn-sm{height:38px;padding:0 12px;font-size:var(--t-min)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;font-size:var(--t-min);font-weight:600;white-space:nowrap;background:var(--gray-soft);color:var(--gray)}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.plain::before{display:none}
+.pill.green{background:var(--green-soft);color:var(--green)} .pill.amber{background:var(--amber-soft);color:var(--amber)} .pill.red{background:var(--red-soft);color:var(--red)} .pill.blue{background:var(--accent-soft);color:var(--accent-strong)}
+.seg{display:inline-flex;gap:2px;padding:3px;border-radius:var(--r);background:var(--surface-2);border:1px solid var(--border)}
+.seg button{height:36px;padding:0 14px;border:0;border-radius:7px;background:none;font-weight:600;font-size:var(--t-min);color:var(--text-2);white-space:nowrap;transition:background-color .15s,color .15s}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(16,24,40,.12),0 0 0 1px var(--border)}
+.seg.full{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;width:100%}
+.switch{position:relative;width:46px;height:28px;border-radius:999px;border:0;background:var(--border-strong);flex:none;padding:0;transition:background-color .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s var(--ease)}
+.switch[aria-checked="true"]{background:var(--accent)}
+.switch[aria-checked="true"]::after{transform:translateX(18px)}
+input[type="text"],input[type="search"],input[type="tel"]{height:44px;width:100%;padding:0 12px;border-radius:var(--r);border:1px solid var(--border-strong);background:var(--surface);font-size:var(--t-body)}
+input::placeholder{color:var(--text-3)}
+input:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+input[type="range"]{width:100%;accent-color:var(--accent);height:28px}
+.field{display:grid;gap:8px;font-size:var(--t-min);font-weight:600;color:var(--text-2)}
+.note{font-size:var(--t-min);color:var(--text-3);line-height:1.5}
+.empty{padding:36px 20px;text-align:center;color:var(--text-2)}
+.empty b{display:block;color:var(--text);font-size:var(--t-row);margin-bottom:4px}
+.progress{height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.progress i{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .5s var(--ease)}
+.progress i.green{background:var(--green)} .progress i.amber{background:var(--amber)} .progress i.red{background:var(--red)}
+
+/* Lists */
+.list > * + *{border-top:1px solid var(--border)}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;min-height:64px;padding:12px 20px;width:100%;border:0;background:none;text-align:left;text-decoration:none;color:var(--text);transition:background-color .12s}
+.row.two{grid-template-columns:minmax(0,1fr) auto}
+a.row:hover,button.row:hover{background:var(--hover)}
+a.row:active,button.row:active{background:var(--press)}
+.row-main{min-width:0}
+.row-title{display:block;font-weight:600;font-size:var(--t-row);line-height:1.35}
+.row-sub{display:block;font-size:var(--t-min);color:var(--text-2);margin-top:2px;line-height:1.45}
+.row-sub.one{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-end{display:flex;align-items:center;gap:12px;color:var(--text-3);font-size:var(--t-min);white-space:nowrap}
+.chev{width:18px;height:18px;color:var(--text-3)}
+.ico{display:grid;place-items:center;width:36px;height:36px;border-radius:var(--r);background:var(--surface-2);color:var(--text-2);flex:none}
+.ico .i{width:20px;height:20px}
+.ico.green{background:var(--green-soft);color:var(--green)} .ico.amber{background:var(--amber-soft);color:var(--amber)} .ico.red{background:var(--red-soft);color:var(--red)} .ico.blue{background:var(--accent-soft);color:var(--accent)} .ico.gray{background:var(--gray-soft);color:var(--gray)}
+@media (max-width:600px){.row{padding:12px 16px;gap:12px}.row-end .hide-sm{display:none}}
+
+/* ---------- Home ---------- */
+.banner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 20px}
+.banner .ico{width:48px;height:48px;border-radius:12px}
+.banner .ico .i{width:26px;height:26px}
+.banner h2{font-size:1.25rem;font-weight:600;letter-spacing:-.01em}
+.banner p{color:var(--text-2);margin-top:2px}
+.metric{padding:18px 20px;display:grid;gap:6px;align-content:start}
+.metric span{font-size:var(--t-min);color:var(--text-2);font-weight:500}
+.metric b{font-size:2rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums}
+.metric small{font-size:var(--t-min);color:var(--text-3)}
+.check-row .tick{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:2px solid var(--border-strong);color:transparent;flex:none}
+.check-row .tick .i{width:14px;height:14px}
+.check-row.done .tick{background:var(--green);border-color:var(--green);color:#fff}
+.check-row.done .row-title{color:var(--text-3);text-decoration:line-through}
+
+/* ---------- Simulator ---------- */
+.sim-switch.seg{display:none;margin-bottom:16px}
+.sim{display:grid;grid-template-columns:minmax(300px,368px) minmax(0,1fr);gap:24px;align-items:start}
+.device-col{position:sticky;top:calc(var(--top) + 24px);display:grid;justify-items:center;gap:12px}
+.risk-pill{display:none}
+@media (max-width:1100px){
+  .sim{grid-template-columns:minmax(0,1fr)}
+  .device-col{position:static}
+  .sim-switch.seg[data-on]{display:grid}
+  .sim.has-call[data-pane="phone"] .analysis{display:none}
+  .sim.has-call[data-pane="view"] .device-col{display:none}
+  .sim.has-call .risk-pill{display:inline-flex}
+}
+.device{--ds:1;width:min(100%,360px);border-radius:50px;padding:10px;background:var(--d-frame);box-shadow:var(--shadow-lg),0 0 0 1px rgba(255,255,255,.06)}
+.d-screen{position:relative;border-radius:41px;background:var(--d-bg);color:var(--d-ink);min-height:650px;padding:16px 20px 22px;display:flex;flex-direction:column;overflow:hidden;font-family:var(--f)}
+.d-status{display:flex;justify-content:space-between;align-items:center;font-size:calc(1rem * var(--ds));font-weight:600;padding:2px 8px 10px}
+.d-on{display:inline-flex;align-items:center;gap:6px;color:var(--d-safe)}
+.d-on i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.d-view{display:none;flex:1;flex-direction:column;gap:14px;animation:enter .3s var(--ease) both}
+.device[data-view="idle"] [data-v="idle"],.device[data-view="ringing"] [data-v="ringing"],.device[data-view="active"] [data-v="active"],.device[data-view="calling"] [data-v="calling"],.device[data-view="ended"] [data-v="ended"]{display:flex}
+.d-time{font-size:calc(4.6rem * var(--ds));font-weight:300;letter-spacing:-.03em;text-align:center;line-height:1;margin-top:40px;font-variant-numeric:tabular-nums}
+.d-date{text-align:center;font-size:calc(1.15rem * var(--ds));color:var(--d-mute);font-weight:500}
+.d-shield{margin-top:auto;border:2px solid var(--d-line);border-radius:20px;padding:16px;display:flex;gap:14px;align-items:center;font-size:calc(1.1rem * var(--ds));font-weight:600;line-height:1.35}
+.d-shield svg{width:34px;height:34px;flex:none;color:var(--d-safe)}
+.d-hint{text-align:center;font-size:calc(.95rem * var(--ds));color:var(--d-mute)}
+.d-incoming{text-align:center;font-size:calc(1.15rem * var(--ds));color:var(--d-mute);font-weight:600;margin-top:24px}
+.d-caller{text-align:center;font-size:calc(2rem * var(--ds));font-weight:700;letter-spacing:-.015em;line-height:1.1}
+.d-num{text-align:center;font-family:var(--mono);font-size:calc(1.05rem * var(--ds));color:var(--d-mute)}
+.ring{position:relative;width:132px;height:132px;margin:18px auto 0;display:grid;place-items:center}
+.ring b{width:86px;height:86px;border-radius:50%;background:var(--d-safe);display:grid;place-items:center;color:var(--d-on);z-index:1}
+.ring b svg{width:38px;height:38px;animation:wiggle 1s ease-in-out infinite}
+.ring i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--d-safe);animation:ripple 1.8s ease-out infinite;opacity:0}
+.ring i + i{animation-delay:.9s}
+@keyframes ripple{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.25);opacity:0}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}}
+.d-actions{margin-top:auto;display:grid;gap:10px}
+.d-actions.two-col{grid-template-columns:1fr 1fr}
+.d-btn{min-height:calc(64px * var(--ds));border-radius:18px;border:0;font-weight:700;font-size:calc(1.2rem * var(--ds));color:var(--d-on);padding:6px 12px;line-height:1.2;transition:transform .12s,filter .15s}
+.d-btn:hover{filter:brightness(1.06)}
+.d-btn:active{transform:scale(.98)}
+.d-btn.safe{background:var(--d-safe)} .d-btn.stop{background:var(--d-stop)} .d-btn.plain{background:var(--d-white);color:var(--d-ink);border:2px solid var(--d-line)}
+.d-callbar{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:0 4px}
+.d-callbar b{font-size:calc(1.3rem * var(--ds));font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-callbar span{font-family:var(--mono);color:var(--d-mute);font-size:calc(1rem * var(--ds))}
+.meter{position:relative;width:86%;margin:4px auto 0}
+.meter svg{display:block;width:100%;height:auto}
+.meter .track{fill:none;stroke:var(--d-track);stroke-width:20;stroke-linecap:round}
+.meter .fill{fill:none;stroke:var(--d-listen);stroke-width:20;stroke-linecap:round;stroke-dasharray:100 100;stroke-dashoffset:100;transition:stroke-dashoffset 3.2s cubic-bezier(.3,.1,.2,1),stroke .4s}
+.meter-icon{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:28%;aspect-ratio:1;display:grid;place-items:center;color:var(--d-mute)}
+.meter-icon svg{width:100%;height:100%}
+.device[data-band="safe"] .meter .fill,.device[data-band="safe"] .meter-icon{stroke:var(--d-safe);color:var(--d-safe)}
+.device[data-band="warn"] .meter .fill,.device[data-band="warn"] .meter-icon{stroke:var(--d-warn);color:var(--d-warn)}
+.device[data-band="stop"] .meter .fill,.device[data-band="stop"] .meter-icon{stroke:var(--d-stop);color:var(--d-stop)}
+.device[data-band=""] .meter-icon svg{animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.verdict{text-align:center;font-size:calc(1.9rem * var(--ds));font-weight:700;letter-spacing:-.015em;line-height:1.1;color:var(--d-mute)}
+.device[data-band="safe"] .verdict{color:var(--d-safe)} .device[data-band="warn"] .verdict{color:var(--d-warn-ink)} .device[data-band="stop"] .verdict{color:var(--d-stop)}
+.d-say{text-align:center;font-size:calc(1.2rem * var(--ds));font-weight:500;line-height:1.35;text-wrap:balance}
+.d-safeword{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:6px 10px;background:var(--d-warn-bg);border:2px solid var(--d-warn);border-radius:16px;padding:10px 12px;color:var(--d-warn-ink);font-size:calc(1rem * var(--ds));font-weight:600}
+.d-safeword strong{font-size:calc(1.45rem * var(--ds));color:var(--d-ink)}
+.d-read{align-self:center;display:inline-flex;align-items:center;gap:8px;border:2px solid var(--d-line);background:var(--d-white);border-radius:999px;min-height:44px;padding:0 16px;font-weight:600;font-size:calc(1rem * var(--ds));color:var(--d-ink)}
+.d-read svg{width:20px;height:20px}
+.d-big-icon{width:92px;height:92px;margin:34px auto 4px;border-radius:50%;display:grid;place-items:center;background:var(--d-track)}
+.d-big-icon svg{width:44px;height:44px}
+.d-center{text-align:center;font-size:calc(1.15rem * var(--ds));font-weight:500;line-height:1.4;color:var(--d-ink)}
+.d-center.mute{color:var(--d-mute);font-size:calc(1rem * var(--ds))}
+.d-dots{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.d-dots i{width:10px;height:10px;border-radius:50%;background:var(--d-safe);animation:dots 1.2s ease-in-out infinite}
+.d-dots i:nth-child(2){animation-delay:.2s} .d-dots i:nth-child(3){animation-delay:.4s}
+@keyframes dots{50%{opacity:.25;transform:translateY(-4px)}}
+.device.contrast{--d-bg:#000000;--d-ink:#FFFFFF;--d-mute:#E4E4E4;--d-line:#7A7A7A;--d-track:#333333;--d-white:#000000;--d-safe:#36D17A;--d-warn:#FFD23F;--d-warn-ink:#FFD23F;--d-warn-bg:#2B2200;--d-stop:#FF5A44;--d-on:#000000}
+
+.call-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px}
+.call-head .who{min-width:0}
+.call-head .who b{display:block;font-family:var(--mono);font-weight:500;font-size:1.125rem}
+.call-head .who span{display:block;font-size:var(--t-min);color:var(--text-2)}
+.call-head .right{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.timer{font-family:var(--mono);font-size:var(--t-body);color:var(--text-2);min-width:44px;text-align:right}
+.risk{padding:18px 20px}
+.risk-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.risk-top span{display:block;font-size:var(--t-min);font-weight:500;color:var(--text-2)}
+.risk-val{font-size:3rem;font-weight:600;letter-spacing:-.03em;line-height:1.2;margin-top:2px;font-variant-numeric:tabular-nums}
+.risk-val.green{color:var(--green)} .risk-val.amber{color:var(--amber)} .risk-val.red{color:var(--red)}
+.chart-wrap{position:relative;margin-top:16px;padding-right:58px}
+.chart{display:block;width:100%;height:150px;border-radius:8px;overflow:hidden}
+.chart .b-g{fill:var(--band-green)} .chart .b-a{fill:var(--band-amber)} .chart .b-r{fill:var(--band-red)}
+.chart .gl{stroke:var(--border);stroke-width:1;vector-effect:non-scaling-stroke}
+.chart .ln{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.band-lbl{position:absolute;right:0;transform:translateY(-50%);font-size:var(--t-min);font-weight:600}
+.band-lbl.red{color:var(--red)} .band-lbl.amber{color:var(--amber)} .band-lbl.green{color:var(--green)}
+.chart-x{display:flex;justify-content:space-between;margin-top:8px;padding-right:58px;font-size:var(--t-min);color:var(--text-3);font-family:var(--mono)}
+.signal{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:start;padding:16px 20px}
+.signal .row-title{margin-top:6px}
+.signal .bar{margin-top:10px;max-width:320px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag-r{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;font-size:var(--t-min);font-weight:600;background:var(--red-soft);color:var(--red)}
+.tag-r.green{background:var(--green-soft);color:var(--green)}
+.scope{position:relative;margin:16px 20px 0;border-radius:var(--r);overflow:hidden;background:var(--scope)}
+.scope canvas{display:block;width:100%;height:72px}
+.scope span{position:absolute;left:10px;top:6px;font-size:var(--t-min);font-weight:500;color:var(--scope-ink)}
+.transcript{display:grid;gap:10px;max-height:360px;overflow:auto;padding:16px 20px 20px}
+.msg{max-width:86%;padding:10px 14px;border-radius:14px;font-size:var(--t-body);line-height:1.45;animation:enter .25s var(--ease) both}
+.msg small{display:block;font-size:.8125rem;font-weight:600;color:var(--text-3);margin-bottom:2px}
+.msg.caller{background:var(--surface-2);border-bottom-left-radius:4px;justify-self:start}
+.msg.rose{background:var(--accent-soft);border-bottom-right-radius:4px;justify-self:end}
+.msg.sys{justify-self:stretch;max-width:100%;background:none;border:1px dashed var(--border-strong);color:var(--text-2);font-size:var(--t-min);text-align:center}
+mark{background:var(--red-soft);color:var(--red);border-radius:4px;padding:0 3px;font-weight:600}
+details.disclose summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;font-weight:600;font-size:1.0625rem}
+details.disclose summary::-webkit-details-marker{display:none}
+details.disclose summary .chev{transition:transform .2s var(--ease)}
+details.disclose[open] summary .chev{transform:rotate(90deg)}
+details.disclose[open] summary{border-bottom:1px solid var(--border)}
+.disclose-body{padding:16px 20px 20px;display:grid;gap:12px}
+.formula{font-family:var(--mono);font-size:var(--t-min);color:var(--text-2);line-height:1.8;padding:12px 14px;border-radius:var(--r);background:var(--surface-2);overflow-x:auto}
+.formula b{color:var(--text);font-weight:500}
+
+/* ---------- Drawer, palette, toasts ---------- */
+.drawer-wrap{position:fixed;inset:0;z-index:70;pointer-events:none}
+.drawer-wrap.open{pointer-events:auto}
+.drawer-back{position:absolute;inset:0;background:var(--scrim);opacity:0;transition:opacity .25s}
+.drawer-wrap.open .drawer-back{opacity:1}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--surface);border-left:1px solid var(--border);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .35s var(--ease)}
+.drawer-wrap.open .drawer{transform:none}
+.drawer-h{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:calc(12px + env(safe-area-inset-top,0px)) 20px 12px;border-bottom:1px solid var(--border)}
+.drawer-h h2{font-size:1.25rem;font-weight:600;letter-spacing:-.01em}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 20px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:16px;align-content:start}
+.grab{display:none}
+@media (max-width:760px){
+  .drawer{top:auto;left:0;width:100%;max-height:88vh;border-left:0;border-top:1px solid var(--border);border-radius:18px 18px 0 0;transform:translateY(102%)}
+  .grab{display:block;width:40px;height:5px;border-radius:999px;background:var(--border-strong);margin:8px auto 0}
+  .drawer-h{padding-top:6px}
+}
+.summary-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center}
+.summary-head .ico{width:52px;height:52px;border-radius:14px}
+.summary-head .ico .i{width:28px;height:28px}
+.summary-head b{display:block;font-size:1.375rem;font-weight:600;letter-spacing:-.01em}
+.summary-head span{color:var(--text-2)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:var(--t-min)}
+.kv dt{color:var(--text-3)}
+.kv dd{text-align:right;font-weight:500;min-width:0;overflow-wrap:anywhere}
+.label-sm{font-size:var(--t-min);font-weight:600;color:var(--text-3);margin-bottom:6px}
+.pal-wrap{position:fixed;inset:0;z-index:80;display:none;background:var(--scrim);padding:12vh 16px 16px}
+.pal-wrap.open{display:block}
+.pal{max-width:600px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);overflow:hidden}
+.pal-in{display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--border)}
+.pal-in .i{color:var(--text-3)}
+.pal-in input{border:0;height:56px;padding:0;font-size:1.0625rem;background:none}
+.pal-in input:focus{outline:none}
+.pal-list{max-height:50vh;overflow-y:auto;padding:6px}
+.pal-group{padding:10px 10px 4px;font-size:.8125rem;font-weight:600;color:var(--text-3)}
+.pal-item{display:flex;align-items:center;gap:12px;width:100%;height:46px;padding:0 10px;border:0;background:none;border-radius:var(--r-sm);text-align:left;font-size:var(--t-body);color:var(--text)}
+.pal-item .i{color:var(--text-3)}
+.pal-item.on{background:var(--accent-soft);color:var(--accent-strong)}
+.pal-item.on .i{color:var(--accent)}
+.toasts{position:fixed;right:20px;bottom:20px;z-index:90;display:grid;gap:10px;width:min(400px,calc(100vw - 32px))}
+@media (max-width:1023px){.toasts{left:16px;right:16px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+.toast{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;padding:14px 16px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);animation:toast-in .35s var(--ease) both}
+.toast.out{animation:toast-out .3s ease both}
+.toast b{display:block;font-weight:600}
+.toast span{display:block;font-size:var(--t-min);color:var(--text-2)}
+@keyframes toast-in{from{transform:translateY(16px);opacity:0}}
+@keyframes toast-out{to{transform:translateY(12px);opacity:0}}
+
+/* ---------- Practice ---------- */
+.steps{display:flex;gap:6px}
+.steps i{width:28px;height:6px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border)}
+.steps i.done{background:var(--accent);border-color:var(--accent)}
+.player{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:14px;border-radius:var(--r);background:var(--surface-2)}
+.play{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:0;background:var(--accent);color:var(--on-accent)}
+.play .i{width:22px;height:22px}
+.quote{font-size:1.1875rem;line-height:1.55;min-height:4.6em}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice button{height:60px;border-radius:var(--r);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:1.125rem;transition:border-color .15s,background-color .15s}
+.choice button:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.choice button:disabled{cursor:default;opacity:.55}
+.choice button.right{border-color:var(--green);background:var(--green-soft);color:var(--green);opacity:1}
+.choice button.wrong{border-color:var(--red);background:var(--red-soft);color:var(--red);opacity:1}
+.result{padding:16px;border-radius:var(--r);display:grid;gap:8px;animation:enter .25s var(--ease) both}
+.result.good{background:var(--green-soft)} .result.bad{background:var(--red-soft)}
+.result b{font-size:1.0625rem}
+.score{display:grid;justify-items:center;gap:6px;padding:12px 0}
+.score b{font-size:3.5rem;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+
+/* ---------- Learn ---------- */
+.tile-link{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:18px 20px;text-decoration:none;transition:border-color .15s,background-color .15s}
+.tile-link:hover{border-color:var(--border-strong);background:var(--hover)}
+.tile-link b{display:block;font-weight:600;font-size:1.125rem}
+.tile-link span{display:block;font-size:var(--t-min);color:var(--text-2);margin-top:2px}
+.stat{padding:18px 20px}
+.stat b{display:block;font-size:2rem;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.stat span{display:block;margin-top:6px;font-size:var(--t-min);color:var(--text-2)}
+sup{font-family:var(--mono);font-size:.7em;line-height:0;vertical-align:.7em;margin-left:2px;color:var(--accent)}
+.lab{position:relative;margin:0 20px;border-radius:var(--r);overflow:hidden;background:var(--scope)}
+.lab canvas{display:block;width:100%;height:clamp(240px,26vw,340px)}
+.lab-grid{position:absolute;inset:0;pointer-events:none}
+.lab-grid span{position:absolute;left:0;right:0;border-top:1px solid rgba(180,195,255,.12)}
+.lab-grid b{position:absolute;left:10px;top:6px;font-size:var(--t-min);font-weight:500;color:var(--scope-ink)}
+.cutoff{position:absolute;left:0;right:0;bottom:42.5%;border-top:2px dashed var(--cut);pointer-events:none}
+.cutoff b{position:absolute;right:10px;bottom:6px;font-size:var(--t-min);font-weight:600;color:var(--cut);background:rgba(10,15,36,.85);padding:2px 8px;border-radius:6px}
+.removed{position:absolute;right:10px;top:10px;font-size:var(--t-min);font-weight:600;color:#fff;background:rgba(194,48,42,.92);padding:4px 10px;border-radius:6px;opacity:0;transition:opacity .3s}
+.lab[data-mode="phone"] .removed{opacity:1}
+.flow{display:grid;padding:20px}
+.fnode{border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;background:var(--surface-2);text-align:center}
+.fnode b{display:block;font-weight:600}
+.fnode span{display:block;font-size:var(--t-min);color:var(--text-2)}
+.fnode.key{border-color:var(--accent);background:var(--accent-soft)}
+.fnode.dash{border-style:dashed}
+.frow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.frow.two{grid-template-columns:1fr 1fr}
+.fline{height:26px;position:relative}
+.fline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--border-strong)}
+.fline i{position:absolute;left:calc(50% - 4px);width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pk 1.8s ease-in-out infinite}
+@keyframes pk{0%{top:0;opacity:0}20%,80%{opacity:1}100%{top:calc(100% - 8px);opacity:0}}
+@media (max-width:600px){.frow{grid-template-columns:minmax(0,1fr)}}
+.calc{display:grid;gap:18px;padding:20px}
+.ends{display:flex;justify-content:space-between;gap:12px;font-size:var(--t-min);color:var(--text-3);font-weight:500}
+.calc-out{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;padding:16px;border-radius:var(--r);background:var(--surface-2)}
+@media (max-width:520px){.calc-out{grid-template-columns:minmax(0,1fr)}}
+.tl-row{display:grid;grid-template-columns:116px minmax(0,1fr) auto;gap:12px;align-items:center;min-height:58px;padding:10px 20px;position:relative}
+.tl-row .d{font-family:var(--mono);font-size:var(--t-min);color:var(--text-3)}
+.tl-row b{display:block;font-weight:600}
+.tl-row.today{background:var(--accent-soft)}
+.tl-row.today .d{color:var(--accent-strong)}
+.tl-row.today::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+@media (max-width:600px){.tl-row{grid-template-columns:minmax(0,1fr) auto;padding:10px 16px}.tl-row .d{grid-column:1/-1}}
+.src{padding:16px 20px 18px 40px;display:grid;gap:8px;font-size:var(--t-min);color:var(--text-2)}
+.src a{color:var(--text);font-weight:500}
+.preview{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px;padding:20px;border-radius:var(--r-lg);background:var(--d-bg);color:var(--d-stop);font-weight:700;font-size:calc(1.9rem * var(--ds));--ds:1;border:2px solid var(--d-line)}
+.preview svg{width:calc(34px * var(--ds));height:calc(34px * var(--ds));flex:none}
+.preview.contrast{background:#000;color:#FF5A44;border-color:#7A7A7A}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<script>try{var m=localStorage.getItem("liveline-mode");if(m==="light"||m==="dark")document.documentElement.setAttribute("data-mode",m);}catch(e){}</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#2F64EE"/><path d="M6 16h4l2.5-6 4 12 2.5-6H26" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6.5H9V21H4.5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sim" viewBox="0 0 24 24"><path d="M6 3.5h3.2l1.6 4.6-2.2 1.4a11.5 11.5 0 0 0 5.9 5.9l1.4-2.2 4.6 1.6V18a2.5 2.5 0 0 1-2.5 2.5A15 15 0 0 1 3.5 6 2.5 2.5 0 0 1 6 3.5z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M15 3.5a5.5 5.5 0 0 1 5.5 5.5M15 7a2 2 0 0 1 2 2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-calls" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.4 14.2a6.5 6.5 0 0 1 3.1 5.8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-practice" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-learn" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6.5h9M17 6.5h3M4 12h3M11 12h9M4 17.5h11M19 17.5h1" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><circle cx="15" cy="6.5" r="2" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="9" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="17" cy="17.5" r="2" fill="none" stroke="currentColor" stroke-width="1.75"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="19" cy="12" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.8 4.5 5.6v6.1c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V5.6z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="m8.6 12 2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="currentColor"/><path d="M9.5 16.5l4.2 4.2 8.8-9.2" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 32 32"><path d="M16 3 30 28H2Z" fill="currentColor"/><path d="M16 12v7" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="23.5" r="1.8" fill="#fff"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 32 32"><path d="M10.2 2h11.6L30 10.2v11.6L21.8 30H10.2L2 21.8V10.2Z" fill="currentColor"/><path d="M11 11l10 10M21 11 11 21" stroke="#fff" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-listen" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></symbol>
+    <symbol id="i-s-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="m8.5 12.3 2.4 2.4 4.6-4.9" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-s-warn" viewBox="0 0 24 24"><path d="M12 4 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M12 10v4.5M12 17v.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-s-stop" viewBox="0 0 24 24"><path d="M8.3 3.5h7.4l4.8 4.8v7.4l-4.8 4.8H8.3l-4.8-4.8V8.3z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="m9.2 9.2 5.6 5.6M14.8 9.2l-5.6 5.6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-s-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3.5h3.2l1.6 4.6-2.2 1.4a11.5 11.5 0 0 0 5.9 5.9l1.4-2.2 4.6 1.6V18a2.5 2.5 0 0 1-2.5 2.5A15 15 0 0 1 3.5 6 2.5 2.5 0 0 1 6 3.5z" fill="currentColor"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="m16 9.5 5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15zM10 20.5a2.2 2.2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5.5 6.5 6.5L9 18.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5.5 8.5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="m11.2 11.8 8.3-8.3M16.5 6.5l2.5 2.5M14.5 8.5l2 2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4.5h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="8.5" y="3" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M5 11.5a7 7 0 0 0 14 0M12 18.5V21" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5h16v10H10l-4.5 3.5v-3.5H4z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12h2.5l2-5 3 10 3-13 3 15 2.5-9 1.5 2H22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-nodes" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="5" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="19.5" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M6.7 7.4l3.6 3.2M6.7 16.6l3.6-3.2M14.2 12h3" fill="none" stroke="currentColor" stroke-width="1.75"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.2L4.6 18.4A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.6L14 9.2V3M7 15h10" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.75"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.75"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5V4h5v2.5M6.5 6.5l1 14h9l1-14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 15l3.5-4 3 3L20 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="side" aria-label="Navigation">
+  <a class="brand" href="#home"><svg aria-hidden="true"><use href="#i-logo"/></svg><b>Liveline</b><span class="tag">Demo</span></a>
+  <button class="search" type="button" data-palette><svg class="i" aria-hidden="true"><use href="#i-search"/></svg>Search<kbd id="kbd">⌘K</kbd></button>
+  <nav class="nav" aria-label="Main">
+    <a href="#home" data-tab="home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+    <a href="#simulator" data-tab="simulator"><svg class="i" aria-hidden="true"><use href="#i-sim"/></svg>Simulator</a>
+    <a href="#calls" data-tab="calls"><svg class="i" aria-hidden="true"><use href="#i-calls"/></svg>Calls<span class="badge" data-badge hidden></span></a>
+    <a href="#family" data-tab="family"><svg class="i" aria-hidden="true"><use href="#i-family"/></svg>Family</a>
+    <a href="#practice" data-tab="practice"><svg class="i" aria-hidden="true"><use href="#i-practice"/></svg>Practice</a>
+    <p class="nav-h">Resources</p>
+    <a href="#learn" data-tab="learn"><svg class="i" aria-hidden="true"><use href="#i-learn"/></svg>Learn</a>
+    <a href="#settings" data-tab="settings"><svg class="i" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+  </nav>
+  <div class="side-foot">
+    <a class="me" href="#family"><span class="av">R</span><span class="me-text"><b>Rose Lindqvist</b><span class="me-status" id="me-status"><i class="dot"></i>Protected</span></span></a>
+  </div>
+</aside>
+
+<!-- ================= MAIN ================= -->
+<div class="main">
+  <header class="top">
+    <button class="back" type="button" id="back" hidden aria-label="Back"><svg class="i" aria-hidden="true"><use href="#i-back"/></svg></button>
+    <svg class="m-logo" id="m-logo" aria-hidden="true"><use href="#i-logo"/></svg>
+    <div class="title-wrap"><a class="crumb" id="crumb" href="#learn" hidden>Learn</a><span class="crumb-sep" id="crumb-sep" hidden>/</span><h1 id="title">Home</h1></div>
+    <div class="top-right">
+      <button class="icon-btn top-search" type="button" data-palette aria-label="Search"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <button class="icon-btn" type="button" id="theme-btn" aria-label="Switch to dark theme"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg></button>
+      <button class="icon-btn" type="button" id="bell" aria-label="Notifications"><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg><span class="badge" data-badge hidden></span></button>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- ===== HOME ===== -->
+    <section class="screen" data-screen="home" aria-label="Home">
+      <div class="card banner" id="banner">
+        <span class="ico green" id="banner-ico"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <div style="min-width:0"><h2 id="banner-h">Protection on</h2><p id="banner-p">Calls to Rose from unknown numbers are screened.</p></div>
+        <button class="switch" role="switch" type="button" aria-checked="true" data-sw="screening" aria-label="Call screening"></button>
+      </div>
+      <div class="grid g4" id="metrics" style="margin-top:16px"></div>
+      <div class="main-side" style="margin-top:16px">
+        <div class="card">
+          <div class="card-head"><h2>Recent calls</h2><a href="#calls">View all</a></div>
+          <div class="list" id="home-recent"></div>
+        </div>
+        <div class="stack">
+          <div class="card" id="setup"></div>
+          <div class="card">
+            <div class="card-head"><h2>Shortcuts</h2></div>
+            <div class="list">
+              <a class="row" href="#simulator"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-sim"/></svg></span><span class="row-main"><span class="row-title">Run a simulation</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+              <a class="row" href="#practice"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-practice"/></svg></span><span class="row-main"><span class="row-title">Start weekly practice</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+              <a class="row" href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="row-main"><span class="row-title">Report fraud to the FTC</span></span><svg class="chev" aria-hidden="true"><use href="#i-ext"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SIMULATOR ===== -->
+    <section class="screen" data-screen="simulator" aria-label="Simulator">
+      <div class="seg full sim-switch" role="group" aria-label="View" id="sim-switch">
+        <button type="button" data-pane="phone" aria-pressed="true">Phone</button>
+        <button type="button" data-pane="view" aria-pressed="false">Analysis</button>
+      </div>
+      <div class="sim" id="sim" data-pane="phone">
+        <div class="device-col">
+          <div class="device" id="device" data-view="idle" data-band="">
+            <div class="d-screen">
+              <div class="d-status"><span id="d-clock">2:14</span><span class="d-on"><i></i>Liveline</span></div>
+              <div class="d-view" data-v="idle">
+                <p class="d-time" id="d-time">2:14</p>
+                <p class="d-date" id="d-date">Saturday, October 24</p>
+                <div class="d-shield"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Calls from unknown numbers are being checked.</span></div>
+                <p class="d-hint">Rose’s phone</p>
+              </div>
+              <div class="d-view" data-v="ringing">
+                <p class="d-incoming">Incoming call</p>
+                <p class="d-caller">Unknown caller</p>
+                <p class="d-num" id="r-num"></p>
+                <div class="ring" aria-hidden="true"><i></i><i></i><b><svg><use href="#i-phone"/></svg></b></div>
+                <p class="d-center mute">Liveline will listen to this call.</p>
+                <div class="d-actions two-col">
+                  <button class="d-btn stop" type="button" data-act="decline">Decline</button>
+                  <button class="d-btn safe" type="button" data-act="answer">Answer</button>
+                </div>
+              </div>
+              <div class="d-view" data-v="active">
+                <div class="d-callbar"><b>Unknown caller</b><span id="a-clock">0:00</span></div>
+                <div class="meter">
+                  <svg viewBox="0 0 240 128" aria-hidden="true"><path class="track" d="M20 118 A100 100 0 0 1 220 118" pathLength="100"/><path class="fill" id="m-fill" d="M20 118 A100 100 0 0 1 220 118" pathLength="100"/></svg>
+                  <span class="meter-icon"><svg id="m-icon" aria-hidden="true"><use href="#i-listen"/></svg></span>
+                </div>
+                <p class="verdict" id="m-label" aria-live="polite">Listening</p>
+                <p class="d-say" id="m-say">Checking the voice and the words.</p>
+                <button class="d-read" type="button" id="m-read"><svg aria-hidden="true"><use href="#i-speaker"/></svg>Read aloud</button>
+                <div class="d-safeword" id="m-word" hidden><span>Safe word</span><strong data-word>Blue heron</strong></div>
+                <div class="d-actions" id="m-actions"></div>
+              </div>
+              <div class="d-view" data-v="calling">
+                <div class="d-big-icon" style="color:var(--d-safe)"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+                <p class="d-caller" id="c-name">Calling Ethan</p>
+                <p class="d-num" id="c-num"></p>
+                <div class="d-dots" id="c-dots"><i></i><i></i><i></i></div>
+                <p class="d-center" id="c-msg"></p>
+                <div class="d-actions"><button class="d-btn stop" type="button" data-act="endfamily">End call</button></div>
+              </div>
+              <div class="d-view" data-v="ended">
+                <div class="d-big-icon" id="e-icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></div>
+                <p class="d-caller" style="font-size:calc(1.7rem * var(--ds))">Call ended</p>
+                <p class="d-center" id="e-msg"></p>
+                <p class="d-center mute">A summary was saved. The audio was not.</p>
+                <div class="d-actions"><button class="d-btn plain" type="button" data-act="done">Done</button></div>
+              </div>
+            </div>
+          </div>
+          <button class="pill blue risk-pill" type="button" id="risk-pill">Scam risk 10%</button>
+        </div>
+
+        <div class="stack analysis">
+          <div class="card" id="picker">
+            <div class="card-head"><h2>Scenarios</h2><span class="aside">Scripted test calls</span></div>
+            <div class="list">
+              <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-mic"/></svg></span><span class="row-main"><span class="row-title">Voice clone, bail request</span><span class="row-sub">A computer-made copy of Ethan’s voice asks for gift cards.</span></span><button class="btn btn-secondary btn-sm" type="button" data-scen="clone">Start</button></div>
+              <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-family"/></svg></span><span class="row-main"><span class="row-title">Family member, new number</span><span class="row-sub">The real Ethan calls from a friend’s phone.</span></span><button class="btn btn-secondary btn-sm" type="button" data-scen="real">Start</button></div>
+              <div class="row"><span class="ico amber"><svg class="i" aria-hidden="true"><use href="#i-key"/></svg></span><span class="row-main"><span class="row-title">Uncertain caller</span><span class="row-sub">A bad line and a money request trigger a safe-word check.</span></span><button class="btn btn-secondary btn-sm" type="button" data-scen="unsure">Start</button></div>
+              <div class="row"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></span><span class="row-main"><span class="row-title">Agency impersonation</span><span class="row-sub">A human caller posing as Medicare asks for personal details.</span></span><button class="btn btn-secondary btn-sm" type="button" data-scen="medicare">Start</button></div>
+            </div>
+            <div class="card-foot">Scores in these calls are scripted for demonstration. They are not output from a trained model.</div>
+          </div>
+
+          <div id="call-ui" class="stack" hidden>
+            <div class="card call-head">
+              <div class="who"><b id="p-num">(651) 555-0187</b><span id="p-claim">Says he is Ethan</span></div>
+              <div class="right"><span class="pill" id="p-phase">Ringing</span><span class="timer" id="p-clock">0:00</span>
+                <button class="icon-btn" type="button" id="snd" aria-label="Mute"><svg class="i" aria-hidden="true"><use href="#i-speaker"/></svg></button>
+                <button class="btn btn-secondary btn-sm" type="button" id="p-end">End</button></div>
+            </div>
+            <div class="card risk">
+              <div class="risk-top"><div><span>Scam risk</span><p class="risk-val" id="risk-val">10%</p></div><span class="pill" id="risk-band">Listening</span></div>
+              <div class="chart-wrap">
+                <svg class="chart" id="chart" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="Scam risk over the call"></svg>
+                <span class="band-lbl red" style="top:15%">Scam</span><span class="band-lbl amber" style="top:50%">Check</span><span class="band-lbl green" style="top:85%">Safe</span>
+              </div>
+              <div class="chart-x"><span>0:00</span><span id="chart-now">0:00</span></div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2>Signals</h2><span class="aside">Updates every 2 seconds</span></div>
+              <div class="list">
+                <div class="signal"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-mic"/></svg></span><div class="row-main"><span class="row-title">Voice</span><span class="row-sub" id="v-note">Waiting for the caller</span><div class="progress bar"><i id="v-bar" style="width:0%"></i></div></div><span class="pill plain" id="v-lvl">None</span></div>
+                <div class="signal"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></span><div class="row-main"><span class="row-title">Language</span><span class="row-sub" id="w-note">Listening for scam tactics</span><div class="tags" id="w-tags"></div></div><span class="pill plain" id="w-lvl">None</span></div>
+                <div class="signal"><span class="ico amber"><svg class="i" aria-hidden="true"><use href="#i-key"/></svg></span><div class="row-main"><span class="row-title">Safe word</span><span class="row-sub" id="c-note">Used only when the score is uncertain</span></div><span class="pill plain" id="c-lvl">Idle</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2>Transcript</h2><span class="aside">Tactics highlighted</span></div>
+              <div class="scope"><canvas id="call-spec" aria-hidden="true"></canvas><span>Phone audio</span></div>
+              <div class="transcript" id="transcript"></div>
+            </div>
+            <details class="card disclose">
+              <summary>Calculation<svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+              <div class="disclose-body">
+                <p class="muted">Each signal reports a likelihood ratio (ℓ). Above 1 points toward a scam and below 1 points away. They multiply with the starting odds for an unknown number.</p>
+                <div class="formula" id="math"></div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CALLS ===== -->
+    <section class="screen" data-screen="calls" aria-label="Calls">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <div style="flex:1;min-width:220px;position:relative">
+          <label class="sr" for="call-search">Search calls</label>
+          <input type="search" id="call-search" placeholder="Search" autocomplete="off" style="padding-left:40px">
+          <svg class="i" aria-hidden="true" style="position:absolute;left:12px;top:12px;color:var(--text-3)"><use href="#i-search"/></svg>
+        </div>
+        <div class="seg" role="group" aria-label="Filter" id="call-filter">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="stop" aria-pressed="false">Scam</button>
+          <button type="button" data-f="warn" aria-pressed="false">Check</button>
+          <button type="button" data-f="safe" aria-pressed="false">Safe</button>
+        </div>
+      </div>
+      <div id="call-list"></div>
+    </section>
+
+    <!-- ===== FAMILY ===== -->
+    <section class="screen" data-screen="family" aria-label="Family">
+      <div class="grid g2" style="align-items:start">
+        <div class="stack">
+          <div class="card">
+            <div class="pad" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center">
+              <span class="av lg">R</span>
+              <div style="min-width:0"><h2 style="font-size:1.25rem;font-weight:600">Rose Lindqvist</h2><p class="muted mono">(612) 555-0199</p><span class="pill green" id="rose-pill" style="margin-top:8px">Protected</span></div>
+            </div>
+            <div class="list" style="border-top:1px solid var(--border)">
+              <div class="row two"><span class="row-main"><span class="row-title">Call screening</span><span class="row-sub">Unknown numbers go through Liveline</span></span><button class="switch" role="switch" type="button" aria-checked="true" data-sw="screening" aria-label="Call screening"></button></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Known numbers</span><span class="row-sub">Family calls ring through without screening</span></span><span class="pill green">Always</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Safe word</h2></div>
+            <div class="pad" style="display:grid;gap:14px">
+              <p class="muted">Shown on Rose’s screen when a call is uncertain, so she never has to remember it.</p>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <output id="word-out" style="flex:1;min-width:9ch;font-size:1.5rem;font-weight:600;letter-spacing:.01em">••••••••</output>
+                <button class="btn btn-secondary btn-sm" type="button" id="word-show"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg>Show</button>
+                <button class="btn btn-secondary btn-sm" type="button" data-change-word>Change</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h2>Members</h2><button class="btn btn-secondary btn-sm" type="button" id="add-member"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div>
+            <div class="list" id="members"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Notifications</h2></div>
+            <div class="list">
+              <div class="row two"><span class="row-main"><span class="row-title">Likely scams</span><span class="row-sub">Notify the family right away</span></span><button class="switch" role="switch" type="button" aria-checked="true" data-alert="stop" aria-label="Notify for likely scams"></button></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Check requests</span><span class="row-sub">When Liveline asks for the safe word</span></span><button class="switch" role="switch" type="button" aria-checked="true" data-alert="warn" aria-label="Notify for check requests"></button></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Weekly practice</span><span class="row-sub">Rose’s drill results</span></span><button class="switch" role="switch" type="button" aria-checked="false" data-alert="weekly" aria-label="Notify with weekly practice results"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRACTICE ===== -->
+    <section class="screen" data-screen="practice" aria-label="Practice">
+      <div class="main-side">
+        <div class="card"><div class="card-head"><h2>Weekly drill</h2><div class="steps" id="steps" aria-hidden="true"></div></div><div class="pad" id="drill" style="display:grid;gap:16px"></div></div>
+        <div class="card">
+          <div class="card-head"><h2>Red flags</h2></div>
+          <div class="list">
+            <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-s-warn"/></svg></span><span class="row-main"><span class="row-title">Urgency</span><span class="row-sub">Pressure to act before you can check</span></span></div>
+            <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span><span class="row-main"><span class="row-title">Secrecy</span><span class="row-sub">Asked not to tell family</span></span></div>
+            <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="row-main"><span class="row-title">Untraceable payment</span><span class="row-sub">Gift cards, wire transfers, crypto</span></span></div>
+            <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="row-main"><span class="row-title">Emergency story</span><span class="row-sub">Arrest, bail, accident, or hospital</span></span></div>
+            <div class="row"><span class="ico red"><svg class="i" aria-hidden="true"><use href="#i-sim"/></svg></span><span class="row-main"><span class="row-title">No call-back</span><span class="row-sub">Refuses to let you call a number you know</span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="screen" data-screen="learn" aria-label="Learn">
+      <div class="grid g3">
+        <div class="card stat"><b>$4.9B</b><span>Lost to fraud by adults 60 and older in 2024<sup>1</sup></span></div>
+        <div class="card stat"><b>41%</b><span>Of large impersonation-scam losses that began with a phone call<sup>2</sup></span></div>
+        <div class="card stat"><b>Up to 1000%</b><span>Rise in detector error rates on real-world audio<sup>3</sup></span></div>
+      </div>
+      <div class="grid g2" style="margin-top:16px">
+        <a class="card tile-link" href="#learn-signal"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-wave"/></svg></span><span><b>Signal</b><span>What phone audio removes</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+        <a class="card tile-link" href="#learn-scoring"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-nodes"/></svg></span><span><b>Scoring</b><span>How three signals become one score</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+        <a class="card tile-link" href="#learn-research"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-flask"/></svg></span><span><b>Research</b><span>Studies, success criteria, schedule</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+        <a class="card tile-link" href="#learn-privacy"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span><span><b>Privacy</b><span>What is stored and what is not</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+      </div>
+      <p class="note" style="margin-top:16px">1. FBI data via AARP, cited by <a href="https://guard.io/blog/grandparent-scam-ai-voice-cloning-protect-family" target="_blank" rel="noopener">Guardio</a>. 2. FTC data, cited by <a href="https://cyberguy.com/security/why-scammers-target-grandparents/" target="_blank" rel="noopener">CyberGuy</a>. 3. <a href="https://arxiv.org/pdf/2203.16263" target="_blank" rel="noopener">Müller et al.</a> Full sources are in Research.</p>
+    </section>
+
+    <!-- ===== LEARN: SIGNAL ===== -->
+    <section class="screen" data-screen="learn-signal" aria-label="Signal">
+      <div class="card" style="padding-bottom:20px">
+        <div class="card-head"><h2>Spectrogram</h2>
+          <div class="seg" role="group" aria-label="Audio source" id="lab-seg"><button type="button" data-mode="studio" aria-pressed="true">Studio</button><button type="button" data-mode="phone" aria-pressed="false">Phone</button></div>
+        </div>
+        <div style="height:20px"></div>
+        <div class="lab" id="lab" data-mode="studio">
+          <canvas id="lab-spec" role="img" aria-label="Simulated speech as a moving spectrogram, studio versus phone line"></canvas>
+          <div class="lab-grid" aria-hidden="true"><span style="top:0"><b>8 kHz</b></span><span style="top:50%"><b>4 kHz</b></span></div>
+          <div class="cutoff" aria-hidden="true"><b>3.4 kHz cutoff</b></div>
+          <span class="removed" aria-hidden="true">Removed by phone line</span>
+        </div>
+        <p class="note" style="padding:12px 20px 0">Simulated speech for illustration, not measured data. Brighter is louder. The haze above 4 kHz is breath and “s” sounds.</p>
+      </div>
+      <div class="grid g2" style="margin-top:16px;align-items:start">
+        <div class="card">
+          <div class="card-head"><h2>Findings</h2></div>
+          <div class="list">
+            <div class="row two"><span class="row-main"><span class="row-title">Phone calls carry less sound</span><span class="row-sub">Networks keep roughly 300 to 3,400 Hz and drop the rest.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Detectors are trained on studio audio</span><span class="row-sub">On real-world clips, error rates rose 200% to 1000%.<sup>3</sup></span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Liveline keeps what survives</span><span class="row-sub">Clean audio is run through phone codecs, and only features that still separate real and cloned voices are used.</span></span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Candidate features</h2><span class="pill amber">Test planned</span></div>
+          <div class="list">
+            <div class="row two"><span class="row-main"><span class="row-title">Breath timing</span><span class="row-sub">When and how often the speaker breathes</span></span><span class="pill">Not tested</span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Pause rhythm</span><span class="row-sub">Length and spacing of short pauses</span></span><span class="pill">Not tested</span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Pitch variation</span><span class="row-sub">Small natural movement in pitch</span></span><span class="pill">Not tested</span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Speaking rate</span><span class="row-sub">How pace changes within a sentence</span></span><span class="pill">Not tested</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN: SCORING ===== -->
+    <section class="screen" data-screen="learn-scoring" aria-label="Scoring">
+      <div class="grid g2" style="align-items:start">
+        <div class="card">
+          <div class="card-head"><h2>Pipeline</h2><span class="aside">Audio is never stored</span></div>
+          <div class="flow">
+            <div class="fnode"><b>Incoming call</b><span>Routed through a Liveline number</span></div>
+            <div class="fline"><i></i></div>
+            <div class="frow"><div class="fnode key"><b>Voice</b><span>Real or synthetic</span></div><div class="fnode key"><b>Language</b><span>Scam tactics</span></div><div class="fnode dash"><b>Safe word</b><span>If uncertain</span></div></div>
+            <div class="fline"><i></i></div>
+            <div class="fnode"><b>Combined score</b><span>Every 2 seconds</span></div>
+            <div class="fline"><i></i></div>
+            <div class="frow two"><div class="fnode key"><b>Rose’s screen</b><span>Green, yellow, red</span></div><div class="fnode"><b>Family alert</b><span>Likely scams</span></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Calculator</h2><span class="pill plain">Example values</span></div>
+          <div class="calc">
+            <div class="field">Time of call
+              <div class="seg full" role="group" aria-label="Time of call" id="k-time"><button type="button" data-v="0.05" aria-pressed="false">Day</button><button type="button" data-v="0.10" aria-pressed="true">Evening</button><button type="button" data-v="0.15" aria-pressed="false">Night</button></div>
+            </div>
+            <label class="field" for="k-voice">Voice<input type="range" id="k-voice" min="0" max="100" value="30"><span class="ends"><span>Matches family</span><span>Synthetic</span></span></label>
+            <label class="field" for="k-words">Request<input type="range" id="k-words" min="0" max="100" value="20"><span class="ends"><span>Routine</span><span>High pressure</span></span></label>
+            <div class="field">Safe word
+              <div class="seg full" role="group" aria-label="Safe word" id="k-word"><button type="button" data-v="1" aria-pressed="true">Not asked</button><button type="button" data-v="0.1" aria-pressed="false">Correct</button><button type="button" data-v="8" aria-pressed="false">Failed</button></div>
+            </div>
+            <div class="calc-out">
+              <div><span class="note" style="display:block">Scam risk</span><p class="risk-val" id="k-risk">10%</p></div>
+              <div style="display:grid;gap:8px;justify-items:start"><span class="pill" id="k-pill">Safe</span><p class="muted" id="k-say">Rose sees green.</p></div>
+            </div>
+            <details class="disclose" style="border:1px solid var(--border);border-radius:var(--r)"><summary>Calculation<svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="disclose-body"><div class="formula" id="k-math"></div><p class="note">Example cutoffs are 30% and 70%. Real cutoffs will be tuned on validation data to keep false alarms on family calls rare. Signals are assumed roughly independent.</p></div></details>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h2>Components</h2></div>
+        <div class="list">
+          <div class="row"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-mic"/></svg></span><span class="row-main"><span class="row-title">Voice</span><span class="row-sub">Small model trained only on features that survive phone audio. A mismatch with a family member’s voice sample weighs heavily.</span></span></div>
+          <div class="row"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></span><span class="row-main"><span class="row-title">Language</span><span class="row-sub">Streaming speech-to-text and a language model that flags scam tactics. Independent of audio quality, so it also catches human scammers.</span></span></div>
+          <div class="row"><span class="ico blue"><svg class="i" aria-hidden="true"><use href="#i-key"/></svg></span><span class="row-main"><span class="row-title">Safe word</span><span class="row-sub">Used only in the yellow band. Whispering may be hard for real-time voice converters. This is a hypothesis we are testing.</span></span></div>
+          <div class="row"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-nodes"/></svg></span><span class="row-main"><span class="row-title">Stack</span><span class="row-sub">Cloud telephony with live audio streaming (such as Twilio), Python, FastAPI, librosa or openSMILE, scikit-learn or PyTorch.</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN: RESEARCH ===== -->
+    <section class="screen" data-screen="learn-research" aria-label="Research">
+      <div class="grid g2" style="align-items:start">
+        <div class="card">
+          <div class="card-head"><h2>Study 1: Phone-audio benchmark</h2><span class="pill amber">Planned</span></div>
+          <div class="list">
+            <div class="row two"><span class="row-main"><span class="row-title">Data</span><span class="row-sub">ASVspoof 2019 for training. In-the-Wild, 37.9 hours of real-world audio, for testing.<sup>3</sup></span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Phone simulation</span><span class="row-sub">Every clip is run through G.711 and AMR-NB codecs to create matched clean and phone copies.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Baselines</span><span class="row-sub">A spectrogram CNN, plus a pretrained detector if one runs on our hardware.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Metrics</span><span class="row-sub">EER and AUC, five-fold cross-validation, McNemar’s test.</span></span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Study 2: Senior pilot</h2><span class="pill">Stretch goal</span></div>
+          <div class="list">
+            <div class="row two"><span class="row-main"><span class="row-title">Participants</span><span class="row-sub">10 to 15 volunteers aged 60 or older.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Task</span><span class="row-sub">Six short calls, half scams. Repeated with new calls and the Trust Meter on screen.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Measures</span><span class="row-sub">Scams caught, false alarms on real calls, ease of use from 1 to 5.</span></span></div>
+            <div class="row two"><span class="row-main"><span class="row-title">Consent</span><span class="row-sub">Voluntary, can stop at any time, no identifying data kept.</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h2>Success criteria</h2><span class="aside">Results will be reported either way</span></div>
+        <div class="list">
+          <div class="row two"><span class="row-main"><span class="row-title">Baselines degrade on phone audio</span><span class="row-sub">EER rises clearly from clean to phone conditions</span></span><span class="pill">Not run</span></div>
+          <div class="row two"><span class="row-main"><span class="row-title">Liveline degrades less</span><span class="row-sub">Smaller rise than baselines, significant by McNemar’s test</span></span><span class="pill">Not run</span></div>
+          <div class="row two"><span class="row-main"><span class="row-title">Combining signals helps</span><span class="row-sub">Combined score beats every single signal</span></span><span class="pill">Not run</span></div>
+          <div class="row two"><span class="row-main"><span class="row-title">Older adults decide better</span><span class="row-sub">More scams caught without more false alarms</span></span><span class="pill">Not run</span></div>
+        </div>
+      </div>
+      <div class="grid g2" style="margin-top:16px;align-items:start">
+        <div class="card">
+          <div class="card-head"><h2>Schedule</h2><span class="pill amber" id="countdown">Due Oct 26</span></div>
+          <div class="list" id="tl"></div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h2>Prior work</h2></div>
+            <div class="list">
+              <div class="row two"><span class="row-main"><span class="row-title">Breath-based detection</span><span class="row-sub">Layton 2024, BTS-E 2023, BreathNet 2026. Clean recordings only.</span></span></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Pause patterns</span><span class="row-sub">Klick Labs 2024. About 80% accuracy in research, no product.</span></span></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Physiological markers</span><span class="row-sub">Frič 2026. Long, clean recordings, offline.</span></span></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Carrier spam blocking</span><span class="row-sub">Blocks known numbers, never listens to the call.</span></span></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Family code words</span><span class="row-sub">Depends on memory under stress.</span></span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Sources</h2></div>
+            <ol class="src">
+              <li>FBI data via AARP, cited by <a href="https://guard.io/blog/grandparent-scam-ai-voice-cloning-protect-family" target="_blank" rel="noopener">Guardio</a></li>
+              <li>FTC data, cited by <a href="https://cyberguy.com/security/why-scammers-target-grandparents/" target="_blank" rel="noopener">CyberGuy</a></li>
+              <li><a href="https://arxiv.org/pdf/2203.16263" target="_blank" rel="noopener">Müller et al.</a>, Does Audio Deepfake Detection Generalize?</li>
+              <li><a href="https://avesis.gazi.edu.tr/yayin/6f8d3142-51d4-4c8d-8f77-5f6ce6600421/a-system-level-analysis-of-cross-domain-generalization-failure-in-audio-deepfake-detection" target="_blank" rel="noopener">IEEE Access 2026</a>, cross-domain generalization failure</li>
+              <li><a href="https://pssusa.org/?p=10545" target="_blank" rel="noopener">PSS</a>, voice cloning scams and older adults</li>
+              <li><a href="https://arxiv.org/html/2404.15143v2" target="_blank" rel="noopener">Layton et al.</a>, <a href="https://sotaverified.org/papers/bts-e-audio-deepfake-detection-using" target="_blank" rel="noopener">BTS-E</a>, <a href="https://www.arxiv.org/pdf/2602.13596" target="_blank" rel="noopener">BreathNet</a>, <a href="https://findbiometrics.com/klick-labs-ai-looks-for-breaths-micropauses-in-deepfake-audio-assessments" target="_blank" rel="noopener">Klick Labs</a>, <a href="https://excel.fit.vutbr.cz/submissions/2026/076/76.pdf" target="_blank" rel="noopener">Frič</a></li>
+              <li><a href="https://mccollum.house.gov/services/congressional-app-challenge" target="_blank" rel="noopener">Rep. McCollum</a>, <a href="https://jayapal.house.gov/congressional-app-challenge" target="_blank" rel="noopener">Rep. Jayapal</a>, <a href="https://summerlee.house.gov/services/congressionalappchallenge" target="_blank" rel="noopener">Rep. Summer Lee</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN: PRIVACY ===== -->
+    <section class="screen" data-screen="learn-privacy" aria-label="Privacy">
+      <div class="card">
+        <div class="list">
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-trash"/></svg></span><span class="row-main"><span class="row-title">No audio storage</span><span class="row-sub">Audio passes through the models and is discarded. Only a text summary and the score are kept.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-family"/></svg></span><span class="row-main"><span class="row-title">Consent first</span><span class="row-sub">Rose and her family turn screening on together. Local call-recording laws are checked before any real use.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="row-main"><span class="row-title">Known numbers skip screening</span><span class="row-sub">Family calls ring straight through.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-s-ok"/></svg></span><span class="row-main"><span class="row-title">Advice, not control</span><span class="row-sub">Liveline never hangs up on its own and never claims certainty.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg></span><span class="row-main"><span class="row-title">False alarms are tracked</span><span class="row-sub">Thresholds are tuned to keep false alarms on family calls rare, and the rate is reported.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-mic"/></svg></span><span class="row-main"><span class="row-title">Consented voice cloning</span><span class="row-sub">The cloned voice in the demo video belongs to a team member, recorded with family permission.</span></span></div>
+          <div class="row"><span class="ico green"><svg class="i" aria-hidden="true"><use href="#i-learn"/></svg></span><span class="row-main"><span class="row-title">AI disclosure</span><span class="row-sub">AI tools used in development are disclosed, as the 2026 App Challenge rules require.</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETTINGS ===== -->
+    <section class="screen" data-screen="settings" aria-label="Settings">
+      <div class="grid g2" style="align-items:start">
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h2>Appearance</h2></div>
+            <div class="pad"><div class="seg full" role="group" aria-label="Theme" id="theme-seg"><button type="button" data-m="system" aria-pressed="true">System</button><button type="button" data-m="light" aria-pressed="false">Light</button><button type="button" data-m="dark" aria-pressed="false">Dark</button></div></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Rose’s screen</h2></div>
+            <div class="preview" id="preview"><svg aria-hidden="true"><use href="#i-stop"/></svg>Likely scam</div>
+            <div class="list" style="border-top:1px solid var(--border)">
+              <div class="row two"><span class="row-main"><span class="row-title">Text size</span></span><div class="seg" role="group" aria-label="Text size" id="ts-seg"><button type="button" data-ts="1" aria-pressed="true">Default</button><button type="button" data-ts="1.1" aria-pressed="false">Large</button><button type="button" data-ts="1.2" aria-pressed="false">Larger</button></div></div>
+              <div class="row two"><span class="row-main"><span class="row-title">High contrast</span><span class="row-sub">White on black</span></span><button class="switch" role="switch" type="button" aria-checked="false" data-sw="contrast" aria-label="High contrast"></button></div>
+              <div class="row two"><span class="row-main"><span class="row-title">Spoken results</span><span class="row-sub">Reads the result aloud when it changes</span></span><button class="switch" role="switch" type="button" aria-checked="false" data-sw="readout" aria-label="Spoken results"></button></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h2>App</h2></div>
+            <div class="list">
+              <div class="row two"><span class="row-main"><span class="row-title">Sounds</span><span class="row-sub">Ringtone and alerts in the simulator</span></span><button class="switch" role="switch" type="button" aria-checked="true" data-sw="sound" aria-label="Sounds"></button></div>
+              <button class="row two" type="button" id="show-setup"><span class="row-main"><span class="row-title">Show setup checklist</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+              <button class="row two" type="button" id="reset"><span class="row-main"><span class="row-title" style="color:var(--red)">Reset demo data</span><span class="row-sub" id="reset-sub">Restore the sample calls and settings</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>About</h2></div>
+            <div class="pad" style="display:grid;gap:10px">
+              <p>Liveline is built by Atelier Securities, a student team in Minnesota, for the 2026 Congressional App Challenge (MN-04).</p>
+              <p class="muted">Demo build. Calls are simulated, call history is sample data, and changes are stored only in this browser.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= TAB BAR (phones) ================= -->
+<nav class="tabbar" aria-label="Main">
+  <a href="#home" data-tab="home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+  <a href="#simulator" data-tab="simulator"><svg class="i" aria-hidden="true"><use href="#i-sim"/></svg>Simulator</a>
+  <a href="#calls" data-tab="calls"><svg class="i" aria-hidden="true"><use href="#i-calls"/></svg>Calls<span class="badge" data-badge hidden></span></a>
+  <a href="#family" data-tab="family"><svg class="i" aria-hidden="true"><use href="#i-family"/></svg>Family</a>
+  <button type="button" id="more-btn"><svg class="i" aria-hidden="true"><use href="#i-more"/></svg>More</button>
+</nav>
+
+<div class="drawer-wrap" id="drawer-wrap" hidden>
+  <div class="drawer-back" data-close></div>
+  <section class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="grab" aria-hidden="true"></div>
+    <header class="drawer-h"><h2 id="drawer-title">Details</h2><button class="icon-btn" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button></header>
+    <div class="drawer-body" id="drawer-body"></div>
+  </section>
+</div>
+<div class="pal-wrap" id="pal-wrap">
+  <div class="pal" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="pal-in"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg><input type="text" id="pal-input" placeholder="Search" autocomplete="off" aria-label="Search"></div>
+    <div class="pal-list" id="pal-list" role="listbox"></div>
+  </div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s));};
+  var root=document.documentElement;
+  var reduce=!!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+  function fmtTime(d){return d.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"});}
+  var DAY=86400000;
+  function startOfToday(){var n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime();}
+  function fmtWhen(ts){var t0=startOfToday();if(ts>=t0)return fmtTime(new Date(ts));if(ts>=t0-DAY)return "Yesterday";return new Date(ts).toLocaleDateString([],{month:"short",day:"numeric"});}
+  function fmtFull(ts){var d=new Date(ts);return d.toLocaleDateString([],{month:"short",day:"numeric",year:"numeric"})+", "+fmtTime(d);}
+  function mmss(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");}
+  function pct(p){return Math.round(p*100)+"%";}
+  function icon(id,cls){return '<svg class="'+(cls||"i")+'" aria-hidden="true"><use href="#'+id+'"/></svg>';}
+
+  /* ---------- State, stored only in this browser ---------- */
+  var KEY="liveline-demo-v3";
+  function defaults(){
+    var now=Date.now(),h=3600000;
+    return {
+      screening:true,safeWord:"Blue heron",alerts:{stop:true,warn:true,weekly:false},
+      members:[{id:1,name:"Ethan",rel:"Grandson",phone:"(612) 555-0110",voice:true},{id:2,name:"David",rel:"Son",phone:"(763) 555-0172",voice:true},{id:3,name:"Maya",rel:"Granddaughter",phone:"(651) 555-0133",voice:false}],
+      activity:[
+        {id:"LL-1046",ts:now-26*h,number:"(651) 555-0129",who:"Claims to be Ethan",band:"stop",p:.94,summary:"Requested bail money in gift cards. Rose hung up and called Ethan, who was at school.",voice:6,words:13.3,chal:1,tactics:["Urgency","Bail","Secrecy","Gift cards"],vnote:"Did not match Ethan’s voice sample",sample:true},
+        {id:"LL-1045",ts:now-50*h,number:"(612) 555-0123",who:"Pharmacy",band:"safe",p:.03,summary:"Automated refill reminder. No requests for money or personal details.",voice:.5,words:.6,chal:1,tactics:[],vnote:"Recorded announcement",sample:true},
+        {id:"LL-1044",ts:now-75*h,number:"(763) 555-0164",who:"Claims to be the bank",band:"warn",p:.41,summary:"Asked Rose to confirm her account. She asked for a call-back number and hung up.",voice:.9,words:6.3,chal:1,tactics:["Personal information","Urgency"],vnote:"Human voice",sample:true},
+        {id:"LL-1043",ts:now-122*h,number:"(952) 555-0158",who:"Claims to be Ethan",band:"safe",p:.05,summary:"Ethan called from a friend’s phone and gave the safe word when asked.",voice:1.6,words:2.4,chal:.1,tactics:["Money request"],vnote:"Poor connection, inconclusive",sample:true}
+      ],
+      next:1047,ts:1,contrast:false,readout:false,sound:true,practice:{best:0,runs:0},unread:0,
+      setup:{call:false,practice:false,word:false,hidden:false}
+    };
+  }
+  var S;
+  try{S=JSON.parse(localStorage.getItem(KEY)||"null");}catch(e){S=null;}
+  if(!S||!S.activity||!S.members||!S.setup)S=defaults();
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+  var LABEL={stop:"Likely scam",warn:"Check",safe:"Safe",idle:"Declined"};
+  var LONG={stop:"Likely scam",warn:"Check first",safe:"Seems safe",idle:"Declined"};
+  var TONE={stop:"red",warn:"amber",safe:"green",idle:"gray"};
+  var SICON={stop:"i-s-stop",warn:"i-s-warn",safe:"i-s-ok",idle:"i-s-x"};
+  var DICON={stop:"i-stop",warn:"i-warn",safe:"i-check"};
+  function band(p){return p>=.7?"stop":p>=.3?"warn":"safe";}
+  function lrToP(l){return l/(1+l);}
+  function level(p){return p<.35?"Low":p<.7?"Medium":"High";}
+
+  /* ---------- Theme ---------- */
+  var darkMq=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)");
+  function mode(){var m=root.getAttribute("data-mode");return m||"system";}
+  function isDark(){var m=root.getAttribute("data-mode");if(m)return m==="dark";var t=root.getAttribute("data-theme");if(t)return t==="dark";return !!(darkMq&&darkMq.matches);}
+  function setMode(m){if(m==="system")root.removeAttribute("data-mode");else root.setAttribute("data-mode",m);try{if(m==="system")localStorage.removeItem("liveline-mode");else localStorage.setItem("liveline-mode",m);}catch(e){}syncTheme();}
+  function syncTheme(){
+    var d=isDark(),b=$("#theme-btn");b.innerHTML=icon(d?"i-sun":"i-moon");b.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme");
+    $$("#theme-seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x.dataset.m===mode()));});
+  }
+  $("#theme-btn").addEventListener("click",function(){setMode(isDark()?"light":"dark");});
+  $$("#theme-seg button").forEach(function(b){b.addEventListener("click",function(){setMode(b.dataset.m);});});
+  if(darkMq&&darkMq.addEventListener)darkMq.addEventListener("change",syncTheme);
+  new MutationObserver(syncTheme).observe(root,{attributes:true,attributeFilter:["data-theme"]});
+
+  /* ---------- Sound ---------- */
+  var AC=null,ringIv=null;
+  function audio(){if(!S.sound)return null;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();return AC;}catch(e){return null;}}
+  function tone(freqs,dur,when,gain){var a=audio();if(!a)return;var t=a.currentTime+(when||0),g=a.createGain(),v=gain||.04;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.02);g.gain.setValueAtTime(v,t+dur-.06);g.gain.linearRampToValueAtTime(0,t+dur);g.connect(a.destination);freqs.forEach(function(f){var o=a.createOscillator();o.type="sine";o.frequency.value=f;o.connect(g);o.start(t);o.stop(t+dur+.02);});}
+  function ringStart(){ringStop();if(!S.sound)return;function burst(){tone([440,480],.45,0,.03);tone([440,480],.45,.65,.03);}burst();ringIv=setInterval(burst,3000);}
+  function ringStop(){clearInterval(ringIv);ringIv=null;}
+  function chime(k){if(k==="stop"){tone([659.3],.18,0,.045);tone([523.3],.3,.2,.045);}else if(k==="safe"){tone([523.3],.14,0,.035);tone([784],.24,.16,.035);}else if(k==="warn"){tone([587.3],.18,0,.04);tone([587.3],.18,.24,.04);}}
+  function speak(text){
+    var fail=function(){toast("amber","Read aloud isn’t available","This browser can’t read text out loud.");};
+    if(!("speechSynthesis" in window)||typeof window.SpeechSynthesisUtterance!=="function"){fail();return;}
+    try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.rate=.92;window.speechSynthesis.speak(u);}catch(e){fail();}
+  }
+
+  /* ---------- Toasts ---------- */
+  function toast(tone,title,body){
+    var t=document.createElement("div");t.className="toast";t.setAttribute("role","status");
+    var ic=tone==="red"?"i-s-stop":tone==="amber"?"i-s-warn":"i-s-ok";
+    t.innerHTML='<span class="ico '+(tone||"green")+'">'+icon(ic)+'</span><div><b>'+esc(title)+'</b>'+(body?'<span>'+esc(body)+'</span>':'')+'</div>';
+    $("#toasts").appendChild(t);
+    setTimeout(function(){t.classList.add("out");setTimeout(function(){t.remove();},320);},4800);
+  }
+
+  /* ---------- Drawer ---------- */
+  var wrap=$("#drawer-wrap"),lastFocus=null;
+  function shellInert(on){[".side",".main",".tabbar"].forEach(function(sel){var el=$(sel);if(el)el.inert=on;});}
+  function openDrawer(title,html,onMount){
+    if(wrap.hidden)lastFocus=document.activeElement;
+    shellInert(true);
+    $("#drawer-title").textContent=title;$("#drawer-body").innerHTML=html;
+    wrap.hidden=false;void wrap.offsetWidth;wrap.classList.add("open");
+    if(onMount)onMount($("#drawer-body"));
+    setTimeout(function(){var f=$("#drawer-body [autofocus]")||$(".drawer-h [data-close]");if(f)f.focus();},50);
+  }
+  function closeDrawer(){
+    if(wrap.hidden)return;wrap.classList.remove("open");
+    if(!palWrap.classList.contains("open"))shellInert(false);
+    setTimeout(function(){if(!wrap.classList.contains("open"))wrap.hidden=true;},360);
+    if(lastFocus&&lastFocus.focus)try{lastFocus.focus();}catch(e){}
+  }
+  wrap.addEventListener("click",function(e){if(e.target.closest("[data-close]"))closeDrawer();});
+
+  /* ---------- Router ---------- */
+  var ROUTES={
+    home:{t:"Home",tab:"home"},simulator:{t:"Simulator",tab:"simulator"},calls:{t:"Calls",tab:"calls"},family:{t:"Family",tab:"family"},
+    practice:{t:"Practice",tab:"practice",more:1},learn:{t:"Learn",tab:"learn",more:1},settings:{t:"Settings",tab:"settings",more:1},
+    "learn-signal":{t:"Signal",tab:"learn",back:"learn",more:1},"learn-scoring":{t:"Scoring",tab:"learn",back:"learn",more:1},
+    "learn-research":{t:"Research",tab:"learn",back:"learn",more:1},"learn-privacy":{t:"Privacy",tab:"learn",back:"learn",more:1}
+  };
+  var current=null,onEnter={},onLeave={};
+  function route(){
+    var id=(location.hash||"").replace("#","");
+    if(!ROUTES[id])id="home";
+    closeDrawer();closePalette();
+    if(id===current)return;
+    if(current&&onLeave[current])onLeave[current]();
+    current=id;var R=ROUTES[id];
+    $$(".screen").forEach(function(s){var on=s.dataset.screen===id;s.classList.toggle("on",on);});
+    $$("[data-tab]").forEach(function(a){if(a.dataset.tab===R.tab)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+    var mb=$("#more-btn");if(R.more)mb.setAttribute("aria-current","page");else mb.removeAttribute("aria-current");
+    $("#title").textContent=R.t;
+    var sub=!!R.back;$("#back").hidden=!sub;$("#crumb").hidden=!sub;$("#crumb-sep").hidden=!sub;$("#m-logo").style.display=sub?"none":"";
+    window.scrollTo(0,0);
+    if(onEnter[id])onEnter[id]();
+  }
+  window.addEventListener("hashchange",route);
+  $("#back").addEventListener("click",function(){var R=ROUTES[current];if(R&&R.back)location.hash=R.back;});
+  function go(id){if(current!==id)location.hash=id;}
+  $("#more-btn").addEventListener("click",function(){
+    openDrawer("More",'<div class="card"><div class="list">'+
+      '<a class="row" href="#practice"><span class="ico">'+icon("i-practice")+'</span><span class="row-main"><span class="row-title">Practice</span></span>'+icon("i-chev","chev")+'</a>'+
+      '<a class="row" href="#learn"><span class="ico">'+icon("i-learn")+'</span><span class="row-main"><span class="row-title">Learn</span></span>'+icon("i-chev","chev")+'</a>'+
+      '<a class="row" href="#settings"><span class="ico">'+icon("i-settings")+'</span><span class="row-main"><span class="row-title">Settings</span></span>'+icon("i-chev","chev")+'</a>'+
+      '</div></div><p class="note">Demo build. Calls are simulated and history is sample data.</p>');
+  });
+
+  /* ---------- Search palette ---------- */
+  var palWrap=$("#pal-wrap"),palInput=$("#pal-input"),palList=$("#pal-list"),palSel=0,palItems=[];
+  var PAL=[
+    {g:"Pages",t:"Home",h:"home",i:"i-home"},{g:"Pages",t:"Simulator",h:"simulator",i:"i-sim"},{g:"Pages",t:"Calls",h:"calls",i:"i-calls"},{g:"Pages",t:"Family",h:"family",i:"i-family"},
+    {g:"Pages",t:"Practice",h:"practice",i:"i-practice"},{g:"Pages",t:"Learn",h:"learn",i:"i-learn"},{g:"Pages",t:"Settings",h:"settings",i:"i-settings"},
+    {g:"Learn",t:"Signal",h:"learn-signal",i:"i-wave"},{g:"Learn",t:"Scoring",h:"learn-scoring",i:"i-nodes"},{g:"Learn",t:"Research",h:"learn-research",i:"i-flask"},{g:"Learn",t:"Privacy",h:"learn-privacy",i:"i-lock"},
+    {g:"Actions",t:"Simulate: voice clone",a:function(){go("simulator");startScenario("clone");},i:"i-sim"},
+    {g:"Actions",t:"Simulate: family member, new number",a:function(){go("simulator");startScenario("real");},i:"i-sim"},
+    {g:"Actions",t:"Simulate: uncertain caller",a:function(){go("simulator");startScenario("unsure");},i:"i-sim"},
+    {g:"Actions",t:"Simulate: agency impersonation",a:function(){go("simulator");startScenario("medicare");},i:"i-sim"},
+    {g:"Actions",t:"Add family member",a:function(){go("family");addMember();},i:"i-plus"},
+    {g:"Actions",t:"Change safe word",a:function(){changeWord();},i:"i-key"},
+    {g:"Actions",t:"Toggle theme",a:function(){setMode(isDark()?"light":"dark");},i:"i-moon"}
+  ];
+  function renderPal(){
+    var q=palInput.value.trim().toLowerCase();
+    palItems=PAL.filter(function(p){return !q||p.t.toLowerCase().indexOf(q)>=0;});
+    if(palSel>=palItems.length)palSel=0;
+    var html="",g="";
+    palItems.forEach(function(p,i){if(p.g!==g){g=p.g;html+='<div class="pal-group">'+g+'</div>';}html+='<button class="pal-item'+(i===palSel?" on":"")+'" type="button" role="option" aria-selected="'+(i===palSel)+'" data-i="'+i+'">'+icon(p.i)+esc(p.t)+'</button>';});
+    palList.innerHTML=html||'<div class="empty"><b>No results</b></div>';
+  }
+  var palFocus=null;
+  function openPalette(){palFocus=document.activeElement;palWrap.classList.add("open");shellInert(true);palInput.value="";palSel=0;renderPal();setTimeout(function(){palInput.focus();},20);}
+  function closePalette(){
+    if(!palWrap.classList.contains("open"))return;
+    palWrap.classList.remove("open");
+    if(wrap.hidden)shellInert(false);
+    if(palFocus&&palFocus.isConnected)try{palFocus.focus();}catch(e){}
+  }
+  function runPal(i){var p=palItems[i];if(!p)return;closePalette();if(p.h)location.hash=p.h;else setTimeout(p.a,30);}
+  $$("[data-palette]").forEach(function(b){b.addEventListener("click",openPalette);});
+  palInput.addEventListener("input",function(){palSel=0;renderPal();});
+  palList.addEventListener("click",function(e){var b=e.target.closest("[data-i]");if(b)runPal(+b.dataset.i);});
+  palWrap.addEventListener("click",function(e){if(e.target===palWrap)closePalette();});
+  palInput.addEventListener("keydown",function(e){
+    if(e.key==="ArrowDown"){palSel=Math.min(palItems.length-1,palSel+1);renderPal();e.preventDefault();}
+    else if(e.key==="ArrowUp"){palSel=Math.max(0,palSel-1);renderPal();e.preventDefault();}
+    else if(e.key==="Enter"){runPal(palSel);e.preventDefault();}
+  });
+  $("#kbd").textContent=/Mac|iPhone|iPad/.test(navigator.platform||"")?"⌘K":"Ctrl K";
+  document.addEventListener("keydown",function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();if(palWrap.classList.contains("open"))closePalette();else openPalette();}
+    else if(e.key==="Escape"){if(palWrap.classList.contains("open"))closePalette();else closeDrawer();}
+    else if(e.key==="Tab"){
+      var box=palWrap.classList.contains("open")?$(".pal"):!wrap.hidden?$(".drawer"):null;
+      if(!box)return;
+      var f=$$('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',box).filter(function(n){return n.offsetParent!==null;});
+      if(!f.length)return;
+      if(e.shiftKey&&(document.activeElement===f[0]||!box.contains(document.activeElement))){e.preventDefault();f[f.length-1].focus();}
+      else if(!e.shiftKey&&(document.activeElement===f[f.length-1]||!box.contains(document.activeElement))){e.preventDefault();f[0].focus();}
+    }
+  });
+
+  /* ---------- Shared ---------- */
+  function callRow(a){
+    return '<button class="row" type="button" data-call="'+esc(a.id)+'"><span class="ico '+TONE[a.band]+'">'+icon(SICON[a.band])+'</span>'+
+      '<span class="row-main"><span class="row-title">'+esc(a.who)+'</span><span class="row-sub one">'+esc(a.summary)+'</span></span>'+
+      '<span class="row-end"><span class="pill '+TONE[a.band]+' hide-sm">'+LABEL[a.band]+'</span><span>'+fmtWhen(a.ts)+'</span>'+icon("i-chev","chev")+'</span></button>';
+  }
+  document.addEventListener("click",function(e){var r=e.target.closest("[data-call]");if(r)openCall(r.dataset.call);});
+  function openCall(id){
+    var a=S.activity.filter(function(x){return x.id===id;})[0];if(!a)return;
+    var vp=lrToP(a.voice),wp=lrToP(a.words);
+    var chal=a.chal===1?["Not used",""]:a.chal<1?["Correct","green"]:["Failed","red"];
+    openDrawer("Call "+a.id,
+      '<div class="summary-head"><span class="ico '+TONE[a.band]+'">'+icon(SICON[a.band])+'</span><div><b>'+LONG[a.band]+'</b><span>Scam risk '+pct(a.p)+'</span></div></div>'+
+      '<div class="card pad"><dl class="kv"><dt>Caller</dt><dd>'+esc(a.who)+'</dd><dt>Number</dt><dd class="mono">'+esc(a.number)+'</dd><dt>Date</dt><dd>'+fmtFull(a.ts)+'</dd>'+(a.sample?'<dt>Source</dt><dd>Sample data</dd>':'')+'</dl></div>'+
+      '<div><p class="label-sm">Summary</p><p>'+esc(a.summary)+'</p></div>'+
+      '<div><p class="label-sm">Signals</p><div class="card"><div class="list">'+
+        '<div class="row two"><span class="row-main"><span class="row-title">Voice</span><span class="row-sub">'+esc(a.vnote||"Compared with family voice samples")+'</span></span><span class="pill '+TONE[band(vp)]+'">'+level(vp)+'</span></div>'+
+        '<div class="row two"><span class="row-main"><span class="row-title">Language</span><span class="row-sub">'+(a.tactics&&a.tactics.length?esc(a.tactics.join(", ")):"No tactics detected")+'</span></span><span class="pill '+TONE[band(wp)]+'">'+level(wp)+'</span></div>'+
+        '<div class="row two"><span class="row-main"><span class="row-title">Safe word</span></span><span class="pill '+(chal[1]||"plain")+'">'+chal[0]+'</span></div>'+
+      '</div></div></div>'+
+      '<div class="card pad" style="display:grid;gap:12px"><p style="font-weight:600">Was this result correct?</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn btn-secondary" type="button" data-fb="yes">Yes</button><button class="btn btn-secondary" type="button" data-fb="no">No</button></div><p class="note" id="fb-note">'+(a.feedback?"Recorded: "+(a.feedback==="yes"?"correct":"incorrect")+".":"Feedback is saved with the call.")+'</p></div>'+
+      (a.band==="stop"||a.band==="warn"?'<a class="btn btn-danger btn-block" href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener">'+icon("i-flag")+'Report to the FTC</a>':''),
+      function(body){$$("[data-fb]",body).forEach(function(b){b.addEventListener("click",function(){a.feedback=b.dataset.fb;save();$("#fb-note",body).textContent="Recorded: "+(a.feedback==="yes"?"correct":"incorrect")+".";});});});
+  }
+  function updateBadges(){$$("[data-badge]").forEach(function(b){b.hidden=!S.unread;b.textContent=S.unread;});}
+  $("#bell").addEventListener("click",function(){
+    var al=S.activity.filter(function(a){return a.band==="stop"||a.band==="warn";});
+    S.unread=0;save();updateBadges();
+    openDrawer("Notifications",al.length?'<div class="card"><div class="list">'+al.map(function(a){return '<button class="row" type="button" data-call="'+esc(a.id)+'"><span class="ico '+TONE[a.band]+'">'+icon(SICON[a.band])+'</span><span class="row-main"><span class="row-title">'+(a.band==="stop"?"Likely scam call":"Check requested")+'</span><span class="row-sub">'+esc(a.who)+' · '+fmtWhen(a.ts)+'</span></span>'+icon("i-chev","chev")+'</button>';}).join("")+'</div></div>':'<div class="empty"><b>No notifications</b></div>');
+  });
+
+  /* ---------- Switches ---------- */
+  function syncSwitches(){
+    $$("[data-sw]").forEach(function(el){el.setAttribute("aria-checked",String(!!S[el.dataset.sw]));});
+    $$("[data-alert]").forEach(function(el){el.setAttribute("aria-checked",String(!!S.alerts[el.dataset.alert]));});
+  }
+  $$("[data-sw]").forEach(function(el){el.addEventListener("click",function(){var k=el.dataset.sw;S[k]=!S[k];save();syncSwitches();
+    if(k==="screening"){renderProtection();toast(S.screening?"green":"amber",S.screening?"Screening on":"Screening paused");if(current==="home")onEnter.home();}
+    if(k==="contrast")applyDevice();
+    if(k==="sound"){syncSnd();if(S.sound)chime("safe");else ringStop();}
+  });});
+  $$("[data-alert]").forEach(function(el){el.addEventListener("click",function(){var k=el.dataset.alert;S.alerts[k]=!S.alerts[k];save();syncSwitches();});});
+  function renderProtection(){
+    var on=S.screening;
+    $("#banner-ico").className="ico "+(on?"green":"amber");
+    $("#banner-h").textContent=on?"Protection on":"Protection paused";
+    $("#banner-p").textContent=on?"Calls to Rose from unknown numbers are screened.":"Unknown calls ring through without screening.";
+    $("#me-status").innerHTML='<i class="dot" style="background:var(--'+(on?"green":"amber")+')"></i>'+(on?"Protected":"Paused");
+    var rp=$("#rose-pill");rp.className="pill "+(on?"green":"amber");rp.textContent=on?"Protected":"Paused";
+  }
+
+  /* ---------- Home ---------- */
+  function renderSetup(){
+    var box=$("#setup");
+    var items=[["Enable call screening",!!S.screening,"#family"],["Run a test call",S.setup.call,"#simulator"],["Complete weekly practice",S.setup.practice,"#practice"],["Review the safe word",S.setup.word,"word"]];
+    var done=items.filter(function(x){return x[1];}).length;
+    if(S.setup.hidden){box.hidden=true;return;}
+    box.hidden=false;
+    box.innerHTML='<div class="card-head"><h2>Setup</h2>'+(done===4?'<button class="btn btn-secondary btn-sm" type="button" id="setup-hide">Dismiss</button>':'<span class="aside">'+done+' of 4</span>')+'</div>'+
+      '<div style="padding:14px 20px 4px"><div class="progress"><i style="width:'+(done/4*100)+'%"></i></div></div>'+
+      '<div class="list">'+items.map(function(x){var open=x[2]==="word"?'button type="button" data-review-word':'a href="'+x[2]+'"',close=x[2]==="word"?"button":"a";return '<'+open+' class="row check-row'+(x[1]?" done":"")+'"><span class="tick">'+icon("i-tick")+'</span><span class="row-main"><span class="row-title">'+x[0]+'</span></span>'+(x[1]?'<span></span>':icon("i-chev","chev"))+'</'+close+'>';}).join("")+'</div>';
+    var hb=$("#setup-hide");if(hb)hb.addEventListener("click",function(){S.setup.hidden=true;save();renderSetup();});
+  }
+  onEnter.home=function(){
+    renderProtection();renderSetup();
+    var week=Date.now()-7*DAY,recent=S.activity.filter(function(a){return a.ts>=week;});
+    var c={stop:0,warn:0};recent.forEach(function(a){if(c[a.band]!==undefined)c[a.band]++;});
+    $("#metrics").innerHTML=[
+      ["Calls screened",recent.length,"Last 7 days"],
+      ["Likely scams",c.stop,c.stop?"Family notified":"None this week"],
+      ["Checks requested",c.warn,"Safe word or call-back"],
+      ["Practice score",S.practice.runs?(S.practice.best+" / 3"):"None",S.practice.runs?S.practice.runs+" drill"+(S.practice.runs===1?"":"s"):"Not started"]
+    ].map(function(m){return '<div class="card metric"><span>'+m[0]+'</span><b>'+m[1]+'</b><small>'+esc(m[2])+'</small></div>';}).join("");
+    $("#home-recent").innerHTML=S.activity.slice(0,5).map(callRow).join("")||'<div class="empty"><b>No calls yet</b>Run a simulation to see Liveline at work.</div>';
+  };
+  document.addEventListener("click",function(e){if(e.target.closest("[data-review-word]")){go("family");setTimeout(function(){renderWord(true);S.setup.word=true;save();},60);}});
+
+  /* ---------- Calls ---------- */
+  var filter="all";
+  function renderCalls(){
+    var q=($("#call-search").value||"").trim().toLowerCase();
+    var list=S.activity.filter(function(a){return (filter==="all"||a.band===filter)&&(!q||(a.who+" "+a.summary+" "+a.number+" "+a.id+" "+(a.tactics||[]).join(" ")).toLowerCase().indexOf(q)>=0);});
+    if(!list.length){$("#call-list").innerHTML='<div class="card" style="margin-top:16px"><div class="empty"><b>No calls found</b>Try another search or filter.</div></div>';return;}
+    var t0=startOfToday(),groups=[["Today",function(a){return a.ts>=t0;}],["Yesterday",function(a){return a.ts>=t0-DAY&&a.ts<t0;}],["This week",function(a){return a.ts>=t0-7*DAY&&a.ts<t0-DAY;}],["Earlier",function(a){return a.ts<t0-7*DAY;}]];
+    $("#call-list").innerHTML=groups.map(function(g){var items=list.filter(g[1]);return items.length?'<h2 class="section-title">'+g[0]+'</h2><div class="card"><div class="list">'+items.map(callRow).join("")+'</div></div>':"";}).join("");
+  }
+  $("#call-search").addEventListener("input",renderCalls);
+  $$("#call-filter button").forEach(function(b){b.addEventListener("click",function(){filter=b.dataset.f;$$("#call-filter button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});renderCalls();});});
+  onEnter.calls=function(){renderCalls();};
+
+  /* ---------- Family ---------- */
+  var wordShown=false;
+  function renderWord(show){if(show!==undefined)wordShown=show;$("#word-out").textContent=wordShown?S.safeWord:"••••••••";$("#word-show").innerHTML=icon("i-eye")+(wordShown?"Hide":"Show");$$("[data-word]").forEach(function(el){el.textContent=S.safeWord;});}
+  $("#word-show").addEventListener("click",function(){renderWord(!wordShown);if(wordShown){S.setup.word=true;save();}});
+  document.addEventListener("click",function(e){if(e.target.closest("[data-change-word]"))changeWord();});
+  function changeWord(){
+    openDrawer("Safe word",'<form id="w-form" class="stack"><label class="field" for="w-in">New safe word<input type="text" id="w-in" maxlength="24" autocomplete="off" autofocus></label><p class="note">Pick something easy to say and hard to guess. Avoid anything posted online.</p><button class="btn btn-primary btn-block" type="submit">Save</button></form>',
+      function(body){$("#w-form",body).addEventListener("submit",function(e){e.preventDefault();var v=$("#w-in",body).value.trim();if(!v){$("#w-in",body).focus();return;}S.safeWord=v;S.setup.word=true;save();renderWord(true);closeDrawer();toast("green","Safe word updated");});});
+  }
+  function renderMembers(){
+    $("#members").innerHTML=S.members.map(function(m){
+      return '<button class="row" type="button" data-member="'+m.id+'"><span class="av">'+esc(m.name.charAt(0).toUpperCase())+'</span><span class="row-main"><span class="row-title">'+esc(m.name)+'</span><span class="row-sub">'+esc(m.rel)+'</span></span><span class="row-end"><span class="pill '+(m.voice?"green":"amber")+'">'+(m.voice?"Voice saved":"No voice")+'</span>'+icon("i-chev","chev")+'</span></button>';
+    }).join("")||'<div class="empty"><b>No members</b></div>';
+  }
+  $("#members").addEventListener("click",function(e){var b=e.target.closest("[data-member]");if(b)openMember(+b.dataset.member);});
+  $("#add-member").addEventListener("click",addMember);
+  function openMember(id){
+    var m=S.members.filter(function(x){return x.id===id;})[0];if(!m)return;
+    openDrawer(m.name,
+      '<div class="summary-head"><span class="av lg">'+esc(m.name.charAt(0).toUpperCase())+'</span><div><b>'+esc(m.name)+'</b><span>'+esc(m.rel)+(m.phone?' · <span class="mono">'+esc(m.phone)+'</span>':'')+'</span></div></div>'+
+      '<div class="card pad" id="rec-box" style="display:grid;gap:12px">'+(m.voice?'<p style="font-weight:600">Voice sample saved</p><p class="muted">Calls that claim to be '+esc(m.name)+' are compared against this sample.</p>':'<p style="font-weight:600">No voice sample</p><p class="muted">A 30-second sample lets Liveline detect callers impersonating '+esc(m.name)+'.</p><button class="btn btn-primary btn-block" type="button" id="rec">'+icon("i-mic")+'Record sample</button>')+'</div>'+
+      '<p class="note">Demo build: nothing is recorded.</p>'+
+      '<button class="btn btn-danger btn-block" type="button" id="rm">'+icon("i-trash")+'Remove member</button>',
+      function(body){
+        var rec=$("#rec",body);
+        if(rec)rec.addEventListener("click",function(){
+          var box=$("#rec-box",body);
+          box.innerHTML='<p style="font-weight:600">Recording</p><div class="progress"><i id="rec-bar" style="width:0%;transition:width .25s linear"></i></div><p class="mono muted" id="rec-t">0:00 / 0:30</p>';
+          var s=0,iv=setInterval(function(){s+=3;var b=$("#rec-bar",body),t=$("#rec-t",body);if(!b){clearInterval(iv);return;}b.style.width=(s/30*100)+"%";t.textContent=mmss(s)+" / 0:30";
+            if(s>=30){clearInterval(iv);m.voice=true;save();renderMembers();box.innerHTML='<p style="font-weight:600;color:var(--green)">Voice sample saved</p><p class="muted">Calls that claim to be '+esc(m.name)+' are compared against this sample.</p>';}},250);
+        });
+        $("#rm",body).addEventListener("click",function(){var b=$("#rm",body);if(b.dataset.sure){S.members=S.members.filter(function(x){return x.id!==id;});save();renderMembers();closeDrawer();toast("green",m.name+" removed");}else{b.dataset.sure="1";b.innerHTML=icon("i-trash")+"Confirm removal";}});
+      });
+  }
+  function addMember(){
+    openDrawer("New member",'<form id="am" class="stack"><label class="field" for="am-n">Name<input type="text" id="am-n" maxlength="20" autocomplete="off" autofocus></label><label class="field" for="am-r">Relationship<input type="text" id="am-r" maxlength="24" autocomplete="off"></label><label class="field" for="am-p">Phone<input type="tel" id="am-p" maxlength="20" autocomplete="off"></label><p class="note">Calls from this number skip screening.</p><button class="btn btn-primary btn-block" type="submit">Add member</button></form>',
+      function(body){$("#am",body).addEventListener("submit",function(e){e.preventDefault();var n=$("#am-n",body).value.trim();if(!n){$("#am-n",body).focus();return;}S.members.push({id:Date.now(),name:n,rel:$("#am-r",body).value.trim()||"Family",phone:$("#am-p",body).value.trim(),voice:false});save();renderMembers();closeDrawer();toast("green",n+" added");});});
+  }
+  onEnter.family=function(){renderMembers();renderWord();renderProtection();};
+
+  /* ---------- Settings ---------- */
+  var device=$("#device");
+  function applyDevice(){
+    device.style.setProperty("--ds",S.ts);device.classList.toggle("contrast",!!S.contrast);
+    var pv=$("#preview");pv.style.setProperty("--ds",S.ts);pv.classList.toggle("contrast",!!S.contrast);
+    $$("#ts-seg button").forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.ts===+S.ts));});
+  }
+  $$("#ts-seg button").forEach(function(b){b.addEventListener("click",function(){S.ts=+b.dataset.ts;save();applyDevice();});});
+  $("#show-setup").addEventListener("click",function(){S.setup.hidden=false;save();location.hash="home";});
+  $("#reset").addEventListener("click",function(){
+    var b=$("#reset"),sub=$("#reset-sub");
+    if(!b.dataset.sure){b.dataset.sure="1";sub.textContent="Select again to confirm";setTimeout(function(){delete b.dataset.sure;sub.textContent="Restore the sample calls and settings";},4000);return;}
+    delete b.dataset.sure;sub.textContent="Restore the sample calls and settings";
+    S=defaults();save();applyDevice();syncSwitches();syncSnd();updateBadges();renderWord(false);renderProtection();toast("green","Demo data reset");
+  });
+
+  /* ---------- Spectrogram engine (simulated speech) ---------- */
+  var COOL=[[0,6,9,30],[.2,18,32,84],[.4,34,76,150],[.6,64,140,200],[.8,150,210,240],[1,245,250,255]];
+  function Spectro(cv,opts){
+    var ctx=cv.getContext&&cv.getContext("2d");if(!ctx)return null;
+    var LUT=(function(){var st=opts.stops,out=new Uint8Array(768);for(var i=0;i<256;i++){var x=i/255,j=0;while(j<st.length-2&&x>st[j+1][0])j++;var a=st[j],b=st[j+1],t=(x-a[0])/(b[0]-a[0]);for(var c=0;c<3;c++)out[i*3+c]=Math.round(a[c+1]+(b[c+1]-a[c+1])*t);}return out;})();
+    var R=0,Wd=0,colW=2,freqs,tilt,mask,img,queue=[],rnd=Math.random,mode=opts.mode||"studio",talking=true;
+    function sm(e0,e1,x){var t=(x-e0)/(e1-e0);t=t<0?0:t>1?1:t;return t*t*(3-2*t);}
+    function setup(){
+      var dpr=Math.min(window.devicePixelRatio||1,2);
+      Wd=Math.max(2,Math.round(cv.clientWidth*dpr));R=Math.max(2,Math.round(cv.clientHeight*dpr));
+      cv.width=Wd;cv.height=R;colW=Math.max(1,Math.round(2*dpr));
+      freqs=new Float32Array(R);tilt=new Float32Array(R);mask=new Float32Array(R);
+      for(var r=0;r<R;r++){var f=(R-1-r)/(R-1)*opts.top;freqs[r]=f;tilt[r]=.05+1/(1+Math.pow(f/650,1.6));mask[r]=sm(200,330,f)*(1-sm(3300,3480,f));}
+      img=ctx.createImageData(colW,R);
+    }
+    function phrase(){
+      var n=3+Math.floor(rnd()*5),f0=150+rnd()*60;
+      for(var s=0;s<n;s++){
+        var prog=s/n,on=rnd()<.38?(rnd()<.55?"s":(rnd()<.5?"sh":"f")):null;
+        if(on){var ol=3+Math.floor(rnd()*4);for(var k=0;k<ol;k++)queue.push({k:on,a:.85*Math.sin(Math.PI*(k+.5)/ol)});}
+        var vl=7+Math.floor(rnd()*8),F1=320+rnd()*480,F2a=900+rnd()*1300,F2b=900+rnd()*1300,F3=2400+rnd()*600,g=.65+rnd()*.45,acc=rnd()<.3?1.12:1;
+        for(var v=0;v<vl;v++){var q=v/vl;queue.push({k:"v",a:g*Math.pow(Math.sin(Math.PI*(v+.5)/vl),.6),f0:f0*(1-.16*prog)*acc*(1+.04*Math.sin(q*3.1)),F1:F1,F2:F2a+(F2b-F2a)*q,F3:F3});}
+        if(rnd()<.22){var cl=3+Math.floor(rnd()*3);for(var c=0;c<cl;c++)queue.push({k:"s",a:.7*Math.sin(Math.PI*(c+.5)/cl)});}
+        if(rnd()<.25)for(var z=0;z<2;z++)queue.push({k:"sil"});
+      }
+      if(rnd()<.6){for(var p=0;p<3;p++)queue.push({k:"sil"});var bl=13+Math.floor(rnd()*8);for(var b=0;b<bl;b++)queue.push({k:"br",a:.9*Math.sin(Math.PI*(b+.5)/bl)});for(var p2=0;p2<4;p2++)queue.push({k:"sil"});}
+      else{var pl=6+Math.floor(rnd()*8);for(var p3=0;p3<pl;p3++)queue.push({k:"sil"});}
+    }
+    function column(){
+      var fr;if(!talking){fr={k:"sil"};}else{if(!queue.length)phrase();fr=queue.shift();}
+      var d=img.data,phone=mode==="phone";
+      for(var r=0;r<R;r++){
+        var f=freqs[r],E=.0016*rnd();
+        if(fr.k==="v"){var f0=fr.f0,n=Math.round(f/f0),dd=f-n*f0,sg=14+f*.006;var env=fr.a*tilt[r]*(.2+Math.exp(-Math.pow((f-fr.F1)/170,2))+.75*Math.exp(-Math.pow((f-fr.F2)/210,2))+.45*Math.exp(-Math.pow((f-fr.F3)/280,2)));E+=env*Math.exp(-dd*dd/(2*sg*sg))+.015*fr.a*rnd()*(f>3000?1.4:.5);}
+        else if(fr.k==="s"){E+=fr.a*Math.exp(-Math.pow((f-6300)/1700,2))*(.5+.5*rnd());}
+        else if(fr.k==="sh"){E+=fr.a*.8*Math.exp(-Math.pow((f-3700)/1300,2))*(.5+.5*rnd());}
+        else if(fr.k==="f"){E+=fr.a*.05*(f>1500?1:f/1500)*(.4+.6*rnd());}
+        else if(fr.k==="br"){E+=fr.a*(.03+.09*Math.exp(-Math.pow((f-2600)/1900,2))+.17*Math.exp(-Math.pow((f-6000)/1800,2)))*(.35+.65*rnd());}
+        if(phone)E=E*mask[r]+.0035*rnd();
+        var val=Math.log(1+70*E)/4.26,idx=val<=0?0:val>=1?255:(val*255)|0;
+        var cr=LUT[idx*3],cg=LUT[idx*3+1],cb=LUT[idx*3+2];
+        for(var x=0;x<colW;x++){var o=(r*colW+x)*4;d[o]=cr;d[o+1]=cg;d[o+2]=cb;d[o+3]=255;}
+      }
+      return img;
+    }
+    function fill(){for(var x=0;x<Wd;x+=colW)ctx.putImageData(column(),x,0);}
+    function step(){ctx.drawImage(cv,colW,0,Wd-colW,R,0,0,Wd-colW,R);ctx.putImageData(column(),Wd-colW,0);}
+    var running=false,last=0,acc=0;
+    function frame(ts){if(!running)return;var dt=Math.min(.1,(ts-(last||ts))/1000);last=ts;acc+=dt*50;var n=0;while(acc>=1&&n<6){step();acc-=1;n++;}if(opts.onFrame)opts.onFrame(dt);requestAnimationFrame(frame);}
+    var api={setMode:function(m){mode=m;if(reduce)fill();},setTalking:function(t){talking=t;},start:function(){if(reduce||running)return;running=true;last=0;requestAnimationFrame(frame);},stop:function(){running=false;},resize:function(){var w=Math.round(cv.clientWidth*Math.min(window.devicePixelRatio||1,2));if(w&&w!==Wd){setup();fill();}}};
+    setup();fill();
+    return api;
+  }
+
+  /* ---------- Learn: signal ---------- */
+  var labSpec=null,labUser=false,labFlip=0;
+  function setLabMode(m,user){$("#lab").setAttribute("data-mode",m);$$("#lab-seg button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.mode===m));});if(labSpec)labSpec.setMode(m);if(user)labUser=true;}
+  $$("#lab-seg button").forEach(function(b){b.addEventListener("click",function(){setLabMode(b.dataset.mode,true);});});
+  onEnter["learn-signal"]=function(){
+    if(!labSpec)labSpec=Spectro($("#lab-spec"),{top:8000,stops:COOL,onFrame:function(dt){if(labUser)return;labFlip+=dt;var m=$("#lab").getAttribute("data-mode");if(labFlip>(m==="studio"?4.5:7)){labFlip=0;setLabMode(m==="studio"?"phone":"studio",false);}}});
+    else labSpec.resize();
+    if(labSpec)labSpec.start();
+  };
+  onLeave["learn-signal"]=function(){if(labSpec)labSpec.stop();};
+
+  /* ---------- Learn: scoring calculator ---------- */
+  function segVal(id){var b=$("#"+id+" [aria-pressed=true]");return b?+b.dataset.v:1;}
+  ["k-time","k-word"].forEach(function(id){$$("#"+id+" button").forEach(function(b){b.addEventListener("click",function(){$$("#"+id+" button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});calc();});});});
+  ["k-voice","k-words"].forEach(function(id){$("#"+id).addEventListener("input",calc);});
+  function calc(){
+    var prior=segVal("k-time"),lc=segVal("k-word");
+    var lv=Math.exp(-2.3+4.6*(+$("#k-voice").value/100)),lw=Math.exp(-1.6+5.5*(+$("#k-words").value/100));
+    var po=prior/(1-prior),odds=po*lv*lw*lc,p=odds/(1+odds),b=band(p);
+    var n=$("#k-risk");n.textContent=pct(p);n.className="risk-val "+TONE[b];
+    var pl=$("#k-pill");pl.className="pill "+TONE[b];pl.textContent=LONG[b];
+    $("#k-say").textContent=b==="stop"?"Rose sees red with options to hang up or call family.":b==="warn"?"Rose sees yellow and is prompted for the safe word.":"Rose sees green. The call continues normally.";
+    $("#k-math").innerHTML="starting odds "+po.toFixed(3)+"<br>× voice ℓ "+lv.toFixed(2)+"<br>× request ℓ "+lw.toFixed(2)+"<br>× safe word ℓ "+lc.toFixed(2)+"<br>= odds <b>"+odds.toFixed(3)+"</b>, risk <b>"+pct(p)+"</b>";
+  }
+  calc();
+
+  /* ---------- Learn: research schedule ---------- */
+  var DAYS=[["2026-10-15","Kickoff","Registration, recruiting, datasets"],["2026-10-16","Telephony","Live call streamed end to end"],["2026-10-17","Codec simulation","Clean and phone copies of each clip"],["2026-10-18","Feature survival","Which voice features survive"],["2026-10-19","Benchmark","Comparison against baselines"],["2026-10-20","Language signal","Speech-to-text and tactic scoring"],["2026-10-21","Fusion","Combined score and thresholds"],["2026-10-22","Interface","Senior screens and family app"],["2026-10-23","Stretch","Safe-word check, practice, pilot"],["2026-10-24","Video","Consented demo recording"],["2026-10-25","Submission","Video, answers, AI disclosure"],["2026-10-26","Deadline","Portal closes 11:00 AM Central"]];
+  onEnter["learn-research"]=function(){
+    var today="";try{today=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Chicago",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}catch(e){}
+    $("#tl").innerHTML=DAYS.map(function(d){var dt=new Date(d[0]+"T12:00:00"),isT=d[0]===today;return '<div class="tl-row'+(isT?" today":"")+'"><span class="d">'+dt.toLocaleDateString([],{weekday:"short",month:"short",day:"numeric"})+'</span><span class="row-main"><b>'+d[1]+'</b><span class="row-sub">'+d[2]+'</span></span>'+(isT?'<span class="pill blue">Today</span>':'<span></span>')+'</div>';}).join("");
+    var left=Date.UTC(2026,9,26,16,0,0)-Date.now(),cd=$("#countdown");
+    if(left>0){var days=Math.floor(left/DAY);cd.textContent=days>=1?days+(days===1?" day left":" days left"):"Due today";cd.className="pill amber";}else{cd.textContent="Closed";cd.className="pill";}
+  };
+
+  /* ---------- Practice ---------- */
+  var DRILLS=[
+    {text:"Hi Grandma, it’s me. I was in a car accident and I need two thousand dollars for the other driver right now. Please don’t tell Dad.",answer:"scam",tactics:["Urgency","Secrecy","Payment request"],why:"An immediate money request plus a request for secrecy. A real grandchild can wait while you call a parent."},
+    {text:"Hi Mom, it’s Laura. Just checking if you still want to come to dinner on Sunday. I can pick you up at five.",answer:"real",tactics:[],why:"No money, no pressure, and a plan that can be confirmed later."},
+    {text:"This is Officer Daniels. Your grandson is in custody. Bail is thirty-five hundred dollars and must be paid in gift cards within the hour.",answer:"scam",tactics:["Emergency story","Gift cards","Urgency"],why:"Courts and police do not accept gift cards, and a one-hour deadline is a pressure tactic."}
+  ];
+  var dr={i:0,score:0,picked:null,saved:false};
+  function renderSteps(){$("#steps").innerHTML=DRILLS.map(function(_,k){return '<i class="'+(k<dr.i||(k===dr.i&&dr.picked!==null)?"done":"")+'"></i>';}).join("");}
+  function renderDrill(){
+    var box=$("#drill");renderSteps();
+    if(dr.i>=DRILLS.length){
+      if(!dr.saved){S.practice.best=Math.max(S.practice.best||0,dr.score);S.practice.runs=(S.practice.runs||0)+1;S.setup.practice=true;save();dr.saved=true;chime(dr.score===3?"safe":"warn");}
+      box.innerHTML='<div class="score"><span class="note">Score</span><b>'+dr.score+' / 3</b><span class="pill '+(dr.score===3?"green":dr.score===2?"amber":"red")+'">'+(dr.score===3?"All correct":dr.score+" correct")+'</span></div>'+
+        (S.alerts.weekly?'<p class="note" style="text-align:center">Results will be shared with the family.</p>':'')+
+        '<button class="btn btn-primary btn-block" type="button" id="dr-again">'+icon("i-refresh")+'Practice again</button>';
+      $("#dr-again").addEventListener("click",function(){dr={i:0,score:0,picked:null,saved:false};renderDrill();});
+      return;
+    }
+    var d=DRILLS[dr.i],done=dr.picked!==null,ok=done&&dr.picked===d.answer;
+    function cls(v){return done?(d.answer===v?"right":dr.picked===v?"wrong":""):"";}
+    box.innerHTML='<div class="player"><button class="play" type="button" id="dr-play" aria-label="Play call">'+icon("i-play")+'</button><div><b style="display:block;font-weight:600">Call '+(dr.i+1)+' of 3</b><span class="note">Synthetic voice, labeled as practice</span></div></div>'+
+      '<p class="quote" id="dr-quote">“'+esc(d.text)+'”</p>'+
+      '<div class="choice"><button type="button" data-pick="real" '+(done?"disabled":"")+' class="'+cls("real")+'">Real</button><button type="button" data-pick="scam" '+(done?"disabled":"")+' class="'+cls("scam")+'">Scam</button></div>'+
+      (done?'<div class="result '+(ok?"good":"bad")+'"><b>'+(ok?"Correct":"Incorrect")+'. This call is '+(d.answer==="scam"?"a scam":"real")+'.</b><p>'+esc(d.why)+'</p>'+(d.tactics.length?'<div class="tags">'+d.tactics.map(function(t){return '<span class="tag-r">'+esc(t)+'</span>';}).join("")+'</div>':'')+'</div><button class="btn btn-primary btn-block" type="button" id="dr-next">'+(dr.i===DRILLS.length-1?"See score":"Next call")+'</button>':'');
+    $("#dr-play").addEventListener("click",function(){speak(d.text);typeQuote(d.text);});
+    $$(".choice button",box).forEach(function(b){b.addEventListener("click",function(){dr.picked=b.dataset.pick;var good=dr.picked===d.answer;if(good)dr.score++;chime(good?"safe":"stop");renderDrill();});});
+    var nx=$("#dr-next");if(nx)nx.addEventListener("click",function(){dr.i++;dr.picked=null;renderDrill();});
+  }
+  function typeQuote(text){var q=$("#dr-quote");if(!q||reduce)return;var i=0,full="“"+text+"”";q.textContent="";var iv=setInterval(function(){i+=2;q.textContent=full.slice(0,i);if(i>=full.length)clearInterval(iv);},26);}
+  onEnter.practice=function(){renderDrill();};
+
+  /* ---------- Simulator ---------- */
+  var SC={
+    clone:{number:"(651) 555-0187",claim:"Claims to be Ethan",family:"Ethan",prior:.10,showWord:true,
+      say:{safe:"This sounds like Ethan, and nothing unusual has come up.",warn:"Something is off. Ask them to whisper the safe word.",stop:"The voice sounds computer-made, and the caller wants gift cards."},
+      events:[
+        {t:.8,who:"caller",text:"Grandma? It’s me, Ethan."},
+        {t:2.0,voice:1.8,note:"Comparing with Ethan’s voice sample"},
+        {t:2.8,who:"caller",text:"I’m in real trouble. I got arrested and I need bail money tonight.",tactics:["Urgency","Bail"],words:3.2,hl:["bail money tonight"]},
+        {t:4.4,who:"rose",text:"Oh no. Are you hurt? Let me call your mother."},
+        {t:5.2,who:"caller",text:"Please don’t tell Mom. She can’t find out.",tactics:["Secrecy"],words:2.6,hl:["don’t tell Mom"]},
+        {t:5.8,voice:4.5,note:"Does not match Ethan’s voice sample"},
+        {t:8.0,who:"caller",text:"The lawyer says you can pay with gift cards from the pharmacy.",tactics:["Gift cards"],words:4,hl:["gift cards"]},
+        {t:9.5,voice:6,note:"Breathing and pauses indicate a synthetic voice"},
+        {t:11.5,who:"caller",text:"Can you go now? I only have a few minutes.",tactics:["Pressure"],words:1.4,hl:["go now"]}
+      ],reply:"Hi Grandma! I’m at school. I’m fine.",end:20},
+    real:{number:"(612) 555-0148",claim:"Claims to be Ethan, on a friend’s phone",family:"Ethan",prior:.10,showWord:true,
+      say:{safe:"This sounds like Ethan, and nothing unusual has come up.",warn:"Something is off. Ask them to whisper the safe word.",stop:"Something is wrong with this call. Hang up and call Ethan."},
+      events:[
+        {t:.8,who:"caller",text:"Hi Grandma, it’s Ethan. My phone died, so I’m using Jake’s."},
+        {t:2.0,voice:.4,note:"Comparing with Ethan’s voice sample"},
+        {t:3.0,who:"caller",text:"Are we still on for pancakes Saturday? Mom said she’ll drive me over."},
+        {t:4.4,voice:.12,note:"Matches Ethan’s voice sample"},
+        {t:5.0,words:.7,note2:"No tactics detected"},
+        {t:6.2,who:"rose",text:"Of course, sweetheart. Nine o’clock?"},
+        {t:7.4,who:"caller",text:"Nine works. Love you, see you then."}
+      ],reply:"Hi Grandma! Yes, that was me on Jake’s phone.",end:14},
+    unsure:{number:"(952) 555-0161",claim:"Claims to be Ethan",family:"Ethan",prior:.10,challenge:true,showWord:true,
+      say:{safe:"They knew the safe word. This is probably Ethan.",warn:"Ask them to whisper the safe word.",stop:"They could not give the safe word. Hang up and call Ethan."},
+      events:[
+        {t:.8,who:"caller",text:"Grandma? It’s Ethan. Sorry, the signal here is really bad."},
+        {t:2.0,voice:1.6,note:"Poor connection, inconclusive"},
+        {t:3.2,who:"caller",text:"I missed the last bus. Could you send me money for a ride home?",tactics:["Payment request"],words:2.8,hl:["send me money"]},
+        {t:4.6,voice:2.0,note:"Still inconclusive on this line"},
+        {t:5.8,who:"rose",text:"Where are you, honey?"},
+        {t:6.6,who:"caller",text:"Near the mall. I can explain later."}
+      ],
+      pass:[{who:"caller",text:"(whispering) {word}."},{who:"rose",text:"Okay. Let me call your dad and we’ll come get you."}],
+      fail:[{who:"caller",text:"What? I can’t hear you. Please just send the money.",tactics:["Pressure"],hl:["just send the money"]}],
+      reply:"Hi Grandma, I’m home. That wasn’t me.",end:22},
+    medicare:{number:"(800) 555-0199",claim:"Claims to be Medicare",family:"David",prior:.10,showWord:false,
+      say:{safe:"Nothing unusual so far.",warn:"Be careful. Do not share personal numbers.",stop:"The caller wants your Medicare number and gift cards. Hang up."},
+      events:[
+        {t:.8,who:"caller",text:"Hello, this is the Medicare benefits office. Your benefits will be suspended today.",tactics:["Urgency","Impersonation"],words:3.2,hl:["suspended today"]},
+        {t:2.0,voice:.8,note:"Human voice"},
+        {t:3.4,who:"caller",text:"To stop that, I need to verify your Medicare number right now.",tactics:["Personal information"],words:3,hl:["Medicare number"]},
+        {t:4.6,who:"rose",text:"Suspended? Why would it be suspended?"},
+        {t:5.6,who:"caller",text:"There is a reactivation fee. You can pay it with gift cards.",tactics:["Gift cards"],words:5,hl:["gift cards"]},
+        {t:7.5,voice:.7,note:"Human voice. Language signal is decisive."},
+        {t:8.6,who:"caller",text:"Please stay on the line. Do not hang up.",tactics:["Pressure"],words:1.3,hl:["Do not hang up"]}
+      ],reply:"Hi Mom. Medicare never asks for gift cards. I’ll come by later.",end:20}
+  };
+  var call=null,callSpec=null,simIv=null,who="Rose",riskShown=0;
+  var sim=$("#sim");
+  function setView(v){device.setAttribute("data-view",v);}
+  function setPane(p){sim.setAttribute("data-pane",p);$$("#sim-switch button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pane===p));});}
+  $$("#sim-switch button").forEach(function(b){b.addEventListener("click",function(){setPane(b.dataset.pane);});});
+  $("#risk-pill").addEventListener("click",function(){setPane("view");});
+  function phase(text,b){var c=$("#p-phase");c.className="pill "+(b?TONE[b]:"plain");c.textContent=text;}
+  function showCallUI(on){$("#call-ui").hidden=!on;$("#picker").hidden=on;sim.classList.toggle("has-call",on);var sw=$("#sim-switch");if(on)sw.setAttribute("data-on","");else{sw.removeAttribute("data-on");setPane("phone");}}
+  function addLine(kind,text,hl){
+    var t=esc(text);(hl||[]).forEach(function(h){t=t.replace(esc(h),"<mark>"+esc(h)+"</mark>");});
+    var el=document.createElement("div");el.className="msg "+kind;
+    el.innerHTML=(kind==="sys"?"":'<small>'+(kind==="caller"?"Caller":who)+'</small>')+t;
+    var box=$("#transcript");box.appendChild(el);box.scrollTop=box.scrollHeight;
+  }
+  function setLvl(id,p,on){var el=$(id);if(!on){el.className="pill plain";el.textContent="None";return;}var b=band(p);el.className="pill "+TONE[b];el.textContent=level(p);}
+  function renderSignals(){
+    var vp=lrToP(call.lv),vOn=call.lv!==1;
+    $("#v-note").textContent=call.vnote;
+    var vb=$("#v-bar");vb.style.width=(vOn?Math.round(vp*100):0)+"%";vb.className=vOn?TONE[band(vp)]:"";
+    setLvl("#v-lvl",vp,vOn);
+    var wp=lrToP(call.lw),wOn=call.lw!==1;
+    $("#w-note").textContent=call.wnote;
+    $("#w-tags").innerHTML=call.tactics.map(function(t){return '<span class="tag-r">'+esc(t)+'</span>';}).join("");
+    setLvl("#w-lvl",wp,wOn);
+    var cs={idle:["Used only when the score is uncertain","Idle","plain"],wait:["Rose is asking the caller to whisper it","Waiting","amber"],pass:["The caller gave the correct safe word","Passed","green"],fail:["The caller could not give the safe word","Failed","red"]}[call.chal];
+    $("#c-note").textContent=cs[0];var cl=$("#c-lvl");cl.className="pill "+cs[2];cl.textContent=cs[1];
+    var po=call.sc.prior/(1-call.sc.prior),odds=po*call.lv*call.lw*call.lc;
+    $("#math").innerHTML="starting odds "+po.toFixed(3)+"<br>× voice ℓ "+call.lv.toFixed(2)+"<br>× language ℓ "+call.lw.toFixed(2)+"<br>× safe word ℓ "+call.lc.toFixed(2)+"<br>= odds <b>"+odds.toFixed(3)+"</b>, risk <b>"+pct(odds/(1+odds))+"</b>";
+  }
+  function posterior(){var o=call.sc.prior/(1-call.sc.prior)*call.lv*call.lw*call.lc;return o/(1+o);}
+  function drawChart(){
+    var pts=call.points,tmax=Math.max(20,Math.ceil((pts.length?pts[pts.length-1].t:0)/5)*5);
+    function x(t){return t/tmax*100;}function y(p){return (1-p)*100;}
+    var s='<rect class="b-r" x="0" y="0" width="100" height="30"/><rect class="b-a" x="0" y="30" width="100" height="40"/><rect class="b-g" x="0" y="70" width="100" height="30"/><line class="gl" x1="0" x2="100" y1="30" y2="30"/><line class="gl" x1="0" x2="100" y1="70" y2="70"/>';
+    if(pts.length)s+='<path class="ln" d="'+pts.map(function(p,i){return (i?"L":"M")+x(p.t).toFixed(2)+" "+y(p.p).toFixed(2);}).join(" ")+'"/>';
+    $("#chart").innerHTML=s;$("#chart-now").textContent=pts.length?mmss(pts[pts.length-1].t):"0:00";
+  }
+  function setRisk(p,b){
+    var el=$("#risk-val"),from=riskShown,to=p,t0=null;riskShown=p;el.className="risk-val "+(b?TONE[b]:"");
+    var rp=$("#risk-pill");rp.textContent="Scam risk "+pct(p);rp.className="pill risk-pill "+(b?TONE[b]:"blue");
+    if(reduce){el.textContent=pct(to);return;}
+    var iv=setInterval(function(){var now=performance.now();if(t0===null)t0=now;var k=Math.min(1,(now-t0)/500),e=1-Math.pow(1-k,3);el.textContent=pct(from+(to-from)*e);if(k>=1)clearInterval(iv);},30);
+  }
+  function meterButtons(list,pair){var box=$("#m-actions");box.className="d-actions"+(pair?" two-col":"");box.innerHTML=list.map(function(b){return '<button class="d-btn '+b[0]+'" type="button" data-act="'+b[1]+'">'+esc(b[2])+'</button>';}).join("");}
+  function setMeter(b){
+    call.band=b;device.setAttribute("data-band",b||"");
+    if(!b){$("#m-icon").innerHTML='<use href="#i-listen"/>';$("#m-label").textContent="Listening";$("#m-say").textContent="Checking the voice and the words.";$("#m-word").hidden=true;meterButtons([["plain","hangup","Hang up"]]);return;}
+    $("#m-icon").innerHTML='<use href="#'+DICON[b]+'"/>';$("#m-label").textContent=LONG[b];
+    $("#m-say").textContent=call.sc.say[b];
+    var fam=call.sc.family,waiting=b==="warn"&&call.chal==="wait";
+    if(waiting)meterButtons([["safe","pass","They said it"],["stop","fail","They couldn’t"]],true);
+    else if(b==="stop"||b==="warn")meterButtons([[b==="stop"?"stop":"plain","hangup","Hang up"],["safe","family","Call "+fam]]);
+    else meterButtons([["plain","hangup","Hang up"]]);
+    $("#m-word").hidden=!(b==="warn"&&call.sc.showWord);
+    chime(b);
+    if(S.readout)speak(LONG[b]+". "+call.sc.say[b]);
+  }
+  function tick(){
+    var p=posterior();call.points.push({t:call.t,p:p});
+    if(call.t>=3.5){
+      var b=band(p);
+      if(b==="warn"&&call.sc.challenge&&call.chal==="idle"){call.yellow++;if(call.yellow>=2){call.chal="wait";addLine("sys","Score uncertain. Safe-word check requested.");renderSignals();call.band=null;}}
+      if(b!==call.band)setMeter(b);
+      var rb=$("#risk-band");rb.className="pill "+TONE[b];rb.textContent=LONG[b];
+      phase("In call",b);setRisk(p,b);
+    }else setRisk(p,"");
+    drawChart();
+  }
+  function applyEvent(ev){
+    if(ev.who)addLine(ev.who,ev.text,ev.hl);
+    if(ev.voice!==undefined){call.lv=ev.voice;if(ev.note)call.vnote=ev.note;}
+    if(ev.words!==undefined)call.lw*=ev.words;
+    if(ev.tactics){ev.tactics.forEach(function(t){if(call.tactics.indexOf(t)<0)call.tactics.push(t);});call.wnote=call.tactics.length+" tactic"+(call.tactics.length===1?"":"s")+" detected";}
+    if(ev.note2)call.wnote=ev.note2;
+    renderSignals();
+  }
+  function loop(){
+    if(!call||call.stage!=="active"){clearInterval(simIv);simIv=null;return;}
+    call.t=(performance.now()-call.t0)/1000;
+    var evs=call.sc.events;
+    while(call.ei<evs.length&&evs[call.ei].t<=call.t){applyEvent(evs[call.ei]);call.ei++;}
+    while(call.queue.length&&call.t>=call.queue[0].t)applyEvent(call.queue.shift());
+    if(call.t>=call.nextTick){tick();call.nextTick=Math.floor(call.t/2)*2+2;}
+    var talking=evs.some(function(e){return e.who&&call.t>=e.t&&call.t<e.t+2.2;})||call.talkUntil>call.t;
+    if(callSpec)callSpec.setTalking(talking);
+    $("#a-clock").textContent=mmss(call.t);$("#p-clock").textContent=mmss(call.t);
+    if(call.t>=call.end&&call.chal!=="wait"){clearInterval(simIv);simIv=null;endCall("callerhung");}
+  }
+  function startScenario(id){
+    var sc=SC[id];if(!sc)return;
+    if(call&&call.stage==="active")endCall("hangup");
+    call={id:id,sc:sc,stage:"ringing",t:0,ei:0,lv:1,lw:1,lc:1,tactics:[],points:[],band:null,chal:"idle",yellow:0,vnote:"Waiting for the caller",wnote:"Listening for scam tactics",queue:[],nextTick:2,end:sc.end,talkUntil:0};
+    $("#r-num").textContent=sc.number;$("#p-num").textContent=sc.number;$("#p-claim").textContent=sc.claim;
+    riskShown=sc.prior;var rv=$("#risk-val");rv.textContent=pct(sc.prior);rv.className="risk-val";var rb=$("#risk-band");rb.className="pill plain";rb.textContent="Ringing";
+    $("#risk-pill").textContent="Scam risk "+pct(sc.prior);
+    $("#transcript").innerHTML="";
+    device.setAttribute("data-band","");
+    var fill=$("#m-fill");fill.style.transition="none";fill.style.strokeDashoffset="100";void fill.getBoundingClientRect();fill.style.transition="";
+    setView("ringing");showCallUI(true);phase("Ringing","");$("#p-clock").textContent="0:00";$("#a-clock").textContent="0:00";$("#p-end").textContent="End";
+    renderSignals();drawChart();
+    if(!callSpec)callSpec=Spectro($("#call-spec"),{top:4000,mode:"phone",stops:COOL});else callSpec.resize();
+    if(callSpec){callSpec.setTalking(false);callSpec.start();}
+    ringStart();
+    if(window.innerWidth<1100)setTimeout(function(){device.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});},50);
+  }
+  function answer(){
+    ringStop();call.stage="active";call.t0=performance.now();setView("active");setMeter(null);
+    $("#m-fill").style.strokeDashoffset="0";
+    phase("Listening","");$("#risk-band").textContent="Listening";
+    clearInterval(simIv);simIv=setInterval(loop,100);
+  }
+  function record(how,msg){
+    var p=call.points.length?call.points[call.points.length-1].p:call.sc.prior;
+    var b=how==="declined"?"idle":(call.band||(call.points.length&&call.t>=3.5?band(p):"safe"));
+    var id="LL-"+(S.next||1047);S.next=(S.next||1047)+1;
+    S.activity.unshift({id:id,ts:Date.now(),number:call.sc.number,who:call.sc.claim,band:b,p:p,summary:msg,voice:call.lv,words:call.lw,chal:call.lc,tactics:call.tactics.slice(),vnote:call.lv===1?"":call.vnote,sample:false});
+    S.activity=S.activity.slice(0,40);S.setup.call=true;
+    var alerted=(b==="stop"&&S.alerts.stop)||(b==="warn"&&S.alerts.warn);
+    if(alerted)S.unread=(S.unread||0)+1;
+    save();updateBadges();
+    if(alerted)toast(TONE[b],"Family notified",(b==="stop"?"Likely scam call":"Check requested")+" at "+fmtTime(new Date()));
+    else toast("green","Call saved",id);
+  }
+  function endCall(how){
+    if(!call||call.stage==="ended")return;
+    ringStop();
+    var b=call.band,fam=call.sc.family,msg;
+    if(how==="declined")msg="Declined before answering. Not screened.";
+    else if(how==="family")msg=(b==="stop"?"Flagged as a likely scam. ":b==="warn"?"Check requested. ":"")+"Rose hung up and called "+fam+".";
+    else if(how==="callerhung")msg="Caller ended the call. "+(b==="stop"?"Flagged as a likely scam.":b==="safe"?"No issues detected.":"Result inconclusive.");
+    else msg=b==="stop"?"Flagged as a likely scam. Rose hung up.":b==="warn"?"Check requested. Rose hung up.":b==="safe"?"No issues detected.":"Rose hung up before a result.";
+    if(call.tactics.length)msg+=" Tactics: "+call.tactics.join(", ")+".";
+    record(how,msg);
+    call.stage="ended";
+    $("#e-msg").textContent=how==="declined"?"You declined this call.":b==="stop"?"Your family has been notified.":how==="family"?"You checked with your family.":"No further action needed.";
+    $("#e-icon").style.color=b==="stop"?"var(--d-stop)":"var(--d-safe)";
+    setView("ended");phase("Ended","");$("#p-end").textContent="New call";
+    if(callSpec){callSpec.setTalking(false);callSpec.stop();}
+    clearInterval(simIv);simIv=null;
+  }
+  function resetCall(){call=null;setView("idle");showCallUI(false);if(callSpec)callSpec.stop();ringStop();}
+  function callFamily(){
+    var fam=call.sc.family,m=S.members.filter(function(x){return x.name===fam;})[0];
+    call.stage="calling";setView("calling");clearInterval(simIv);simIv=null;
+    $("#c-name").textContent="Calling "+fam;$("#c-num").textContent=m&&m.phone?m.phone:"";$("#c-msg").textContent="";$("#c-dots").hidden=false;
+    addLine("sys","Rose hung up and is calling "+fam+".");phase("Calling "+fam,"safe");
+    if(callSpec)callSpec.setTalking(false);
+    var c0=call;
+    setTimeout(function(){if(call!==c0||call.stage!=="calling")return;$("#c-dots").hidden=true;$("#c-name").textContent=fam;$("#c-msg").textContent="“"+call.sc.reply+"”";addLine("sys",fam+": “"+call.sc.reply+"”");chime("safe");},2400);
+  }
+  function challenge(ok){
+    call.chal=ok?"pass":"fail";call.lc=ok?.08:9;
+    addLine("sys",ok?"Safe word correct.":"Safe word not given.");
+    (ok?call.sc.pass:call.sc.fail).forEach(function(e,k){call.queue.push(Object.assign({t:call.t+.6+k*1.6},e,{text:e.text.replace("{word}",S.safeWord)}));});
+    call.talkUntil=call.t+3;call.end=Math.max(call.end,call.t+8);
+    renderSignals();call.nextTick=call.t+.25;
+  }
+  device.addEventListener("click",function(e){
+    var b=e.target.closest("[data-act]");if(!b)return;var a=b.dataset.act;
+    if(a==="done"){resetCall();return;}
+    if(!call)return;
+    if(a==="answer")answer();else if(a==="decline")endCall("declined");else if(a==="hangup")endCall("hangup");
+    else if(a==="family")callFamily();else if(a==="endfamily")endCall("family");else if(a==="pass")challenge(true);else if(a==="fail")challenge(false);
+  });
+  $("#m-read").addEventListener("click",function(){speak($("#m-label").textContent+". "+$("#m-say").textContent);});
+  $("#p-end").addEventListener("click",function(){if(!call)return;if(call.stage==="ended"){resetCall();return;}if(call.stage==="ringing")endCall("declined");else if(call.stage==="calling")endCall("family");else endCall("hangup");});
+  function syncSnd(){var b=$("#snd");b.innerHTML=icon(S.sound?"i-speaker":"i-mute");b.setAttribute("aria-label",S.sound?"Mute":"Unmute");}
+  $("#snd").addEventListener("click",function(){S.sound=!S.sound;save();syncSnd();syncSwitches();if(!S.sound)ringStop();else if(call&&call.stage==="ringing")ringStart();});
+  $$("[data-scen]").forEach(function(b){b.addEventListener("click",function(){startScenario(b.dataset.scen);});});
+  function clock(){var d=new Date(),t=d.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}).replace(/\s?[AP]M/i,"");$("#d-clock").textContent=t;$("#d-time").textContent=t;$("#d-date").textContent=d.toLocaleDateString([],{weekday:"long",month:"long",day:"numeric"});}
+  clock();setInterval(clock,15000);
+  onEnter.simulator=function(){if(callSpec&&call){callSpec.resize();if(call.stage!=="ended")callSpec.start();}};
+  onLeave.simulator=function(){if(callSpec)callSpec.stop();};
+
+  /* ---------- Boot ---------- */
+  syncTheme();applyDevice();syncSwitches();syncSnd();updateBadges();renderWord();renderProtection();
+  window.addEventListener("resize",function(){if(current==="learn-signal"&&labSpec)labSpec.resize();if(current==="simulator"&&callSpec&&call)callSpec.resize();});
+  route();
+})();
+</script>
