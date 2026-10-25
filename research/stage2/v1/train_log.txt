@@ -1,0 +1,46 @@
+[    9.0s] splits {"train": {"n": 2956, "scam": 1408, "nonscam": 1548}, "test_in": {"n": 636, "scam": 253, "nonscam": 383}, "test_in_strict": {"n": 598, "scam": 253, "nonscam": 345}, "val": {"n": 361, "scam": 181, "nonscam": 180}, "shake_test": {"n": 180, "scam": 90, "nonscam": 90}, "shake_trainplustest": {"n": 1439, "scam": 719, "nonscam": 720}, "menaattia_all": {"n": 4000, "scam": 2000, "nonscam": 2000}, "menaattia_test": {"n": 800, "scam": 400, "nonscam": 400}, "youtube": {"n": 20, "scam": 20, "nonscam": 0}}
+[    9.0s] dedup {"near_duplicate_threshold_jaccard_5gram": 0.5, "bothbosu_train_dialogues_before_dedup": 3840, "train_pool_after_dedup": 2956, "bothbosu_test_dialogues_before_dedup": 960, "test_removed_as_near_copy_of_train": 177, "test_removed_as_within_test_duplicate": 147, "in_domain_test_after_dedup": 636, "in_domain_test_strict_jaccard_0.3": 598, "external_dialogues_with_any_train_neighbor_jaccard_0.3": {"shakeleoatmeal": 4, "menaattia": 0, "youtube": 0}}
+[   30.3s] A_word12 C 0.1 cv logloss 0.2856 cv auc 1.0000 val mean AUC 0.7820 val full AUC 0.9153
+[   45.8s] A_word12 C 0.3 cv logloss 0.1718 cv auc 1.0000 val mean AUC 0.7843 val full AUC 0.9153
+[   64.0s] A_word12 C 1.0 cv logloss 0.0958 cv auc 1.0000 val mean AUC 0.7843 val full AUC 0.9130
+[   80.8s] A_word12 C 3.0 cv logloss 0.0583 cv auc 1.0000 val mean AUC 0.7851 val full AUC 0.9133
+[   95.3s] A_word12 C 10.0 cv logloss 0.0361 cv auc 1.0000 val mean AUC 0.7817 val full AUC 0.9065
+[  109.5s] A_word12 C 30.0 cv logloss 0.0277 cv auc 1.0000 val mean AUC 0.7804 val full AUC 0.9043
+[  141.9s] B_word12_prefixaug C 0.1 cv logloss 0.1227 cv auc 1.0000 val mean AUC 0.7568 val full AUC 0.8764
+[  173.8s] B_word12_prefixaug C 0.3 cv logloss 0.0619 cv auc 1.0000 val mean AUC 0.7525 val full AUC 0.8672
+[  208.1s] B_word12_prefixaug C 1.0 cv logloss 0.0292 cv auc 1.0000 val mean AUC 0.7452 val full AUC 0.8565
+[  246.7s] B_word12_prefixaug C 3.0 cv logloss 0.0156 cv auc 1.0000 val mean AUC 0.7410 val full AUC 0.8508
+[  279.5s] B_word12_prefixaug C 10.0 cv logloss 0.0108 cv auc 1.0000 val mean AUC 0.7458 val full AUC 0.8665
+[  312.2s] B_word12_prefixaug C 30.0 cv logloss 0.0091 cv auc 1.0000 val mean AUC 0.7438 val full AUC 0.8630
+[  394.3s] C_word12_char35 C 0.1 cv logloss 0.1787 cv auc 1.0000 val mean AUC 0.7666 val full AUC 0.8971
+[  477.3s] C_word12_char35 C 0.3 cv logloss 0.1090 cv auc 1.0000 val mean AUC 0.7676 val full AUC 0.8969
+[  559.4s] C_word12_char35 C 1.0 cv logloss 0.0671 cv auc 1.0000 val mean AUC 0.7643 val full AUC 0.8931
+[  660.1s] C_word12_char35 C 3.0 cv logloss 0.0517 cv auc 1.0000 val mean AUC 0.7599 val full AUC 0.8868
+[  742.1s] C_word12_char35 C 10.0 cv logloss 0.0358 cv auc 1.0000 val mean AUC 0.7616 val full AUC 0.8896
+[  821.4s] C_word12_char35 C 30.0 cv logloss 0.0363 cv auc 1.0000 val mean AUC 0.7602 val full AUC 0.8865
+[  821.4s] CHOSEN A_word12 C 0.1
+[  824.8s] ablation chosen (caller words, names/greetings neutralized) {'val_auc_full': 0.9153468385512584, 'val_auc_mean_over_fracs': 0.7820042971147944}
+[  828.3s] ablation caller words, names/greetings NOT neutralized {'val_auc_full': 0.9126151012891345, 'val_auc_mean_over_fracs': 0.7858118477593615}
+[  832.8s] ablation both speakers (receiver lines included) {'val_auc_full': 0.9014426028238183, 'val_auc_mean_over_fracs': 0.7739579496623696}
+[  834.5s] OOF grid scores for calibration/thresholds
+[  888.7s] calibration {"platt_fit_on_in_domain_oof": {"a": 9.74591230993844, "b": 3.206180771245669, "brier_in_domain_crossfit": 0.004841687140275555, "ece_in_domain_crossfit": 0.0015097025290742602, "brier_on_validation": 0.4083212642351745, "ece_on_validation": 0.413434303542584}, "platt_fit_on_validation": {"a": 1.9203179117781728, "b": -0.8263232056880685, "brier_validation_crossfit": 0.2012956278505952, "ece_validation_crossfit": 0.03882111939727552, "brier_on_in_domain_oof": 0.049624710527879874, "ece_on_in_domain_oof": 0.14180844689389052}, "mean_brier_in_domain_fit": 0.20658147568772503, "mean_brier_validation_fit": 0.12546016918923755, "isotonic_validation_crossfit_brier": 0.20156386147485808, "chosen": "validation (shakeleoatmeal/validation, 10%..100% prefixes)", "rule": "lower mean of the two out-of-sample Brier scores (own source cross-fitted in halves, other source scored directly)"}
+[  888.7s] thresholds {'yellow': 0.76, 'yellow_from_in_domain_oof': 0.189, 'yellow_from_validation': 0.76, 'red': 0.873, 'red_from_in_domain_oof': 0.229, 'red_from_validation': 0.873, 'rule': 'smallest p (3 decimals) such that at most 10% (yellow) / 2% (red) of validation non-scam calls EVER reach it at any 2% checkpoint of the call; stricter of in-domain OOF and shakeleoatmeal/validation'}
+[  904.1s] eval test_in AUC 1.0 EER 0.0
+[  919.3s] eval test_in_strict AUC 1.0 EER 0.0
+[  924.8s] eval shake_test AUC 0.9238271604938272 EER 0.1388888888888889
+[  945.0s] eval shake_trainplustest AUC 0.9270437335805903 EER 0.14037532838819347
+[  966.7s] eval menaattia_all AUC 0.917374 EER 0.16799999999999998
+[  973.3s] eval menaattia_test AUC 0.9099 EER 0.18000000000000002
+[  974.1s] eval youtube AUC None EER None
+[  979.6s] eval val AUC 0.9153468385512584 EER 0.1468078575813382
+[  979.8s] wrote test_scores.csv
+[  983.7s] demo clone main [('green', 0.23), ('green', 0.1035), ('green', 0.1035), ('green', 0.1272), ('green', 0.1818), ('green', 0.2072)]
+[  983.7s] demo real main [('green', 0.1369), ('green', 0.1043), ('green', 0.1043), ('green', 0.0881)]
+[  983.7s] demo unsure with_pass_branch [('green', 0.0758), ('green', 0.0864), ('green', 0.0864), ('green', 0.093), ('green', 0.093), ('green', 0.093)]
+[  983.7s] demo unsure with_fail_branch [('green', 0.0758), ('green', 0.0864), ('green', 0.0864), ('green', 0.093), ('green', 0.1307)]
+[  983.7s] demo medicare main [('green', 0.2124), ('green', 0.3777), ('green', 0.3777), ('green', 0.4542), ('green', 0.474)]
+[  983.7s] model.json 154671 bytes
+[  985.7s] parity cases 4908 -> research/data/stage2/parity_cases.json
+[  986.7s] wrote streaming_curve.png
+[  986.8s] wrote results.json
+exit 0

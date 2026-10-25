@@ -1,0 +1,14 @@
+huggingface_hub==2.3.0
+librosa==1.0.0
+matplotlib==3.11.2
+numpy==2.5.4
+pandas==3.1.0
+praat-parselmouth==0.4.7
+pyarrow==26.0.0
+requests==2.34.2
+scikit-learn==1.9.1
+scipy==1.18.1
+soundfile==0.14.0
+statsmodels==0.15.0
+torch==2.14.1
+transformers==5.20.2

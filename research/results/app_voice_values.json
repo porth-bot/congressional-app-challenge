@@ -1,0 +1,18 @@
+{
+ "clone": 0.6881071182194546,
+ "human": -0.7895856685290075,
+ "poorline": 0.43846334963612454,
+ "source": "median calibrated LLR on the In-the-Wild calibration-half speakers (no test clips)",
+ "n": {
+  "computer_made": 1659,
+  "real": 1157,
+  "g723": 939
+ },
+ "calibration": {
+  "slope": 0.24410651236312983,
+  "intercept": -0.7002856720763545,
+  "prior": 0.5891335227272727,
+  "n_calibration_clips": 2816,
+  "n_test_clips": 3151
+ }
+}

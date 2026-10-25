@@ -1,0 +1,5427 @@
+{
+ "seed": 0,
+ "version": 2,
+ "versions": {
+  "python": "3.12.13",
+  "sklearn": "1.9.1",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "splits": {
+  "near_duplicate_threshold_jaccard_5gram": 0.5,
+  "bothbosu_train_dialogues_before_dedup": 3840,
+  "train_pool_after_dedup": 3116,
+  "of_which_family_train": 160,
+  "bothbosu_test_dialogues_before_dedup": 960,
+  "test_removed_as_near_copy_of_train": 177,
+  "test_removed_as_within_test_duplicate": 147,
+  "in_domain_test_after_dedup": 636,
+  "in_domain_test_strict_jaccard_0.3": 598,
+  "external_dialogues_with_any_train_neighbor_jaccard_0.3": {
+   "shakeleoatmeal": 4,
+   "menaattia": 0,
+   "youtube": 0,
+   "family_test_vs_family_train": 0
+  }
+ },
+ "split_sizes": {
+  "train": {
+   "n": 3116,
+   "scam": 1488,
+   "nonscam": 1628
+  },
+  "val_family": {
+   "n": 80,
+   "scam": 40,
+   "nonscam": 40
+  },
+  "family_test": {
+   "n": 80,
+   "scam": 40,
+   "nonscam": 40
+  },
+  "test_in": {
+   "n": 636,
+   "scam": 253,
+   "nonscam": 383
+  },
+  "test_in_strict": {
+   "n": 598,
+   "scam": 253,
+   "nonscam": 345
+  },
+  "val": {
+   "n": 361,
+   "scam": 181,
+   "nonscam": 180
+  },
+  "shake_test": {
+   "n": 180,
+   "scam": 90,
+   "nonscam": 90
+  },
+  "shake_trainplustest": {
+   "n": 1439,
+   "scam": 719,
+   "nonscam": 720
+  },
+  "menaattia_all": {
+   "n": 4000,
+   "scam": 2000,
+   "nonscam": 2000
+  },
+  "menaattia_test": {
+   "n": 800,
+   "scam": 400,
+   "nonscam": 400
+  },
+  "youtube": {
+   "n": 20,
+   "scam": 20,
+   "nonscam": 0
+  }
+ },
+ "variant_comparison": [
+  {
+   "variant": "A_word12",
+   "C": 0.1,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5827655003069367,
+     0.65890116635973,
+     0.7102977286678944,
+     0.746316758747698,
+     0.782719459791283,
+     0.8134745242480049,
+     0.8388888888888889,
+     0.8622467771639042,
+     0.8860036832412523,
+     0.9085328422344997
+    ],
+    "val_family": [
+     0.556875,
+     0.690625,
+     0.69625,
+     0.71875,
+     0.785625,
+     0.799375,
+     0.848125,
+     0.875625,
+     0.875,
+     0.88125
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7790147329650093,
+    "val_family": 0.7727499999999999
+   },
+   "val_auc_full": {
+    "val": 0.9085328422344997,
+    "val_family": 0.88125
+   },
+   "score": 0.7758823664825046
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 0.1,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5289594843462246,
+     0.605402087170043,
+     0.666804788213628,
+     0.7176795580110498,
+     0.7532535297728667,
+     0.7858502148557397,
+     0.8195211786372008,
+     0.8350214855739717,
+     0.8557090239410682,
+     0.8832719459791283
+    ],
+    "val_family": [
+     0.53375,
+     0.62,
+     0.610625,
+     0.63375,
+     0.69375,
+     0.745625,
+     0.816875,
+     0.838125,
+     0.869375,
+     0.879375
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7451473296500921,
+    "val_family": 0.7241250000000001
+   },
+   "val_auc_full": {
+    "val": 0.8832719459791283,
+    "val_family": 0.879375
+   },
+   "score": 0.7346361648250461
+  },
+  {
+   "variant": "A_word12",
+   "C": 0.3,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.58853591160221,
+     0.6628606507059546,
+     0.715024554941682,
+     0.7474217311233886,
+     0.7844689993861265,
+     0.813720073664825,
+     0.8365254757519951,
+     0.8575813382443217,
+     0.8793124616329037,
+     0.902670349907919
+    ],
+    "val_family": [
+     0.568125,
+     0.693125,
+     0.70625,
+     0.736875,
+     0.796875,
+     0.8175,
+     0.853125,
+     0.8825,
+     0.884375,
+     0.89625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7788121546961326,
+    "val_family": 0.7835
+   },
+   "val_auc_full": {
+    "val": 0.902670349907919,
+    "val_family": 0.89625
+   },
+   "score": 0.7811560773480664
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 0.3,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5559699201964395,
+     0.629926335174954,
+     0.6955033763044812,
+     0.7424800491098834,
+     0.7779005524861878,
+     0.8130448127685697,
+     0.8410681399631675,
+     0.858133824432167,
+     0.8775322283609577,
+     0.9000920810313076
+    ],
+    "val_family": [
+     0.544375,
+     0.654375,
+     0.659375,
+     0.683125,
+     0.730625,
+     0.79375,
+     0.86375,
+     0.874375,
+     0.890625,
+     0.90625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7691651319828116,
+    "val_family": 0.7600625
+   },
+   "val_auc_full": {
+    "val": 0.9000920810313076,
+    "val_family": 0.90625
+   },
+   "score": 0.7646138159914058
+  },
+  {
+   "variant": "A_word12",
+   "C": 1.0,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5937845303867403,
+     0.666267648864334,
+     0.7172038060159607,
+     0.7478207489257213,
+     0.7815224063842848,
+     0.8101289134438305,
+     0.8296500920810314,
+     0.8484653161448742,
+     0.8678023327194598,
+     0.8931246163290362
+    ],
+    "val_family": [
+     0.581875,
+     0.704375,
+     0.720625,
+     0.753125,
+     0.799375,
+     0.820625,
+     0.86,
+     0.894375,
+     0.901875,
+     0.90625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7755770411295273,
+    "val_family": 0.7942500000000001
+   },
+   "val_auc_full": {
+    "val": 0.8931246163290362,
+    "val_family": 0.90625
+   },
+   "score": 0.7849135205647637
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 1.0,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5829189686924493,
+     0.6569981583793738,
+     0.71609883364027,
+     0.755524861878453,
+     0.7907612031921424,
+     0.8177716390423573,
+     0.8401780233271946,
+     0.856292203806016,
+     0.8749846531614487,
+     0.897391037446286
+    ],
+    "val_family": [
+     0.565,
+     0.688125,
+     0.7075,
+     0.72625,
+     0.770625,
+     0.80875,
+     0.859375,
+     0.900625,
+     0.905,
+     0.91625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7788919582565992,
+    "val_family": 0.78475
+   },
+   "val_auc_full": {
+    "val": 0.897391037446286,
+    "val_family": 0.91625
+   },
+   "score": 0.7818209791282995
+  },
+  {
+   "variant": "A_word12",
+   "C": 3.0,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5935082872928177,
+     0.6660834868017188,
+     0.7156077348066299,
+     0.7434315531000614,
+     0.7782688766114181,
+     0.80463474524248,
+     0.823634131368938,
+     0.8416206261510129,
+     0.8598833640270105,
+     0.8856046654389196
+    ],
+    "val_family": [
+     0.578125,
+     0.703125,
+     0.719375,
+     0.759375,
+     0.801875,
+     0.826875,
+     0.85875,
+     0.891875,
+     0.911875,
+     0.913125
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7712277470841007,
+    "val_family": 0.7964374999999999
+   },
+   "val_auc_full": {
+    "val": 0.8856046654389196,
+    "val_family": 0.913125
+   },
+   "score": 0.7838326235420503
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 3.0,
+   "family_weight": 1,
+   "val_auc_by_frac": {
+    "val": [
+     0.5915131982811541,
+     0.6639656230816452,
+     0.717817679558011,
+     0.7505217925107428,
+     0.7842541436464089,
+     0.8088704726826274,
+     0.8270104358502148,
+     0.8437998772252916,
+     0.8617249846531615,
+     0.8859729895641498
+    ],
+    "val_family": [
+     0.569375,
+     0.69,
+     0.711875,
+     0.748125,
+     0.780625,
+     0.814375,
+     0.853125,
+     0.89625,
+     0.9025,
+     0.92
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7735451197053407,
+    "val_family": 0.788625
+   },
+   "val_auc_full": {
+    "val": 0.8859729895641498,
+    "val_family": 0.92
+   },
+   "score": 0.7810850598526704
+  },
+  {
+   "variant": "A_word12",
+   "C": 0.1,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5863259668508287,
+     0.6608348680171885,
+     0.7117710251688152,
+     0.7435236341313689,
+     0.7795887047268263,
+     0.8088704726826274,
+     0.8290055248618785,
+     0.8501841620626152,
+     0.8709944751381216,
+     0.8957335788827502
+    ],
+    "val_family": [
+     0.574375,
+     0.70125,
+     0.718125,
+     0.75375,
+     0.79125,
+     0.814375,
+     0.850625,
+     0.883125,
+     0.895625,
+     0.9
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.773683241252302,
+    "val_family": 0.78825
+   },
+   "val_auc_full": {
+    "val": 0.8957335788827502,
+    "val_family": 0.9
+   },
+   "score": 0.780966620626151
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 0.1,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5694751381215469,
+     0.6439840392879067,
+     0.7063075506445672,
+     0.7476979742173112,
+     0.7824739103744629,
+     0.8142111724984653,
+     0.8393492940454267,
+     0.8575506445672192,
+     0.8763351749539595,
+     0.8990791896869245
+    ],
+    "val_family": [
+     0.5525,
+     0.678125,
+     0.7,
+     0.72125,
+     0.7575,
+     0.8025,
+     0.8625,
+     0.8975,
+     0.901875,
+     0.916875
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.773646408839779,
+    "val_family": 0.7790625
+   },
+   "val_auc_full": {
+    "val": 0.8990791896869245,
+    "val_family": 0.916875
+   },
+   "score": 0.7763544544198895
+  },
+  {
+   "variant": "A_word12",
+   "C": 0.3,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5916973603437692,
+     0.6649478207489257,
+     0.7170196439533456,
+     0.7454266421117249,
+     0.7807857581338244,
+     0.8073971761817066,
+     0.8269490484960098,
+     0.8467464702271332,
+     0.8655616942909761,
+     0.8903314917127072
+    ],
+    "val_family": [
+     0.57875,
+     0.696875,
+     0.720625,
+     0.7575,
+     0.796875,
+     0.82125,
+     0.855625,
+     0.88875,
+     0.91125,
+     0.91125
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7736863106200124,
+    "val_family": 0.793875
+   },
+   "val_auc_full": {
+    "val": 0.8903314917127072,
+    "val_family": 0.91125
+   },
+   "score": 0.7837806553100062
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 0.3,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5884131368937999,
+     0.6641190914671578,
+     0.7183394720687538,
+     0.7520871700429711,
+     0.7857888275015347,
+     0.8113566605279312,
+     0.830171884591774,
+     0.8477286678944137,
+     0.8667587476979742,
+     0.8897176181706569
+    ],
+    "val_family": [
+     0.5725,
+     0.685,
+     0.71375,
+     0.7475,
+     0.775,
+     0.81125,
+     0.85,
+     0.890625,
+     0.90375,
+     0.915625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7754481276856968,
+    "val_family": 0.7865
+   },
+   "val_auc_full": {
+    "val": 0.8897176181706569,
+    "val_family": 0.915625
+   },
+   "score": 0.7809740638428484
+  },
+  {
+   "variant": "A_word12",
+   "C": 1.0,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5963014119091468,
+     0.670073664825046,
+     0.7205801104972376,
+     0.7470534069981584,
+     0.7814917127071823,
+     0.8069981583793738,
+     0.824647022713321,
+     0.841866175567833,
+     0.859208103130755,
+     0.8852363413136893
+    ],
+    "val_family": [
+     0.585,
+     0.69875,
+     0.728125,
+     0.76125,
+     0.801875,
+     0.83125,
+     0.865625,
+     0.9,
+     0.91875,
+     0.920625
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7733456108041744,
+    "val_family": 0.8011250000000001
+   },
+   "val_auc_full": {
+    "val": 0.8852363413136893,
+    "val_family": 0.920625
+   },
+   "score": 0.7872353054020873
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 1.0,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5999232658072438,
+     0.6759361571516268,
+     0.7218692449355433,
+     0.7471147943523634,
+     0.7805095150399017,
+     0.8029158993247391,
+     0.817464702271332,
+     0.8342848373235113,
+     0.8504297114794352,
+     0.876304481276857
+    ],
+    "val_family": [
+     0.583125,
+     0.6975,
+     0.728125,
+     0.763125,
+     0.8,
+     0.82875,
+     0.86125,
+     0.89375,
+     0.914375,
+     0.916875
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7706752608962554,
+    "val_family": 0.7986875
+   },
+   "val_auc_full": {
+    "val": 0.876304481276857,
+    "val_family": 0.916875
+   },
+   "score": 0.7846813804481276
+  },
+  {
+   "variant": "A_word12",
+   "C": 3.0,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.5986955187231431,
+     0.6744935543278084,
+     0.7220534069981583,
+     0.7476672805402087,
+     0.7813075506445673,
+     0.8062615101289135,
+     0.8230509515039902,
+     0.8403314917127072,
+     0.8561387354205033,
+     0.8831184775936157
+    ],
+    "val_family": [
+     0.589375,
+     0.695,
+     0.7275,
+     0.76625,
+     0.803125,
+     0.835625,
+     0.870625,
+     0.905625,
+     0.92375,
+     0.926875
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.7733118477593617,
+    "val_family": 0.8043750000000001
+   },
+   "val_auc_full": {
+    "val": 0.8831184775936157,
+    "val_family": 0.926875
+   },
+   "score": 0.7888434238796809
+  },
+  {
+   "variant": "D_word12_plus_tactic_count",
+   "C": 3.0,
+   "family_weight": 3,
+   "val_auc_by_frac": {
+    "val": [
+     0.6046807857581338,
+     0.6832412523020258,
+     0.7225751995089011,
+     0.7460405156537753,
+     0.7758440761203192,
+     0.7982504604051566,
+     0.8107427869858809,
+     0.8279926335174954,
+     0.8425721301411909,
+     0.8685389809699202
+    ],
+    "val_family": [
+     0.586875,
+     0.69125,
+     0.728125,
+     0.768125,
+     0.803125,
+     0.833125,
+     0.86625,
+     0.89625,
+     0.913125,
+     0.913125
+    ]
+   },
+   "val_auc_mean_over_fracs": {
+    "val": 0.76804788213628,
+    "val_family": 0.7999375
+   },
+   "val_auc_full": {
+    "val": 0.8685389809699202,
+    "val_family": 0.913125
+   },
+   "score": 0.78399269106814
+  }
+ ],
+ "selection_rule": "over every (variant, C, family weight): mean over the two validation sources (shakeleoatmeal/validation and the held-out family scenarios) of the AUC averaged over 10%..100% prefixes, using cross-fitted calibrated probabilities; settings within 0.005 of the best are tied and go to the simplest (no tactic count, then lower family weight, then smallest C)",
+ "chosen_variant": {
+  "variant": "A_word12",
+  "C": 1.0,
+  "family_weight": 1
+ },
+ "ablations_on_validation": {
+  "chosen (caller words, names/greetings neutralized)": {
+   "val": {
+    "val_auc_full": 0.9158993247391037,
+    "val_auc_mean_over_fracs": 0.7890730509515039
+   },
+   "val_family": {
+    "val_auc_full": 0.944375,
+    "val_auc_mean_over_fracs": 0.8479375000000001
+   }
+  },
+  "caller words, names/greetings NOT neutralized": {
+   "val": {
+    "val_auc_full": 0.9141497851442603,
+    "val_auc_mean_over_fracs": 0.792819214241866
+   },
+   "val_family": {
+    "val_auc_full": 0.94625,
+    "val_auc_mean_over_fracs": 0.8454999999999998
+   }
+  },
+  "both speakers (receiver lines included)": {
+   "val": {
+    "val_auc_full": 0.905524861878453,
+    "val_auc_mean_over_fracs": 0.7831844689993861
+   },
+   "val_family": {
+    "val_auc_full": 0.958125,
+    "val_auc_mean_over_fracs": 0.8456875
+   }
+  }
+ },
+ "calibration": {
+  "variant": "A_word12",
+  "a": 0.591943,
+  "c_tactic_count": 0.0,
+  "b": -0.0535122,
+  "prior": 0.5006925207756232,
+  "fit_on": "shakeleoatmeal/validation + held-out family scenarios, 10%..100% prefixes, equal weight per source",
+  "crossfit_brier_val": 0.22410038388360842,
+  "crossfit_ece_val": 0.12799039350090174,
+  "crossfit_brier_val_family": 0.22027159390121112,
+  "crossfit_ece_val_family": 0.1761949464512858,
+  "brier_on_training_pool_oof": 0.048042247675916784
+ },
+ "thresholds": {
+  "yellow": 0.78,
+  "yellow_from_training_pool_oof": 0.427,
+  "yellow_from_val": 0.78,
+  "yellow_from_val_family": 0.4,
+  "red": 0.843,
+  "red_from_training_pool_oof": 0.467,
+  "red_from_val": 0.843,
+  "red_from_val_family": 0.501,
+  "rule": "smallest p (3 decimals) such that at most 10% (yellow) / 2% (red) of non-scam calls EVER reach it at any 2% checkpoint; the strictest of training-pool out-of-fold, shakeleoatmeal/validation and the held-out family scenarios"
+ },
+ "evaluation": {
+  "test_in": {
+   "n": 636,
+   "n_scam": 253,
+   "n_nonscam": 383,
+   "auc": {
+    "value": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "eer": {
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "brier_full": 0.021304460072991534,
+   "ece_full": 0.1358916960939135,
+   "brier_prefixes": 0.034136097374620596,
+   "ece_prefixes": 0.16177247633451117,
+   "accuracy_at_0.5": {
+    "value": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "median_p_full_scam": 0.8680935932796572,
+   "median_p_full_nonscam": 0.12154957910653927,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.9407114624505929,
+     "ci95": [
+      0.9090909090909091,
+      0.9683794466403162
+     ]
+    },
+    "detect_ever": {
+     "value": 0.9644268774703557,
+     "ci95": [
+      0.9407114624505929,
+      0.9841897233201581
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.9764150943396226,
+     "ci95": [
+      0.9638364779874213,
+      0.9874213836477987
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.6956521739130435,
+     "ci95": [
+      0.6403162055335968,
+      0.7509881422924901
+     ]
+    },
+    "detect_ever": {
+     "value": 0.8023715415019763,
+     "ci95": [
+      0.7509881422924901,
+      0.8458498023715415
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.8789308176100629,
+     "ci95": [
+      0.8569182389937107,
+      0.9009433962264151
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.9978843950917966,
+      "ci95": [
+       0.9955309136317196,
+       0.9994633587549923
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.1857707509881423,
+     "detect_by_now_yellow": 0.19367588932806323,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.05533596837944664,
+     "detect_by_now_red": 0.05928853754940711
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.3794466403162055,
+     "detect_by_now_yellow": 0.4189723320158103,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.15810276679841898,
+     "detect_by_now_red": 0.18181818181818182
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.5691699604743083,
+     "detect_by_now_yellow": 0.5968379446640316,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.2766798418972332,
+     "detect_by_now_red": 0.30434782608695654
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.6758893280632411,
+     "detect_by_now_yellow": 0.7075098814229249,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.4189723320158103,
+     "detect_by_now_red": 0.4268774703557312
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.7905138339920948,
+     "detect_by_now_yellow": 0.8221343873517787,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.4782608695652174,
+     "detect_by_now_red": 0.5098814229249012
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.849802371541502,
+     "detect_by_now_yellow": 0.8774703557312253,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.5573122529644269,
+     "detect_by_now_red": 0.5849802371541502
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.8814229249011858,
+     "detect_by_now_yellow": 0.9051383399209486,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6245059288537549,
+     "detect_by_now_red": 0.6640316205533597
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.8972332015810277,
+     "detect_by_now_yellow": 0.9288537549407114,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6600790513833992,
+     "detect_by_now_red": 0.7075098814229249
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.9367588932806324,
+     "detect_by_now_yellow": 0.9525691699604744,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.7075098814229249,
+     "detect_by_now_red": 0.782608695652174
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.9407114624505929,
+     "detect_by_now_yellow": 0.9644268774703557,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6956521739130435,
+     "detect_by_now_red": 0.8023715415019763
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.9644268774703557,
+    "median_fraction_heard": {
+     "value": 0.26,
+     "ci95": [
+      0.22,
+      0.28
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.24
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.8023715415019763,
+    "median_fraction_heard": {
+     "value": 0.5,
+     "ci95": [
+      0.42,
+      0.58
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.38
+   },
+   "by_type": {
+    "appointment (nonscam)": {
+     "label": 0,
+     "n": 77,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "delivery (nonscam)": {
+     "label": 0,
+     "n": 80,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "insurance (nonscam)": {
+     "label": 0,
+     "n": 80,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "refund (scam)": {
+     "label": 1,
+     "n": 83,
+     "flag_red_full": 0.6144578313253012,
+     "flag_red_ever": 0.7228915662650602,
+     "flag_yellow_full": 0.9156626506024096,
+     "flag_yellow_ever": 0.9397590361445783
+    },
+    "reward (scam)": {
+     "label": 1,
+     "n": 54,
+     "flag_red_full": 0.5925925925925926,
+     "flag_red_ever": 0.7777777777777778,
+     "flag_yellow_full": 0.9444444444444444,
+     "flag_yellow_ever": 0.9814814814814815
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 61,
+     "flag_red_full": 0.9836065573770492,
+     "flag_red_ever": 0.9836065573770492,
+     "flag_yellow_full": 1.0,
+     "flag_yellow_ever": 1.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 55,
+     "flag_red_full": 0.6,
+     "flag_red_ever": 0.7454545454545455,
+     "flag_yellow_full": 0.9090909090909091,
+     "flag_yellow_ever": 0.9454545454545454
+    },
+    "telemarketing (nonscam)": {
+     "label": 0,
+     "n": 40,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "wrong (nonscam)": {
+     "label": 0,
+     "n": 106,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.9790142313130167,
+    "ci95": [
+     0.9687301984540604,
+     0.9881428084913156
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 238,
+    "share_flagged_with_a_tactic_tag": 0.9957983193277311,
+    "share_green_with_a_tactic_tag": 0.2663316582914573
+   },
+   "title": "in-domain test (BothBosu, de-duplicated)"
+  },
+  "test_in_strict": {
+   "n": 598,
+   "n_scam": 253,
+   "n_nonscam": 345,
+   "auc": {
+    "value": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "eer": {
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "brier_full": 0.021917937451694642,
+   "ece_full": 0.13800568572991517,
+   "brier_prefixes": 0.034915402865914054,
+   "ece_prefixes": 0.16347943393454095,
+   "accuracy_at_0.5": {
+    "value": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "median_p_full_scam": 0.8680935932796572,
+   "median_p_full_nonscam": 0.12597864349301915,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.9407114624505929,
+     "ci95": [
+      0.9090909090909091,
+      0.9683794466403162
+     ]
+    },
+    "detect_ever": {
+     "value": 0.9644268774703557,
+     "ci95": [
+      0.9407114624505929,
+      0.9841897233201581
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.9749163879598662,
+     "ci95": [
+      0.9615384615384616,
+      0.9866220735785953
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.6956521739130435,
+     "ci95": [
+      0.6403162055335968,
+      0.7509881422924901
+     ]
+    },
+    "detect_ever": {
+     "value": 0.8023715415019763,
+     "ci95": [
+      0.7509881422924901,
+      0.849802371541502
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.8712374581939799,
+     "ci95": [
+      0.8478260869565217,
+      0.8946488294314381
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.9982471214985392,
+      "ci95": [
+       0.9962413358538122,
+       0.999542017528785
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.1857707509881423,
+     "detect_by_now_yellow": 0.19367588932806323,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.05533596837944664,
+     "detect_by_now_red": 0.05928853754940711
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.3794466403162055,
+     "detect_by_now_yellow": 0.4189723320158103,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.15810276679841898,
+     "detect_by_now_red": 0.18181818181818182
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.5691699604743083,
+     "detect_by_now_yellow": 0.5968379446640316,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.2766798418972332,
+     "detect_by_now_red": 0.30434782608695654
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.6758893280632411,
+     "detect_by_now_yellow": 0.7075098814229249,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.4189723320158103,
+     "detect_by_now_red": 0.4268774703557312
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.7905138339920948,
+     "detect_by_now_yellow": 0.8221343873517787,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.4782608695652174,
+     "detect_by_now_red": 0.5098814229249012
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.849802371541502,
+     "detect_by_now_yellow": 0.8774703557312253,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.5573122529644269,
+     "detect_by_now_red": 0.5849802371541502
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.8814229249011858,
+     "detect_by_now_yellow": 0.9051383399209486,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6245059288537549,
+     "detect_by_now_red": 0.6640316205533597
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.8972332015810277,
+     "detect_by_now_yellow": 0.9288537549407114,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6600790513833992,
+     "detect_by_now_red": 0.7075098814229249
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.9367588932806324,
+     "detect_by_now_yellow": 0.9525691699604744,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.7075098814229249,
+     "detect_by_now_red": 0.782608695652174
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.9407114624505929,
+     "detect_by_now_yellow": 0.9644268774703557,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.6956521739130435,
+     "detect_by_now_red": 0.8023715415019763
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.9644268774703557,
+    "median_fraction_heard": {
+     "value": 0.26,
+     "ci95": [
+      0.22,
+      0.28
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.24
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.8023715415019763,
+    "median_fraction_heard": {
+     "value": 0.5,
+     "ci95": [
+      0.42,
+      0.58
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.38
+   },
+   "by_type": {
+    "appointment (nonscam)": {
+     "label": 0,
+     "n": 69,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "delivery (nonscam)": {
+     "label": 0,
+     "n": 76,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "insurance (nonscam)": {
+     "label": 0,
+     "n": 78,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "refund (scam)": {
+     "label": 1,
+     "n": 83,
+     "flag_red_full": 0.6144578313253012,
+     "flag_red_ever": 0.7228915662650602,
+     "flag_yellow_full": 0.9156626506024096,
+     "flag_yellow_ever": 0.9397590361445783
+    },
+    "reward (scam)": {
+     "label": 1,
+     "n": 54,
+     "flag_red_full": 0.5925925925925926,
+     "flag_red_ever": 0.7777777777777778,
+     "flag_yellow_full": 0.9444444444444444,
+     "flag_yellow_ever": 0.9814814814814815
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 61,
+     "flag_red_full": 0.9836065573770492,
+     "flag_red_ever": 0.9836065573770492,
+     "flag_yellow_full": 1.0,
+     "flag_yellow_ever": 1.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 55,
+     "flag_red_full": 0.6,
+     "flag_red_ever": 0.7454545454545455,
+     "flag_yellow_full": 0.9090909090909091,
+     "flag_yellow_ever": 0.9454545454545454
+    },
+    "telemarketing (nonscam)": {
+     "label": 0,
+     "n": 39,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "wrong (nonscam)": {
+     "label": 0,
+     "n": 83,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.9774703557312253,
+    "ci95": [
+     0.9660298161196083,
+     0.9871005900211949
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 238,
+    "share_flagged_with_a_tactic_tag": 0.9957983193277311,
+    "share_green_with_a_tactic_tag": 0.2916666666666667
+   },
+   "title": "in-domain test, strict de-dup (no shared template >= 0.3)"
+  },
+  "shake_test": {
+   "n": 180,
+   "n_scam": 90,
+   "n_nonscam": 90,
+   "auc": {
+    "value": 0.9198765432098766,
+    "ci95": [
+     0.8813549382716049,
+     0.9543209876543209
+    ]
+   },
+   "eer": {
+    "value": 0.15555555555555556,
+    "ci95": [
+     0.09999999999999999,
+     0.21666666666666667
+    ]
+   },
+   "brier_full": 0.21015202572690994,
+   "ece_full": 0.25247988935542376,
+   "brier_prefixes": 0.22706300557326117,
+   "ece_prefixes": 0.15640410047829612,
+   "accuracy_at_0.5": {
+    "value": 0.5944444444444444,
+    "ci95": [
+     0.5555555555555556,
+     0.6333333333333333
+    ]
+   },
+   "median_p_full_scam": 0.795784516715106,
+   "median_p_full_nonscam": 0.6047860233087485,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.5888888888888889,
+     "ci95": [
+      0.4886111111111111,
+      0.6888888888888889
+     ]
+    },
+    "detect_ever": {
+     "value": 0.6444444444444445,
+     "ci95": [
+      0.5444444444444444,
+      0.7444444444444445
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.022222222222222223,
+     "ci95": [
+      0.0,
+      0.05555555555555555
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.08888888888888889,
+     "ci95": [
+      0.03333333333333333,
+      0.14444444444444443
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.7833333333333333,
+     "ci95": [
+      0.7333333333333333,
+      0.8388888888888889
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.1,
+     "ci95": [
+      0.044444444444444446,
+      0.16666666666666666
+     ]
+    },
+    "detect_ever": {
+     "value": 0.18888888888888888,
+     "ci95": [
+      0.1111111111111111,
+      0.26694444444444293
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.011111111111111112,
+     "ci95": [
+      0.0,
+      0.03333333333333333
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.55,
+     "ci95": [
+      0.5222222222222223,
+      0.5833333333333334
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.5697530864197531,
+      "ci95": [
+       0.48577314814814815,
+       0.6563256172839506
+      ]
+     },
+     "false_alarm_now_yellow": 0.011111111111111112,
+     "false_alarm_by_now_yellow": 0.011111111111111112,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.6690123456790124,
+      "ci95": [
+       0.5844166666666667,
+       0.7456820987654321
+      ]
+     },
+     "false_alarm_now_yellow": 0.022222222222222223,
+     "false_alarm_by_now_yellow": 0.022222222222222223,
+     "detect_now_yellow": 0.022222222222222223,
+     "detect_by_now_yellow": 0.03333333333333333,
+     "false_alarm_now_red": 0.011111111111111112,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.7401234567901235,
+      "ci95": [
+       0.668003086419753,
+       0.8105
+      ]
+     },
+     "false_alarm_now_yellow": 0.044444444444444446,
+     "false_alarm_by_now_yellow": 0.044444444444444446,
+     "detect_now_yellow": 0.15555555555555556,
+     "detect_by_now_yellow": 0.17777777777777778,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.011111111111111112,
+     "detect_by_now_red": 0.011111111111111112
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.7550617283950617,
+      "ci95": [
+       0.6809382716049383,
+       0.8255555555555556
+      ]
+     },
+     "false_alarm_now_yellow": 0.044444444444444446,
+     "false_alarm_by_now_yellow": 0.044444444444444446,
+     "detect_now_yellow": 0.24444444444444444,
+     "detect_by_now_yellow": 0.28888888888888886,
+     "false_alarm_now_red": 0.011111111111111112,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.03333333333333333,
+     "detect_by_now_red": 0.03333333333333333
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.7790123456790123,
+      "ci95": [
+       0.7117993827160494,
+       0.8412376543209876
+      ]
+     },
+     "false_alarm_now_yellow": 0.05555555555555555,
+     "false_alarm_by_now_yellow": 0.06666666666666667,
+     "detect_now_yellow": 0.28888888888888886,
+     "detect_by_now_yellow": 0.34444444444444444,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.07777777777777778,
+     "detect_by_now_red": 0.08888888888888889
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.8065432098765432,
+      "ci95": [
+       0.7402376543209878,
+       0.8738333333333334
+      ]
+     },
+     "false_alarm_now_yellow": 0.05555555555555555,
+     "false_alarm_by_now_yellow": 0.08888888888888889,
+     "detect_now_yellow": 0.3888888888888889,
+     "detect_by_now_yellow": 0.43333333333333335,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.08888888888888889,
+     "detect_by_now_red": 0.13333333333333333
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.8362962962962963,
+      "ci95": [
+       0.7774043209876543,
+       0.8919753086419753
+      ]
+     },
+     "false_alarm_now_yellow": 0.05555555555555555,
+     "false_alarm_by_now_yellow": 0.08888888888888889,
+     "detect_now_yellow": 0.4,
+     "detect_by_now_yellow": 0.4888888888888889,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.1,
+     "detect_by_now_red": 0.13333333333333333
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.8583950617283951,
+      "ci95": [
+       0.7992345679012345,
+       0.9040833333333332
+      ]
+     },
+     "false_alarm_now_yellow": 0.03333333333333333,
+     "false_alarm_by_now_yellow": 0.08888888888888889,
+     "detect_now_yellow": 0.4444444444444444,
+     "detect_by_now_yellow": 0.5555555555555556,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.08888888888888889,
+     "detect_by_now_red": 0.15555555555555556
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.8919753086419753,
+      "ci95": [
+       0.8379012345679012,
+       0.9360555555555556
+      ]
+     },
+     "false_alarm_now_yellow": 0.03333333333333333,
+     "false_alarm_by_now_yellow": 0.08888888888888889,
+     "detect_now_yellow": 0.5555555555555556,
+     "detect_by_now_yellow": 0.6333333333333333,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.08888888888888889,
+     "detect_by_now_red": 0.16666666666666666
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.9198765432098766,
+      "ci95": [
+       0.8796234567901234,
+       0.9548302469135802
+      ]
+     },
+     "false_alarm_now_yellow": 0.022222222222222223,
+     "false_alarm_by_now_yellow": 0.08888888888888889,
+     "detect_now_yellow": 0.5888888888888889,
+     "detect_by_now_yellow": 0.6444444444444445,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.1,
+     "detect_by_now_red": 0.18888888888888888
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.6444444444444445,
+    "median_fraction_heard": {
+     "value": 0.72,
+     "ci95": [
+      0.56,
+      0.89
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.46
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.18888888888888888,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.52
+   },
+   "by_type": {
+    "refund (nonscam)": {
+     "label": 0,
+     "n": 30,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.03333333333333333
+    },
+    "refund (scam)": {
+     "label": 1,
+     "n": 30,
+     "flag_red_full": 0.16666666666666666,
+     "flag_red_ever": 0.23333333333333334,
+     "flag_yellow_full": 0.6333333333333333,
+     "flag_yellow_ever": 0.6333333333333333
+    },
+    "ssn (nonscam)": {
+     "label": 0,
+     "n": 30,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.03333333333333333,
+     "flag_yellow_full": 0.06666666666666667,
+     "flag_yellow_ever": 0.23333333333333334
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 30,
+     "flag_red_full": 0.1,
+     "flag_red_ever": 0.23333333333333334,
+     "flag_yellow_full": 0.7,
+     "flag_yellow_ever": 0.8
+    },
+    "support (nonscam)": {
+     "label": 0,
+     "n": 30,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 30,
+     "flag_red_full": 0.03333333333333333,
+     "flag_red_ever": 0.1,
+     "flag_yellow_full": 0.43333333333333335,
+     "flag_yellow_ever": 0.5
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.7984567901234568,
+    "ci95": [
+     0.7383827160493828,
+     0.8516172839506172
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 55,
+    "share_flagged_with_a_tactic_tag": 1.0,
+    "share_green_with_a_tactic_tag": 0.96
+   },
+   "title": "shakeleoatmeal test split"
+  },
+  "shake_trainplustest": {
+   "n": 1439,
+   "n_scam": 719,
+   "n_nonscam": 720,
+   "auc": {
+    "value": 0.9296302735280482,
+    "ci95": [
+     0.9158880486014527,
+     0.941777159635296
+    ]
+   },
+   "eer": {
+    "value": 0.13967991809612115,
+    "ci95": [
+     0.12300260295935712,
+     0.15913885025498375
+    ]
+   },
+   "brier_full": 0.20878899190534805,
+   "ece_full": 0.2426401629703397,
+   "brier_prefixes": 0.2228043632591509,
+   "ece_prefixes": 0.1506370844959716,
+   "accuracy_at_0.5": {
+    "value": 0.5976372480889507,
+    "ci95": [
+     0.5823488533703961,
+     0.6115357887421821
+    ]
+   },
+   "median_p_full_scam": 0.7900368910536213,
+   "median_p_full_nonscam": 0.5990580817180283,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.5535465924895688,
+     "ci95": [
+      0.5173852573018081,
+      0.588317107093185
+     ]
+    },
+    "detect_ever": {
+     "value": 0.6230876216968011,
+     "ci95": [
+      0.585500695410292,
+      0.6564673157162726
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.03194444444444444,
+     "ci95": [
+      0.019444444444444445,
+      0.04583333333333333
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.08472222222222223,
+     "ci95": [
+      0.06527777777777778,
+      0.10555555555555556
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.7609451007644198,
+     "ci95": [
+      0.7414871438498958,
+      0.7797081306462822
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.1474269819193324,
+     "ci95": [
+      0.12239221140472879,
+      0.17385257301808066
+     ]
+    },
+    "detect_ever": {
+     "value": 0.1933240611961057,
+     "ci95": [
+      0.16550764951321278,
+      0.22117524339360203
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.001388888888888889,
+     "ci95": [
+      0.0,
+      0.004166666666666667
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.018055555555555554,
+     "ci95": [
+      0.009722222222222222,
+      0.029166666666666667
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5733148019457956,
+     "ci95": [
+      0.5608061153578874,
+      0.5872133425990271
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.5989095580281255,
+      "ci95": [
+       0.5701699650363159,
+       0.6283185317184361
+      ]
+     },
+     "false_alarm_now_yellow": 0.0125,
+     "false_alarm_by_now_yellow": 0.0125,
+     "detect_now_yellow": 0.004172461752433936,
+     "detect_by_now_yellow": 0.004172461752433936,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.6791444521712254,
+      "ci95": [
+       0.6507812017076187,
+       0.7061779960593416
+      ]
+     },
+     "false_alarm_now_yellow": 0.02361111111111111,
+     "false_alarm_by_now_yellow": 0.025,
+     "detect_now_yellow": 0.031988873435326845,
+     "detect_by_now_yellow": 0.04172461752433936,
+     "false_alarm_now_red": 0.004166666666666667,
+     "false_alarm_by_now_red": 0.005555555555555556,
+     "detect_now_red": 0.0027816411682892906,
+     "detect_by_now_red": 0.0027816411682892906
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.7372913769123783,
+      "ci95": [
+       0.7101447322670376,
+       0.763545385180034
+      ]
+     },
+     "false_alarm_now_yellow": 0.034722222222222224,
+     "false_alarm_by_now_yellow": 0.041666666666666664,
+     "detect_now_yellow": 0.12239221140472879,
+     "detect_by_now_yellow": 0.13908205841446453,
+     "false_alarm_now_red": 0.006944444444444444,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.008344923504867872,
+     "detect_by_now_red": 0.013908205841446454
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.7741693710400247,
+      "ci95": [
+       0.7485577480296708,
+       0.7977031177561428
+      ]
+     },
+     "false_alarm_now_yellow": 0.03888888888888889,
+     "false_alarm_by_now_yellow": 0.05416666666666667,
+     "detect_now_yellow": 0.21001390820584145,
+     "detect_by_now_yellow": 0.24061196105702365,
+     "false_alarm_now_red": 0.009722222222222222,
+     "false_alarm_by_now_red": 0.015277777777777777,
+     "detect_now_red": 0.03337969401947149,
+     "detect_by_now_red": 0.04033379694019471
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.799690928759079,
+      "ci95": [
+       0.7780921611806522,
+       0.8210382861999691
+      ]
+     },
+     "false_alarm_now_yellow": 0.04861111111111111,
+     "false_alarm_by_now_yellow": 0.06944444444444445,
+     "detect_now_yellow": 0.25591098748261476,
+     "detect_by_now_yellow": 0.3045897079276773,
+     "false_alarm_now_red": 0.004166666666666667,
+     "false_alarm_by_now_red": 0.015277777777777777,
+     "detect_now_red": 0.054242002781641166,
+     "detect_by_now_red": 0.07093184979137691
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.8342450934940504,
+      "ci95": [
+       0.8126287957811775,
+       0.8565492195951167
+      ]
+     },
+     "false_alarm_now_yellow": 0.044444444444444446,
+     "false_alarm_by_now_yellow": 0.07361111111111111,
+     "detect_now_yellow": 0.325452016689847,
+     "detect_by_now_yellow": 0.38386648122392214,
+     "false_alarm_now_red": 0.005555555555555556,
+     "false_alarm_by_now_red": 0.016666666666666666,
+     "detect_now_red": 0.06815020862308763,
+     "detect_by_now_red": 0.0917941585535466
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.8619784422809458,
+      "ci95": [
+       0.843454305748725,
+       0.8808822535156854
+      ]
+     },
+     "false_alarm_now_yellow": 0.04722222222222222,
+     "false_alarm_by_now_yellow": 0.07916666666666666,
+     "detect_now_yellow": 0.39360222531293465,
+     "detect_by_now_yellow": 0.4617524339360223,
+     "false_alarm_now_red": 0.005555555555555556,
+     "false_alarm_by_now_red": 0.018055555555555554,
+     "detect_now_red": 0.0917941585535466,
+     "detect_by_now_red": 0.11821974965229486
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.8870035543192706,
+      "ci95": [
+       0.8696961926286509,
+       0.90366442590017
+      ]
+     },
+     "false_alarm_now_yellow": 0.03611111111111111,
+     "false_alarm_by_now_yellow": 0.08333333333333333,
+     "detect_now_yellow": 0.45897079276773295,
+     "detect_by_now_yellow": 0.5340751043115438,
+     "false_alarm_now_red": 0.004166666666666667,
+     "false_alarm_by_now_red": 0.018055555555555554,
+     "detect_now_red": 0.10570236439499305,
+     "detect_by_now_red": 0.14186369958275383
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.9119726471951785,
+      "ci95": [
+       0.8960287726008346,
+       0.9255493741307371
+      ]
+     },
+     "false_alarm_now_yellow": 0.03194444444444444,
+     "false_alarm_by_now_yellow": 0.08472222222222223,
+     "detect_now_yellow": 0.5243393602225312,
+     "detect_by_now_yellow": 0.5855354659248957,
+     "false_alarm_now_red": 0.004166666666666667,
+     "false_alarm_by_now_red": 0.018055555555555554,
+     "detect_now_red": 0.13073713490959665,
+     "detect_by_now_red": 0.17107093184979139
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.9296302735280482,
+      "ci95": [
+       0.9166896055478289,
+       0.9423877202132592
+      ]
+     },
+     "false_alarm_now_yellow": 0.03194444444444444,
+     "false_alarm_by_now_yellow": 0.08472222222222223,
+     "detect_now_yellow": 0.5535465924895688,
+     "detect_by_now_yellow": 0.6230876216968011,
+     "false_alarm_now_red": 0.001388888888888889,
+     "false_alarm_by_now_red": 0.018055555555555554,
+     "detect_now_red": 0.1474269819193324,
+     "detect_by_now_red": 0.1933240611961057
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.6230876216968011,
+    "median_fraction_heard": {
+     "value": 0.76,
+     "ci95": [
+      0.72,
+      0.82
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.52
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.1933240611961057,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.62
+   },
+   "by_type": {
+    "refund (nonscam)": {
+     "label": 0,
+     "n": 240,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.004166666666666667,
+     "flag_yellow_ever": 0.025
+    },
+    "refund (scam)": {
+     "label": 1,
+     "n": 240,
+     "flag_red_full": 0.20416666666666666,
+     "flag_red_ever": 0.24166666666666667,
+     "flag_yellow_full": 0.6291666666666667,
+     "flag_yellow_ever": 0.6791666666666667
+    },
+    "ssn (nonscam)": {
+     "label": 0,
+     "n": 240,
+     "flag_red_full": 0.004166666666666667,
+     "flag_red_ever": 0.05416666666666667,
+     "flag_yellow_full": 0.09166666666666666,
+     "flag_yellow_ever": 0.22916666666666666
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 239,
+     "flag_red_full": 0.1297071129707113,
+     "flag_red_ever": 0.19665271966527198,
+     "flag_yellow_full": 0.5774058577405857,
+     "flag_yellow_ever": 0.6736401673640168
+    },
+    "support (nonscam)": {
+     "label": 0,
+     "n": 240,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 240,
+     "flag_red_full": 0.10833333333333334,
+     "flag_red_ever": 0.14166666666666666,
+     "flag_yellow_full": 0.45416666666666666,
+     "flag_yellow_ever": 0.5166666666666667
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.7507755756451863,
+    "ci95": [
+     0.7286901898856436,
+     0.7735672857749961
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 421,
+    "share_flagged_with_a_tactic_tag": 1.0,
+    "share_green_with_a_tactic_tag": 0.9007858546168959
+   },
+   "title": "shakeleoatmeal train+test (not used for training)"
+  },
+  "menaattia_all": {
+   "n": 4000,
+   "n_scam": 2000,
+   "n_nonscam": 2000,
+   "auc": {
+    "value": 0.90216125,
+    "ci95": [
+     0.8929166687500001,
+     0.9112327687499999
+    ]
+   },
+   "eer": {
+    "value": 0.18525000000000003,
+    "ci95": [
+     0.17300000000000001,
+     0.19699999999999998
+    ]
+   },
+   "brier_full": 0.19978591215227934,
+   "ece_full": 0.21674819595497435,
+   "brier_prefixes": 0.22644383612478036,
+   "ece_prefixes": 0.1535059169554228,
+   "accuracy_at_0.5": {
+    "value": 0.64825,
+    "ci95": [
+     0.638,
+     0.65875
+    ]
+   },
+   "median_p_full_scam": 0.4506650583781475,
+   "median_p_full_nonscam": 0.2971656492870206,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0015,
+     "ci95": [
+      0.0,
+      0.0035
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.55255775,
+      "ci95": [
+       0.534756103125,
+       0.5703104906249999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.55455,
+      "ci95": [
+       0.5372190781249999,
+       0.5730223
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.6363545,
+      "ci95": [
+       0.6214378687500001,
+       0.6530753125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.72401875,
+      "ci95": [
+       0.70919029375,
+       0.7397990125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0005,
+     "detect_by_now_yellow": 0.0005,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.79169325,
+      "ci95": [
+       0.77785841875,
+       0.80654168125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.001,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.8347235,
+      "ci95": [
+       0.82237825625,
+       0.8467810062500001
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.001,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.86567275,
+      "ci95": [
+       0.854483675,
+       0.87607565
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0005,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.8853605,
+      "ci95": [
+       0.8746796,
+       0.8950289062500001
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0005,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.89687975,
+      "ci95": [
+       0.8876550625,
+       0.9056673375
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.90216125,
+      "ci95": [
+       0.89194519375,
+       0.9111235
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0015,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.0015,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.42
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.799567,
+    "ci95": [
+     0.7889521968750001,
+     0.810142653125
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 0,
+    "share_flagged_with_a_tactic_tag": null,
+    "share_green_with_a_tactic_tag": 0.3165
+   },
+   "title": "menaattia train+test (external, never used)"
+  },
+  "menaattia_test": {
+   "n": 800,
+   "n_scam": 400,
+   "n_nonscam": 400,
+   "auc": {
+    "value": 0.896075,
+    "ci95": [
+     0.8744545312500001,
+     0.91796921875
+    ]
+   },
+   "eer": {
+    "value": 0.19999999999999998,
+    "ci95": [
+     0.17125,
+     0.22503124999999985
+    ]
+   },
+   "brier_full": 0.19910697200362557,
+   "ece_full": 0.21328106311399095,
+   "brier_prefixes": 0.22580542789675595,
+   "ece_prefixes": 0.14963092510748927,
+   "accuracy_at_0.5": {
+    "value": 0.65875,
+    "ci95": [
+     0.63625,
+     0.6825
+    ]
+   },
+   "median_p_full_scam": 0.45070358333867033,
+   "median_p_full_nonscam": 0.29494314563691054,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0025,
+     "ci95": [
+      0.0,
+      0.0075
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.541475,
+      "ci95": [
+       0.505657421875,
+       0.582028125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.5569375,
+      "ci95": [
+       0.51678484375,
+       0.597768125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.63205625,
+      "ci95": [
+       0.5929132812500001,
+       0.6708590624999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.71924375,
+      "ci95": [
+       0.681605625,
+       0.7557315625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.7782,
+      "ci95": [
+       0.7452992187499999,
+       0.81097046875
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0025,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.83080625,
+      "ci95": [
+       0.8036967187499999,
+       0.8587739062499999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0025,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.86345,
+      "ci95": [
+       0.83771640625,
+       0.8871264062499999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0025,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.88201875,
+      "ci95": [
+       0.8589667187500001,
+       0.9033671875
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0025,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.89120625,
+      "ci95": [
+       0.868715625,
+       0.91128546875
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.896075,
+      "ci95": [
+       0.87199796875,
+       0.9162714062499999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0025,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.0025,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.42
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.78275,
+    "ci95": [
+     0.756931796875,
+     0.8070307812499999
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 0,
+    "share_flagged_with_a_tactic_tag": null,
+    "share_green_with_a_tactic_tag": 0.2925
+   },
+   "title": "menaattia test split"
+  },
+  "youtube": {
+   "n": 20,
+   "n_scam": 20,
+   "n_nonscam": 0,
+   "median_p_full_scam": 0.4980228406221483,
+   "median_p_full_nonscam": null,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.4,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.5,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.6,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.7,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.8,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.9,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 1.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "by_type": {
+    "refund (scam)": {
+     "label": 1,
+     "n": 4,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "reward (scam)": {
+     "label": 1,
+     "n": 7,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 4,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    }
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 0,
+    "share_flagged_with_a_tactic_tag": null,
+    "share_green_with_a_tactic_tag": 0.75
+   },
+   "title": "youtube scambait transcripts (scams only)"
+  },
+  "family_test": {
+   "n": 80,
+   "n_scam": 40,
+   "n_nonscam": 40,
+   "auc": {
+    "value": 0.97625,
+    "ci95": [
+     0.9456093750000001,
+     0.995
+    ]
+   },
+   "eer": {
+    "value": 0.125,
+    "ci95": [
+     0.03750000000000001,
+     0.18750000000000003
+    ]
+   },
+   "brier_full": 0.1586704753222909,
+   "ece_full": 0.319032254937805,
+   "brier_prefixes": 0.20657986974936457,
+   "ece_prefixes": 0.17968013558961074,
+   "accuracy_at_0.5": {
+    "value": 0.875,
+    "ci95": [
+     0.8,
+     0.9375
+    ]
+   },
+   "median_p_full_scam": 0.5776893957595415,
+   "median_p_full_nonscam": 0.3427214425463523,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.59125,
+      "ci95": [
+       0.458109375,
+       0.7187812499999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.6225,
+      "ci95": [
+       0.500609375,
+       0.741875
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.72125,
+      "ci95": [
+       0.61246875,
+       0.8343906249999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.80625,
+      "ci95": [
+       0.704375,
+       0.895640625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.855625,
+      "ci95": [
+       0.766828125,
+       0.926890625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.923125,
+      "ci95": [
+       0.86125,
+       0.97125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.948125,
+      "ci95": [
+       0.898109375,
+       0.983125
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.964375,
+      "ci95": [
+       0.926859375,
+       0.99
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.975,
+      "ci95": [
+       0.94625,
+       0.994375
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.97625,
+      "ci95": [
+       0.94625,
+       0.995625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "by_type": {
+    "XN01 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN02 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN03 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN04 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN05 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN06 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN07 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XN08 (nonscam)": {
+     "label": 0,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS01 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS02 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS03 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS04 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS05 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS06 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS07 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "XS08 (scam)": {
+     "label": 1,
+     "n": 5,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.8875,
+    "ci95": [
+     0.8121875,
+     0.9509375
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 0,
+    "share_flagged_with_a_tactic_tag": null,
+    "share_green_with_a_tactic_tag": 0.725
+   },
+   "title": "family-emergency TEST batch (AI-written, separate writers and scenarios)"
+  },
+  "validation_reference": {
+   "n": 361,
+   "n_scam": 181,
+   "n_nonscam": 180,
+   "auc": {
+    "value": 0.9158993247391037,
+    "ci95": [
+     0.8868439226519337,
+     0.941053560466544
+    ]
+   },
+   "eer": {
+    "value": 0.15234806629834258,
+    "ci95": [
+     0.11356660527931248,
+     0.19390730509515036
+    ]
+   },
+   "brier_full": 0.21135912677913146,
+   "ece_full": 0.23710407951246362,
+   "brier_prefixes": 0.2223746122151379,
+   "ece_prefixes": 0.13980025837668197,
+   "accuracy_at_0.5": {
+    "value": 0.6038781163434903,
+    "ci95": [
+     0.5761772853185596,
+     0.6371191135734072
+    ]
+   },
+   "median_p_full_scam": 0.7882826669513238,
+   "median_p_full_nonscam": 0.6054311422247387,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.5469613259668509,
+     "ci95": [
+      0.48066298342541436,
+      0.6187845303867403
+     ]
+    },
+    "detect_ever": {
+     "value": 0.6022099447513812,
+     "ci95": [
+      0.5303867403314917,
+      0.6685082872928176
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.03888888888888889,
+     "ci95": [
+      0.011111111111111112,
+      0.07222222222222222
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.1,
+     "ci95": [
+      0.06111111111111111,
+      0.1388888888888889
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.7534626038781164,
+     "ci95": [
+      0.7132271468144044,
+      0.7922437673130194
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.14917127071823205,
+     "ci95": [
+      0.10497237569060773,
+      0.19889502762430938
+     ]
+    },
+    "detect_ever": {
+     "value": 0.20441988950276244,
+     "ci95": [
+      0.14917127071823205,
+      0.26809392265193355
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.011111111111111112,
+     "ci95": [
+      0.0,
+      0.027777777777777776
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5734072022160664,
+     "ci95": [
+      0.5484764542936288,
+      0.5983379501385041
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.5962860650705955,
+      "ci95": [
+       0.5370530233271946,
+       0.6526515500306936
+      ]
+     },
+     "false_alarm_now_yellow": 0.005555555555555556,
+     "false_alarm_by_now_yellow": 0.011111111111111112,
+     "detect_now_yellow": 0.0055248618784530384,
+     "detect_by_now_yellow": 0.0055248618784530384,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.6702271332105586,
+      "ci95": [
+       0.612122467771639,
+       0.7263846685082872
+      ]
+     },
+     "false_alarm_now_yellow": 0.022222222222222223,
+     "false_alarm_by_now_yellow": 0.03888888888888889,
+     "detect_now_yellow": 0.03867403314917127,
+     "detect_by_now_yellow": 0.049723756906077346,
+     "false_alarm_now_red": 0.005555555555555556,
+     "false_alarm_by_now_red": 0.005555555555555556,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.7203192142418662,
+      "ci95": [
+       0.6646903775322284,
+       0.769719152854512
+      ]
+     },
+     "false_alarm_now_yellow": 0.044444444444444446,
+     "false_alarm_by_now_yellow": 0.06666666666666667,
+     "detect_now_yellow": 0.11049723756906077,
+     "detect_by_now_yellow": 0.13259668508287292,
+     "false_alarm_now_red": 0.005555555555555556,
+     "false_alarm_by_now_red": 0.005555555555555556,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0055248618784530384
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.7577348066298343,
+      "ci95": [
+       0.7090699815837936,
+       0.8058632596685082
+      ]
+     },
+     "false_alarm_now_yellow": 0.05555555555555555,
+     "false_alarm_by_now_yellow": 0.08333333333333333,
+     "detect_now_yellow": 0.19889502762430938,
+     "detect_by_now_yellow": 0.2265193370165746,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.005555555555555556,
+     "detect_now_red": 0.03867403314917127,
+     "detect_by_now_red": 0.04419889502762431
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.7917740945365255,
+      "ci95": [
+       0.7469544198895027,
+       0.8342894413750767
+      ]
+     },
+     "false_alarm_now_yellow": 0.05,
+     "false_alarm_by_now_yellow": 0.08333333333333333,
+     "detect_now_yellow": 0.23756906077348067,
+     "detect_by_now_yellow": 0.27071823204419887,
+     "false_alarm_now_red": 0.011111111111111112,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.049723756906077346,
+     "detect_by_now_red": 0.055248618784530384
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.822744014732965,
+      "ci95": [
+       0.7774056169429098,
+       0.8634223449969306
+      ]
+     },
+     "false_alarm_now_yellow": 0.05,
+     "false_alarm_by_now_yellow": 0.09444444444444444,
+     "detect_now_yellow": 0.34806629834254144,
+     "detect_by_now_yellow": 0.3701657458563536,
+     "false_alarm_now_red": 0.011111111111111112,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.07734806629834254,
+     "detect_by_now_red": 0.08839779005524862
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.8504604051565378,
+      "ci95": [
+       0.8112814610190301,
+       0.8874063842848373
+      ]
+     },
+     "false_alarm_now_yellow": 0.044444444444444446,
+     "false_alarm_by_now_yellow": 0.09444444444444444,
+     "detect_now_yellow": 0.39226519337016574,
+     "detect_by_now_yellow": 0.430939226519337,
+     "false_alarm_now_red": 0.005555555555555556,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.12154696132596685,
+     "detect_by_now_red": 0.13259668508287292
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.871792510742787,
+      "ci95": [
+       0.831091927562922,
+       0.9077110190300799
+      ]
+     },
+     "false_alarm_now_yellow": 0.05,
+     "false_alarm_by_now_yellow": 0.09444444444444444,
+     "detect_now_yellow": 0.4530386740331492,
+     "detect_by_now_yellow": 0.49171270718232046,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.13812154696132597,
+     "detect_by_now_red": 0.1712707182320442
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.8934929404542664,
+      "ci95": [
+       0.86311080417434,
+       0.9243423879680785
+      ]
+     },
+     "false_alarm_now_yellow": 0.05555555555555555,
+     "false_alarm_by_now_yellow": 0.1,
+     "detect_now_yellow": 0.5027624309392266,
+     "detect_by_now_yellow": 0.585635359116022,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.143646408839779,
+     "detect_by_now_red": 0.18232044198895028
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.9158993247391037,
+      "ci95": [
+       0.8846155616942909,
+       0.9415408225905463
+      ]
+     },
+     "false_alarm_now_yellow": 0.03888888888888889,
+     "false_alarm_by_now_yellow": 0.1,
+     "detect_now_yellow": 0.5469613259668509,
+     "detect_by_now_yellow": 0.6022099447513812,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.011111111111111112,
+     "detect_now_red": 0.14917127071823205,
+     "detect_by_now_red": 0.20441988950276244
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.6022099447513812,
+    "median_fraction_heard": {
+     "value": 0.84,
+     "ci95": [
+      0.7,
+      0.9
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.54
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.20441988950276244,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": 0.64
+   },
+   "by_type": {
+    "refund (nonscam)": {
+     "label": 0,
+     "n": 60,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.016666666666666666,
+     "flag_yellow_ever": 0.05
+    },
+    "refund (scam)": {
+     "label": 1,
+     "n": 60,
+     "flag_red_full": 0.2,
+     "flag_red_ever": 0.26666666666666666,
+     "flag_yellow_full": 0.6,
+     "flag_yellow_ever": 0.6166666666666667
+    },
+    "ssn (nonscam)": {
+     "label": 0,
+     "n": 60,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.03333333333333333,
+     "flag_yellow_full": 0.1,
+     "flag_yellow_ever": 0.25
+    },
+    "ssn (scam)": {
+     "label": 1,
+     "n": 61,
+     "flag_red_full": 0.14754098360655737,
+     "flag_red_ever": 0.18032786885245902,
+     "flag_yellow_full": 0.6229508196721312,
+     "flag_yellow_ever": 0.6885245901639344
+    },
+    "support (nonscam)": {
+     "label": 0,
+     "n": 60,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "support (scam)": {
+     "label": 1,
+     "n": 60,
+     "flag_red_full": 0.1,
+     "flag_red_ever": 0.16666666666666666,
+     "flag_yellow_full": 0.4166666666666667,
+     "flag_yellow_ever": 0.5
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.7711786372007366,
+    "ci95": [
+     0.7235439686924494,
+     0.8150583179864948
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 106,
+    "share_flagged_with_a_tactic_tag": 1.0,
+    "share_green_with_a_tactic_tag": 0.9098039215686274
+   },
+   "title": "shakeleoatmeal validation (used for selection, calibration, thresholds)"
+  },
+  "validation_family_reference": {
+   "n": 80,
+   "n_scam": 40,
+   "n_nonscam": 40,
+   "auc": {
+    "value": 0.944375,
+    "ci95": [
+     0.898421875,
+     0.98375
+    ]
+   },
+   "eer": {
+    "value": 0.125,
+    "ci95": [
+     0.050000000000000024,
+     0.23156249999999973
+    ]
+   },
+   "brier_full": 0.1799196533956456,
+   "ece_full": 0.25420354208285983,
+   "brier_prefixes": 0.21400516637177666,
+   "ece_prefixes": 0.14232369822705623,
+   "accuracy_at_0.5": {
+    "value": 0.7625,
+    "ci95": [
+     0.6875,
+     0.8375
+    ]
+   },
+   "median_p_full_scam": 0.5063009609133375,
+   "median_p_full_nonscam": 0.3069792771355411,
+   "at_yellow": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "at_red": {
+    "detect_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "detect_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "false_alarm_ever": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accuracy_full": {
+     "value": 0.5,
+     "ci95": [
+      0.5,
+      0.5
+     ]
+    }
+   },
+   "streaming": [
+    {
+     "frac": 0.1,
+     "auc": {
+      "value": 0.631875,
+      "ci95": [
+       0.50625,
+       0.759375
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.2,
+     "auc": {
+      "value": 0.76625,
+      "ci95": [
+       0.662453125,
+       0.8625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.3,
+     "auc": {
+      "value": 0.77625,
+      "ci95": [
+       0.6625,
+       0.8725
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.4,
+     "auc": {
+      "value": 0.810625,
+      "ci95": [
+       0.709984375,
+       0.894375
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.5,
+     "auc": {
+      "value": 0.87375,
+      "ci95": [
+       0.801234375,
+       0.9425
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.6,
+     "auc": {
+      "value": 0.886875,
+      "ci95": [
+       0.80996875,
+       0.9550156249999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.7,
+     "auc": {
+      "value": 0.920625,
+      "ci95": [
+       0.854359375,
+       0.964390625
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.8,
+     "auc": {
+      "value": 0.93375,
+      "ci95": [
+       0.869328125,
+       0.9806406249999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 0.9,
+     "auc": {
+      "value": 0.935,
+      "ci95": [
+       0.874375,
+       0.9806406249999999
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    },
+    {
+     "frac": 1.0,
+     "auc": {
+      "value": 0.944375,
+      "ci95": [
+       0.89371875,
+       0.985
+      ]
+     },
+     "false_alarm_now_yellow": 0.0,
+     "false_alarm_by_now_yellow": 0.0,
+     "detect_now_yellow": 0.0,
+     "detect_by_now_yellow": 0.0,
+     "false_alarm_now_red": 0.0,
+     "false_alarm_by_now_red": 0.0,
+     "detect_now_red": 0.0,
+     "detect_by_now_red": 0.0
+    }
+   ],
+   "time_to_yellow": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "time_to_red": {
+    "share_of_scams_ever_reaching": 0.0,
+    "median_fraction_heard": {
+     "value": "never",
+     "ci95": [
+      "never",
+      "never"
+     ]
+    },
+    "median_fraction_heard_among_detected": null
+   },
+   "by_type": {
+    "TN03 (nonscam)": {
+     "label": 0,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TN06 (nonscam)": {
+     "label": 0,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TN09 (nonscam)": {
+     "label": 0,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TN11 (nonscam)": {
+     "label": 0,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TS03 (scam)": {
+     "label": 1,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TS06 (scam)": {
+     "label": 1,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TS09 (scam)": {
+     "label": 1,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    },
+    "TS11 (scam)": {
+     "label": 1,
+     "n": 10,
+     "flag_red_full": 0.0,
+     "flag_red_ever": 0.0,
+     "flag_yellow_full": 0.0,
+     "flag_yellow_ever": 0.0
+    }
+   },
+   "rules_only_baseline_auc": {
+    "value": 0.8540625,
+    "ci95": [
+     0.7756093749999999,
+     0.920953125
+    ]
+   },
+   "why_available": {
+    "n_flagged_yellow_or_red_full": 0,
+    "share_flagged_with_a_tactic_tag": null,
+    "share_green_with_a_tactic_tag": 0.65
+   },
+   "title": "held-out family scenarios (used for selection, calibration, thresholds)"
+  }
+ },
+ "top_ngrams": {
+  "scam": [
+   {
+    "ngram": "refund",
+    "weight": 2.10158,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "process",
+    "weight": 1.79253,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "maam",
+    "weight": 1.76474,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "your computer",
+    "weight": 1.62369,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "the refund",
+    "weight": 1.59181,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "but",
+    "weight": 1.55992,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "please",
+    "weight": 1.51055,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "need",
+    "weight": 1.49996,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "social security",
+    "weight": 1.42863,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "gift",
+    "weight": 1.40947,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "bail",
+    "weight": 1.39821,
+    "tactic_rule_match": [
+     "legal_trouble"
+    ]
+   },
+   {
+    "ngram": "social",
+    "weight": 1.39593,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "security",
+    "weight": 1.37504,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "been",
+    "weight": 1.35541,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "computer",
+    "weight": 1.34647,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "your social",
+    "weight": 1.3233,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "gift card",
+    "weight": 1.30495,
+    "tactic_rule_match": [
+     "gift_cards"
+    ]
+   },
+   {
+    "ngram": "security number",
+    "weight": 1.3022,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "we need",
+    "weight": 1.28847,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "dont",
+    "weight": 1.27634,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "now",
+    "weight": 1.26802,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "this is",
+    "weight": 1.26789,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "need to",
+    "weight": 1.25534,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "is a",
+    "weight": 1.18217,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "hundred",
+    "weight": 1.16115,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "account",
+    "weight": 1.15542,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "system",
+    "weight": 1.14855,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "prize",
+    "weight": 1.13716,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "cash",
+    "weight": 1.13592,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "process the",
+    "weight": 1.13241,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "weve",
+    "weight": 1.1146,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "verify",
+    "weight": 1.11115,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "information to",
+    "weight": 1.10329,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "to verify",
+    "weight": 1.09526,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "its",
+    "weight": 1.09162,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "selected",
+    "weight": 1.08918,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "issue",
+    "weight": 1.05445,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "your account",
+    "weight": 1.0468,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "uh",
+    "weight": 1.04541,
+    "tactic_rule_match": []
+   },
+   {
+    "ngram": "information",
+    "weight": 1.04462,
+    "tactic_rule_match": []
+   }
+  ],
+  "safe": [
+   {
+    "ngram": "insurance",
+    "weight": -1.83656
+   },
+   {
+    "ngram": "from name",
+    "weight": -1.62821
+   },
+   {
+    "ngram": "pm",
+    "weight": -1.56688
+   },
+   {
+    "ngram": "num pm",
+    "weight": -1.56688
+   },
+   {
+    "ngram": "delivery",
+    "weight": -1.5415
+   },
+   {
+    "ngram": "appointment",
+    "weight": -1.43378
+   },
+   {
+    "ngram": "oh",
+    "weight": -1.27946
+   },
+   {
+    "ngram": "ha",
+    "weight": -1.23071
+   },
+   {
+    "ngram": "sorry",
+    "weight": -1.15807
+   },
+   {
+    "ngram": "package",
+    "weight": -1.13121
+   },
+   {
+    "ngram": "offering a",
+    "weight": -1.1254
+   },
+   {
+    "ngram": "at num",
+    "weight": -1.10174
+   },
+   {
+    "ngram": "offering",
+    "weight": -1.08937
+   },
+   {
+    "ngram": "hello im",
+    "weight": -1.07824
+   },
+   {
+    "ngram": "scheduled",
+    "weight": -1.06489
+   },
+   {
+    "ngram": "wrong",
+    "weight": -1.05406
+   },
+   {
+    "ngram": "were offering",
+    "weight": -1.04642
+   },
+   {
+    "ngram": "see you",
+    "weight": -1.01824
+   },
+   {
+    "ngram": "dialed",
+    "weight": -1.00704
+   },
+   {
+    "ngram": "your appointment",
+    "weight": -0.965969
+   },
+   {
+    "ngram": "wrong number",
+    "weight": -0.922304
+   },
+   {
+    "ngram": "have dialed",
+    "weight": -0.917043
+   },
+   {
+    "ngram": "great",
+    "weight": -0.914646
+   },
+   {
+    "ngram": "the wrong",
+    "weight": -0.891791
+   },
+   {
+    "ngram": "so sorry",
+    "weight": -0.889536
+   },
+   {
+    "ngram": "thanks",
+    "weight": -0.882874
+   },
+   {
+    "ngram": "must have",
+    "weight": -0.877427
+   },
+   {
+    "ngram": "i must",
+    "weight": -0.875892
+   },
+   {
+    "ngram": "tomorrow",
+    "weight": -0.863171
+   },
+   {
+    "ngram": "your package",
+    "weight": -0.852719
+   },
+   {
+    "ngram": "this the",
+    "weight": -0.846138
+   },
+   {
+    "ngram": "dr",
+    "weight": -0.832683
+   },
+   {
+    "ngram": "for",
+    "weight": -0.827577
+   },
+   {
+    "ngram": "anything",
+    "weight": -0.823961
+   },
+   {
+    "ngram": "wanted",
+    "weight": -0.813472
+   },
+   {
+    "ngram": "day",
+    "weight": -0.811033
+   },
+   {
+    "ngram": "dialed the",
+    "weight": -0.802406
+   },
+   {
+    "ngram": "new",
+    "weight": -0.80163
+   },
+   {
+    "ngram": "im so",
+    "weight": -0.800907
+   },
+   {
+    "ngram": "think",
+    "weight": -0.798626
+   }
+  ],
+  "share_of_top40_scam_ngrams_matching_a_tactic_rule": 0.05
+ },
+ "tactic_rule_fire_rates": {
+  "train": {
+   "urgency": {
+    "scam": 0.5611559139784946,
+    "nonscam": 0.1160933660933661
+   },
+   "secrecy": {
+    "scam": 0.020833333333333332,
+    "nonscam": 0.002457002457002457
+   },
+   "gift_cards": {
+    "scam": 0.26344086021505375,
+    "nonscam": 0.012285012285012284
+   },
+   "wire_transfer": {
+    "scam": 0.05712365591397849,
+    "nonscam": 0.006756756756756757
+   },
+   "crypto": {
+    "scam": 0.003360215053763441,
+    "nonscam": 0.0
+   },
+   "payment": {
+    "scam": 0.2446236559139785,
+    "nonscam": 0.0012285012285012285
+   },
+   "legal_trouble": {
+    "scam": 0.12903225806451613,
+    "nonscam": 0.0036855036855036856
+   },
+   "impersonation": {
+    "scam": 0.698252688172043,
+    "nonscam": 0.0687960687960688
+   },
+   "personal_info": {
+    "scam": 0.7096774193548387,
+    "nonscam": 0.08906633906633907
+   },
+   "stay_on_line": {
+    "scam": 0.1928763440860215,
+    "nonscam": 0.0036855036855036856
+   },
+   "remote_access": {
+    "scam": 0.21169354838709678,
+    "nonscam": 0.0006142506142506142
+   },
+   "any": {
+    "scam": 0.991263440860215,
+    "nonscam": 0.2536855036855037
+   }
+  },
+  "test_in": {
+   "urgency": {
+    "scam": 0.5770750988142292,
+    "nonscam": 0.08877284595300261
+   },
+   "secrecy": {
+    "scam": 0.015810276679841896,
+    "nonscam": 0.0026109660574412533
+   },
+   "gift_cards": {
+    "scam": 0.20553359683794467,
+    "nonscam": 0.015665796344647518
+   },
+   "wire_transfer": {
+    "scam": 0.06719367588932806,
+    "nonscam": 0.0
+   },
+   "crypto": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "payment": {
+    "scam": 0.3241106719367589,
+    "nonscam": 0.0
+   },
+   "legal_trouble": {
+    "scam": 0.13043478260869565,
+    "nonscam": 0.0
+   },
+   "impersonation": {
+    "scam": 0.7549407114624506,
+    "nonscam": 0.07049608355091384
+   },
+   "personal_info": {
+    "scam": 0.7707509881422925,
+    "nonscam": 0.09138381201044386
+   },
+   "stay_on_line": {
+    "scam": 0.233201581027668,
+    "nonscam": 0.005221932114882507
+   },
+   "remote_access": {
+    "scam": 0.16996047430830039,
+    "nonscam": 0.0
+   },
+   "any": {
+    "scam": 0.9881422924901185,
+    "nonscam": 0.24281984334203655
+   }
+  },
+  "shake_trainplustest": {
+   "urgency": {
+    "scam": 0.5340751043115438,
+    "nonscam": 0.1527777777777778
+   },
+   "secrecy": {
+    "scam": 0.0013908205841446453,
+    "nonscam": 0.0
+   },
+   "gift_cards": {
+    "scam": 0.005563282336578581,
+    "nonscam": 0.002777777777777778
+   },
+   "wire_transfer": {
+    "scam": 0.011126564673157162,
+    "nonscam": 0.001388888888888889
+   },
+   "crypto": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "payment": {
+    "scam": 0.013908205841446454,
+    "nonscam": 0.001388888888888889
+   },
+   "legal_trouble": {
+    "scam": 0.02642559109874826,
+    "nonscam": 0.0
+   },
+   "impersonation": {
+    "scam": 0.6731571627260083,
+    "nonscam": 0.6833333333333333
+   },
+   "personal_info": {
+    "scam": 0.9318497913769124,
+    "nonscam": 0.5527777777777778
+   },
+   "stay_on_line": {
+    "scam": 0.008344923504867872,
+    "nonscam": 0.0
+   },
+   "remote_access": {
+    "scam": 0.059805285118219746,
+    "nonscam": 0.027777777777777776
+   },
+   "any": {
+    "scam": 0.9916550764951322,
+    "nonscam": 0.8680555555555556
+   }
+  },
+  "menaattia_all": {
+   "urgency": {
+    "scam": 0.105,
+    "nonscam": 0.003
+   },
+   "secrecy": {
+    "scam": 0.0005,
+    "nonscam": 0.0
+   },
+   "gift_cards": {
+    "scam": 0.022,
+    "nonscam": 0.0
+   },
+   "wire_transfer": {
+    "scam": 0.0175,
+    "nonscam": 0.0
+   },
+   "crypto": {
+    "scam": 0.01,
+    "nonscam": 0.0
+   },
+   "payment": {
+    "scam": 0.069,
+    "nonscam": 0.0
+   },
+   "legal_trouble": {
+    "scam": 0.0545,
+    "nonscam": 0.001
+   },
+   "impersonation": {
+    "scam": 0.165,
+    "nonscam": 0.009
+   },
+   "personal_info": {
+    "scam": 0.364,
+    "nonscam": 0.007
+   },
+   "stay_on_line": {
+    "scam": 0.001,
+    "nonscam": 0.0
+   },
+   "remote_access": {
+    "scam": 0.0215,
+    "nonscam": 0.0
+   },
+   "any": {
+    "scam": 0.615,
+    "nonscam": 0.018
+   }
+  },
+  "youtube": {
+   "urgency": {
+    "scam": 0.25,
+    "nonscam": null
+   },
+   "secrecy": {
+    "scam": 0.0,
+    "nonscam": null
+   },
+   "gift_cards": {
+    "scam": 0.05,
+    "nonscam": null
+   },
+   "wire_transfer": {
+    "scam": 0.0,
+    "nonscam": null
+   },
+   "crypto": {
+    "scam": 0.05,
+    "nonscam": null
+   },
+   "payment": {
+    "scam": 0.0,
+    "nonscam": null
+   },
+   "legal_trouble": {
+    "scam": 0.05,
+    "nonscam": null
+   },
+   "impersonation": {
+    "scam": 0.5,
+    "nonscam": null
+   },
+   "personal_info": {
+    "scam": 0.2,
+    "nonscam": null
+   },
+   "stay_on_line": {
+    "scam": 0.0,
+    "nonscam": null
+   },
+   "remote_access": {
+    "scam": 0.15,
+    "nonscam": null
+   },
+   "any": {
+    "scam": 0.75,
+    "nonscam": null
+   }
+  },
+  "family_test": {
+   "urgency": {
+    "scam": 0.325,
+    "nonscam": 0.225
+   },
+   "secrecy": {
+    "scam": 0.275,
+    "nonscam": 0.05
+   },
+   "gift_cards": {
+    "scam": 0.4,
+    "nonscam": 0.0
+   },
+   "wire_transfer": {
+    "scam": 0.25,
+    "nonscam": 0.0
+   },
+   "crypto": {
+    "scam": 0.125,
+    "nonscam": 0.0
+   },
+   "payment": {
+    "scam": 0.1,
+    "nonscam": 0.0
+   },
+   "legal_trouble": {
+    "scam": 0.375,
+    "nonscam": 0.0
+   },
+   "impersonation": {
+    "scam": 0.25,
+    "nonscam": 0.1
+   },
+   "personal_info": {
+    "scam": 0.1,
+    "nonscam": 0.225
+   },
+   "stay_on_line": {
+    "scam": 0.275,
+    "nonscam": 0.0
+   },
+   "remote_access": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "any": {
+    "scam": 0.95,
+    "nonscam": 0.5
+   }
+  }
+ },
+ "v1_on_family": {
+  "thresholds_v1": {
+   "yellow": 0.76,
+   "red": 0.873
+  },
+  "self_check_menaattia_test_auc": {
+   "recomputed": 0.9099,
+   "v1_results_json": 0.9099
+  },
+  "family_test": {
+   "auc": {
+    "value": 0.81375,
+    "ci95": [
+     0.705,
+     0.905015625
+    ]
+   },
+   "eer": {
+    "value": 0.2625,
+    "ci95": [
+     0.1625,
+     0.3625
+    ]
+   },
+   "auc_by_frac": [
+    0.454375,
+    0.42875,
+    0.436875,
+    0.51,
+    0.546875,
+    0.618125,
+    0.669375,
+    0.758125,
+    0.778125,
+    0.81375
+   ],
+   "detect_ever_yellow": 0.0,
+   "false_alarm_ever_yellow": 0.0,
+   "detect_full_yellow": 0.0,
+   "false_alarm_full_yellow": 0.0,
+   "detect_ever_red": 0.0,
+   "false_alarm_ever_red": 0.0,
+   "detect_full_red": 0.0,
+   "false_alarm_full_red": 0.0,
+   "median_p_full_scam": 0.1512138549942778,
+   "median_p_full_nonscam": 0.09561726286814841
+  },
+  "val_family": {
+   "auc": {
+    "value": 0.814375,
+    "ci95": [
+     0.7124843750000001,
+     0.89625
+    ]
+   },
+   "eer": {
+    "value": 0.2375,
+    "ci95": [
+     0.1625,
+     0.3625
+    ]
+   },
+   "auc_by_frac": [
+    0.49875,
+    0.615,
+    0.61125,
+    0.63375,
+    0.705,
+    0.71125,
+    0.783125,
+    0.821875,
+    0.795625,
+    0.814375
+   ],
+   "detect_ever_yellow": 0.0,
+   "false_alarm_ever_yellow": 0.0,
+   "detect_full_yellow": 0.0,
+   "false_alarm_full_yellow": 0.0,
+   "detect_ever_red": 0.0,
+   "false_alarm_ever_red": 0.0,
+   "detect_full_red": 0.0,
+   "false_alarm_full_red": 0.0,
+   "median_p_full_scam": 0.13333471093853633,
+   "median_p_full_nonscam": 0.08901332932300718
+  }
+ },
+ "demo_calls": {
+  "clone": {
+   "main": [
+    {
+     "who": "caller",
+     "text": "Grandma? It\u2019s me, Ethan.",
+     "p": 0.3344,
+     "llr": -0.691,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "caller",
+     "text": "I\u2019m in real trouble. I got arrested and I need bail money tonight.",
+     "p": 0.4794,
+     "llr": -0.085,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "legal_trouble"
+     ]
+    },
+    {
+     "who": "rose",
+     "text": "Oh no. Are you hurt? Let me call your mother.",
+     "p": 0.4794,
+     "llr": -0.085,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "legal_trouble"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "Please don\u2019t tell Mom. She can\u2019t find out.",
+     "p": 0.5455,
+     "llr": 0.18,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "secrecy",
+      "legal_trouble"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "The lawyer says you can pay with gift cards from the pharmacy.",
+     "p": 0.6142,
+     "llr": 0.462,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "secrecy",
+      "gift_cards",
+      "legal_trouble"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "Can you go now? I only have a few minutes.",
+     "p": 0.621,
+     "llr": 0.491,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "secrecy",
+      "gift_cards",
+      "legal_trouble"
+     ]
+    }
+   ]
+  },
+  "real": {
+   "main": [
+    {
+     "who": "caller",
+     "text": "Hi Grandma, it\u2019s Ethan. My phone died, so I\u2019m using Jake\u2019s.",
+     "p": 0.3069,
+     "llr": -0.818,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "caller",
+     "text": "Are we still on for pancakes Saturday? Mom said she\u2019ll drive me over.",
+     "p": 0.2877,
+     "llr": -0.909,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "rose",
+     "text": "Of course, sweetheart. Nine o\u2019clock?",
+     "p": 0.2877,
+     "llr": -0.909,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "caller",
+     "text": "Nine works. Love you, see you then.",
+     "p": 0.2211,
+     "llr": -1.262,
+     "band": "green",
+     "tactics": []
+    }
+   ]
+  },
+  "unsure": {
+   "with_pass_branch": [
+    {
+     "who": "caller",
+     "text": "Grandma? It\u2019s Ethan. Sorry, the signal here is really bad.",
+     "p": 0.3129,
+     "llr": -0.789,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "caller",
+     "text": "I missed the last bus. Could you send me money for a ride home?",
+     "p": 0.3533,
+     "llr": -0.607,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "rose",
+     "text": "Where are you, honey?",
+     "p": 0.3533,
+     "llr": -0.607,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "Near the mall. I can explain later.",
+     "p": 0.3735,
+     "llr": -0.52,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "(whispering) {word}.",
+     "p": 0.3735,
+     "llr": -0.52,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "rose",
+     "text": "Okay. Let me call your dad and we\u2019ll come get you.",
+     "p": 0.3735,
+     "llr": -0.52,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    }
+   ],
+   "with_fail_branch": [
+    {
+     "who": "caller",
+     "text": "Grandma? It\u2019s Ethan. Sorry, the signal here is really bad.",
+     "p": 0.3129,
+     "llr": -0.789,
+     "band": "green",
+     "tactics": []
+    },
+    {
+     "who": "caller",
+     "text": "I missed the last bus. Could you send me money for a ride home?",
+     "p": 0.3533,
+     "llr": -0.607,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "rose",
+     "text": "Where are you, honey?",
+     "p": 0.3533,
+     "llr": -0.607,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "Near the mall. I can explain later.",
+     "p": 0.3735,
+     "llr": -0.52,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "What? I can\u2019t hear you. Please just send the money.",
+     "p": 0.432,
+     "llr": -0.277,
+     "band": "green",
+     "tactics": [
+      "payment"
+     ]
+    }
+   ]
+  },
+  "medicare": {
+   "main": [
+    {
+     "who": "caller",
+     "text": "Hello, this is the Medicare benefits office. Your benefits will be suspended today.",
+     "p": 0.4556,
+     "llr": -0.181,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "impersonation"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "To stop that, I need to verify your Medicare number right now.",
+     "p": 0.5712,
+     "llr": 0.284,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "impersonation",
+      "personal_info"
+     ]
+    },
+    {
+     "who": "rose",
+     "text": "Suspended? Why would it be suspended?",
+     "p": 0.5712,
+     "llr": 0.284,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "impersonation",
+      "personal_info"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "There is a reactivation fee. You can pay it with gift cards.",
+     "p": 0.6599,
+     "llr": 0.66,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "gift_cards",
+      "payment",
+      "impersonation",
+      "personal_info"
+     ]
+    },
+    {
+     "who": "caller",
+     "text": "Please stay on the line. Do not hang up.",
+     "p": 0.6702,
+     "llr": 0.706,
+     "band": "green",
+     "tactics": [
+      "urgency",
+      "gift_cards",
+      "payment",
+      "impersonation",
+      "personal_info",
+      "stay_on_line"
+     ]
+    }
+   ]
+  }
+ },
+ "demo_calls_meta": {
+  "sc_block_sha256": "fb67a61177df7aefc921b64c27eab97718c1fa4e72d58182c3e325b72b0de3d4",
+  "skipped_no_scripted_caller_lines": [
+   "live"
+  ],
+  "share_of_caller_4grams_seen_in_family_train": {
+   "clone": 0.20454545454545456,
+   "real": 0.14285714285714285,
+   "unsure": 0.05263157894736842,
+   "medicare": 0.046511627906976744
+  }
+ },
+ "model_json_bytes": 152867,
+ "runtime_seconds": 199.4
+}

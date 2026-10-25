@@ -1,0 +1,48 @@
+[    6.1s] splits {"train": {"n": 3116, "scam": 1488, "nonscam": 1628}, "val_family": {"n": 80, "scam": 40, "nonscam": 40}, "family_test": {"n": 80, "scam": 40, "nonscam": 40}, "test_in": {"n": 636, "scam": 253, "nonscam": 383}, "test_in_strict": {"n": 598, "scam": 253, "nonscam": 345}, "val": {"n": 361, "scam": 181, "nonscam": 180}, "shake_test": {"n": 180, "scam": 90, "nonscam": 90}, "shake_trainplustest": {"n": 1439, "scam": 719, "nonscam": 720}, "menaattia_all": {"n": 4000, "scam": 2000, "nonscam": 2000}, "menaattia_test": {"n": 800, "scam": 400, "nonscam": 400}, "youtube": {"n": 20, "scam": 20, "nonscam": 0}}
+[    6.1s] dedup {"near_duplicate_threshold_jaccard_5gram": 0.5, "bothbosu_train_dialogues_before_dedup": 3840, "train_pool_after_dedup": 3116, "of_which_family_train": 160, "bothbosu_test_dialogues_before_dedup": 960, "test_removed_as_near_copy_of_train": 177, "test_removed_as_within_test_duplicate": 147, "in_domain_test_after_dedup": 636, "in_domain_test_strict_jaccard_0.3": 598, "external_dialogues_with_any_train_neighbor_jaccard_0.3": {"shakeleoatmeal": 4, "menaattia": 0, "youtube": 0, "family_test_vs_family_train": 0}}
+[    8.8s] A_word12 C 0.1 fam_w 1 score 0.7759 {'val': 0.779, 'val_family': 0.7727} full {'val': 0.9085, 'val_family': 0.8812}
+[    8.8s] D_word12_plus_tactic_count C 0.1 fam_w 1 score 0.7346 {'val': 0.7451, 'val_family': 0.7241} full {'val': 0.8833, 'val_family': 0.8794}
+[   11.0s] A_word12 C 0.3 fam_w 1 score 0.7812 {'val': 0.7788, 'val_family': 0.7835} full {'val': 0.9027, 'val_family': 0.8962}
+[   11.1s] D_word12_plus_tactic_count C 0.3 fam_w 1 score 0.7646 {'val': 0.7692, 'val_family': 0.7601} full {'val': 0.9001, 'val_family': 0.9062}
+[   13.3s] A_word12 C 1.0 fam_w 1 score 0.7849 {'val': 0.7756, 'val_family': 0.7943} full {'val': 0.8931, 'val_family': 0.9062}
+[   13.3s] D_word12_plus_tactic_count C 1.0 fam_w 1 score 0.7818 {'val': 0.7789, 'val_family': 0.7847} full {'val': 0.8974, 'val_family': 0.9163}
+[   15.5s] A_word12 C 3.0 fam_w 1 score 0.7838 {'val': 0.7712, 'val_family': 0.7964} full {'val': 0.8856, 'val_family': 0.9131}
+[   15.5s] D_word12_plus_tactic_count C 3.0 fam_w 1 score 0.7811 {'val': 0.7735, 'val_family': 0.7886} full {'val': 0.886, 'val_family': 0.92}
+[   17.8s] A_word12 C 0.1 fam_w 3 score 0.7810 {'val': 0.7737, 'val_family': 0.7883} full {'val': 0.8957, 'val_family': 0.9}
+[   17.8s] D_word12_plus_tactic_count C 0.1 fam_w 3 score 0.7764 {'val': 0.7736, 'val_family': 0.7791} full {'val': 0.8991, 'val_family': 0.9169}
+[   20.0s] A_word12 C 0.3 fam_w 3 score 0.7838 {'val': 0.7737, 'val_family': 0.7939} full {'val': 0.8903, 'val_family': 0.9113}
+[   20.0s] D_word12_plus_tactic_count C 0.3 fam_w 3 score 0.7810 {'val': 0.7754, 'val_family': 0.7865} full {'val': 0.8897, 'val_family': 0.9156}
+[   22.2s] A_word12 C 1.0 fam_w 3 score 0.7872 {'val': 0.7733, 'val_family': 0.8011} full {'val': 0.8852, 'val_family': 0.9206}
+[   22.2s] D_word12_plus_tactic_count C 1.0 fam_w 3 score 0.7847 {'val': 0.7707, 'val_family': 0.7987} full {'val': 0.8763, 'val_family': 0.9169}
+[   24.5s] A_word12 C 3.0 fam_w 3 score 0.7888 {'val': 0.7733, 'val_family': 0.8044} full {'val': 0.8831, 'val_family': 0.9269}
+[   24.5s] D_word12_plus_tactic_count C 3.0 fam_w 3 score 0.7840 {'val': 0.768, 'val_family': 0.7999} full {'val': 0.8685, 'val_family': 0.9131}
+[   24.5s] CHOSEN A_word12 C 1.0 fam_w 1
+[   26.6s] ablation chosen (caller words, names/greetings neutralized) {'val': {'val_auc_full': 0.9158993247391037, 'val_auc_mean_over_fracs': 0.7890730509515039}, 'val_family': {'val_auc_full': 0.944375, 'val_auc_mean_over_fracs': 0.8479375000000001}}
+[   28.7s] ablation caller words, names/greetings NOT neutralized {'val': {'val_auc_full': 0.9141497851442603, 'val_auc_mean_over_fracs': 0.792819214241866}, 'val_family': {'val_auc_full': 0.94625, 'val_auc_mean_over_fracs': 0.8454999999999998}}
+[   31.7s] ablation both speakers (receiver lines included) {'val': {'val_auc_full': 0.905524861878453, 'val_auc_mean_over_fracs': 0.7831844689993861}, 'val_family': {'val_auc_full': 0.958125, 'val_auc_mean_over_fracs': 0.8456875}}
+[   32.9s] OOF grid scores (training pool) for thresholds
+[   98.2s] calibration {"variant": "A_word12", "a": 0.591943, "c_tactic_count": 0.0, "b": -0.0535122, "prior": 0.5006925207756232, "fit_on": "shakeleoatmeal/validation + held-out family scenarios, 10%..100% prefixes, equal weight per source", "crossfit_brier_val": 0.22410038388360842, "crossfit_ece_val": 0.12799039350090174, "crossfit_brier_val_family": 0.22027159390121112, "crossfit_ece_val_family": 0.1761949464512858, "brier_on_training_pool_oof": 0.048042247675916784}
+[   98.2s] thresholds {'yellow': 0.78, 'yellow_from_training_pool_oof': 0.427, 'yellow_from_val': 0.78, 'yellow_from_val_family': 0.4, 'red': 0.843, 'red_from_training_pool_oof': 0.467, 'red_from_val': 0.843, 'red_from_val_family': 0.501, 'rule': 'smallest p (3 decimals) such that at most 10% (yellow) / 2% (red) of non-scam calls EVER reach it at any 2% checkpoint; the strictest of training-pool out-of-fold, shakeleoatmeal/validation and the held-out family scenarios'}
+[  113.8s] eval test_in AUC 1.0 EER 0.0
+[  129.2s] eval test_in_strict AUC 1.0 EER 0.0
+[  133.5s] eval shake_test AUC 0.9198765432098766 EER 0.15555555555555556
+[  154.7s] eval shake_trainplustest AUC 0.9296302735280482 EER 0.13967991809612115
+[  173.5s] eval menaattia_all AUC 0.90216125 EER 0.18525000000000003
+[  178.8s] eval menaattia_test AUC 0.896075 EER 0.19999999999999998
+[  179.5s] eval youtube AUC None EER None
+[  182.8s] eval family_test AUC 0.97625 EER 0.125
+[  188.4s] eval val AUC 0.9158993247391037 EER 0.15234806629834258
+[  190.5s] eval val_family AUC 0.944375 EER 0.125
+[  190.6s] wrote test_scores.csv
+[  195.1s] v1 on family_test AUC 0.81375
+[  197.0s] v1 on val_family AUC 0.814375
+[  197.0s] demo clone main [('green', 0.3344), ('green', 0.4794), ('green', 0.4794), ('green', 0.5455), ('green', 0.6142), ('green', 0.621)]
+[  197.0s] demo real main [('green', 0.3069), ('green', 0.2877), ('green', 0.2877), ('green', 0.2211)]
+[  197.0s] demo unsure with_pass_branch [('green', 0.3129), ('green', 0.3533), ('green', 0.3533), ('green', 0.3735), ('green', 0.3735), ('green', 0.3735)]
+[  197.0s] demo unsure with_fail_branch [('green', 0.3129), ('green', 0.3533), ('green', 0.3533), ('green', 0.3735), ('green', 0.432)]
+[  197.0s] demo medicare main [('green', 0.4556), ('green', 0.5712), ('green', 0.5712), ('green', 0.6599), ('green', 0.6702)]
+[  197.0s] model.json 152867 bytes
+[  198.7s] parity cases 5148 -> research/data/stage2/parity_cases.json
+[  199.4s] wrote streaming_curve.png
+[  199.4s] wrote results.json
+exit 0

@@ -1,0 +1,656 @@
+{
+ "version": "2.1",
+ "formula": "p = 1/(1+exp(-(a*u + d*u*ln(1+n) + b))), u = z - z0",
+ "z0": -1.21796,
+ "calibration_quality": {
+  "v2": {
+   "val 10-30%": {
+    "brier": 0.234774814690965,
+    "ece": 0.04901110248022072,
+    "mean_p_scam": 0.5851290607028627,
+    "mean_p_normal": 0.5115680028910078
+   },
+   "val 40-70%": {
+    "brier": 0.22054851186803856,
+    "ece": 0.14433853411450034,
+    "mean_p_scam": 0.7139693647266222,
+    "mean_p_normal": 0.5744811329616297
+   },
+   "val 80-100%": {
+    "brier": 0.21816178243034495,
+    "ece": 0.20402163426783151,
+    "mean_p_scam": 0.7675359034360921,
+    "mean_p_normal": 0.6008410287508325
+   },
+   "val_family 10-30%": {
+    "brier": 0.26304187855973454,
+    "ece": 0.1851555583738213,
+    "mean_p_scam": 0.34411121771107955,
+    "mean_p_normal": 0.28557766554127795
+   },
+   "val_family 40-70%": {
+    "brier": 0.21326347293397144,
+    "ece": 0.1975890359305985,
+    "mean_p_scam": 0.4448291506814922,
+    "mean_p_normal": 0.3139788509377054
+   },
+   "val_family 80-100%": {
+    "brier": 0.18684547053234055,
+    "ece": 0.23578897094455195,
+    "mean_p_scam": 0.4939509009588355,
+    "mean_p_normal": 0.31815283406581657
+   }
+  },
+  "v21_pooled": {
+   "val 10-30%": {
+    "brier": 0.23606168427024382,
+    "ece": 0.05515747306171994,
+    "mean_p_scam": 0.588801047740165,
+    "mean_p_normal": 0.515497425061484
+   },
+   "val 40-70%": {
+    "brier": 0.22101284683667077,
+    "ece": 0.14537486286005338,
+    "mean_p_scam": 0.7127935576933321,
+    "mean_p_normal": 0.5746426701043693
+   },
+   "val 80-100%": {
+    "brier": 0.21662505532902337,
+    "ece": 0.2083181283689614,
+    "mean_p_scam": 0.7636800819800756,
+    "mean_p_normal": 0.5975804995148796
+   },
+   "val_family 10-30%": {
+    "brier": 0.2641998059645148,
+    "ece": 0.1859477918828814,
+    "mean_p_scam": 0.3425567154166939,
+    "mean_p_normal": 0.28554770081754327
+   },
+   "val_family 40-70%": {
+    "brier": 0.21382337484589103,
+    "ece": 0.19721156497919914,
+    "mean_p_scam": 0.44307644223544146,
+    "mean_p_normal": 0.31332944844943506
+   },
+   "val_family 80-100%": {
+    "brier": 0.18787703476422687,
+    "ece": 0.21747763476476656,
+    "mean_p_scam": 0.49097802187115597,
+    "mean_p_normal": 0.31706920464102595
+   }
+  },
+  "v21_family": {
+   "val 10-30%": {
+    "brier": 0.3238352814505913,
+    "ece": 0.27308653821699935,
+    "mean_p_scam": 0.8156358464500076,
+    "mean_p_normal": 0.716191487879623
+   },
+   "val 40-70%": {
+    "brier": 0.3972127948193644,
+    "ece": 0.4172276702211811,
+    "mean_p_scam": 0.9674758221547767,
+    "mean_p_normal": 0.869478139665732
+   },
+   "val 80-100%": {
+    "brier": 0.4384713731510032,
+    "ece": 0.46037079078896337,
+    "mean_p_scam": 0.9940559031504701,
+    "mean_p_normal": 0.9292763166921149
+   },
+   "val_family 10-30%": {
+    "brier": 0.25121382735529313,
+    "ece": 0.20425644095895007,
+    "mean_p_scam": 0.4051629443520711,
+    "mean_p_normal": 0.2587950346054058
+   },
+   "val_family 40-70%": {
+    "brier": 0.16061794883061603,
+    "ece": 0.10722740761320822,
+    "mean_p_scam": 0.7073240103532623,
+    "mean_p_normal": 0.34047956062115653
+   },
+   "val_family 80-100%": {
+    "brier": 0.11964167569314724,
+    "ece": 0.12130501910452632,
+    "mean_p_scam": 0.8467881055703308,
+    "mean_p_normal": 0.35312852142826096
+   }
+  }
+ },
+ "calibration": {
+  "v2": {
+   "coef": [
+    0.5919427436766723
+   ],
+   "intercept": -0.053512223231504924,
+   "sources": [
+    "val",
+    "val_family"
+   ],
+   "kind": "z"
+  },
+  "v21_pooled": {
+   "coef": [
+    0.6772733366033654,
+    -0.01949656063035309
+   ],
+   "intercept": -0.7759029291012881,
+   "sources": [
+    "val",
+    "val_family"
+   ],
+   "kind": "len"
+  },
+  "v21_family": {
+   "coef": [
+    -0.47312356264170796,
+    0.6302502119178548
+   ],
+   "intercept": -0.7917771587917183,
+   "sources": [
+    "val_family"
+   ],
+   "kind": "len"
+  },
+  "shipped": {
+   "recipe": "v21_family",
+   "a": -0.47312356264170796,
+   "d": 0.6302502119178548,
+   "b": -0.7917771587917183,
+   "prior": 0.5
+  },
+  "v2_refit_check": {
+   "refit": {
+    "coef": [
+     0.5919427436766723
+    ],
+    "intercept": -0.053512223231504924,
+    "sources": [
+     "val",
+     "val_family"
+    ],
+    "kind": "z"
+   },
+   "model_json_v2": {
+    "a": 0.591943,
+    "b": -0.0535122
+   }
+  }
+ },
+ "thresholds": {
+  "v2": {
+   "yellow": 0.78,
+   "yellow_from_val": 0.78,
+   "yellow_from_val_family": 0.4,
+   "red": 0.843,
+   "red_from_val": 0.843,
+   "red_from_val_family": 0.501
+  },
+  "v21_pooled": {
+   "yellow": 0.774,
+   "yellow_from_val": 0.774,
+   "yellow_from_val_family": 0.399,
+   "red": 0.846,
+   "red_from_val": 0.846,
+   "red_from_val_family": 0.499
+  },
+  "v21_family": {
+   "yellow": 0.667,
+   "yellow_from_val_family": 0.667,
+   "red": 0.926,
+   "red_from_val_family": 0.926
+  }
+ },
+ "evaluation": {
+  "test_in": {
+   "n": 636,
+   "n_scam": 253,
+   "v2": {
+    "auc_full": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "eer_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "scams_ever_yellow": 0.9644268774703557,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.8023715415019763,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.8680934945397829,
+    "median_p_full_normal": 0.12154966559884182
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "eer_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "scams_ever_yellow": 0.9525691699604744,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.6996047430830039,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.8534340873836971,
+    "median_p_full_normal": 0.123521692977882
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "eer_full": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "scams_ever_yellow": 1.0,
+    "normal_ever_yellow": 0.0026109660574412533,
+    "scams_ever_red": 1.0,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.9999981282524852,
+    "median_p_full_normal": 0.0026172781164772946
+   }
+  },
+  "shake_test": {
+   "n": 180,
+   "n_scam": 90,
+   "v2": {
+    "auc_full": {
+     "value": 0.9198765432098766,
+     "ci95": [
+      0.8783888888888889,
+      0.9538302469135803
+     ]
+    },
+    "eer_full": {
+     "value": 0.15555555555555556,
+     "ci95": [
+      0.09999999999999999,
+      0.21111111111111114
+     ]
+    },
+    "scams_ever_yellow": 0.6444444444444445,
+    "normal_ever_yellow": 0.08888888888888889,
+    "scams_ever_red": 0.18888888888888888,
+    "normal_ever_red": 0.011111111111111112,
+    "median_p_full_scam": 0.7957844134599065,
+    "median_p_full_normal": 0.6047859681839995
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 0.9232098765432099,
+     "ci95": [
+      0.8853024691358025,
+      0.9579012345679012
+     ]
+    },
+    "eer_full": {
+     "value": 0.1611111111111111,
+     "ci95": [
+      0.09999999999999999,
+      0.21111111111111114
+     ]
+    },
+    "scams_ever_yellow": 0.6555555555555556,
+    "normal_ever_yellow": 0.08888888888888889,
+    "scams_ever_red": 0.2,
+    "normal_ever_red": 0.011111111111111112,
+    "median_p_full_scam": 0.7892504869999837,
+    "median_p_full_normal": 0.6029037597903526
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 0.8674074074074074,
+     "ci95": [
+      0.8144382716049382,
+      0.9165462962962964
+     ]
+    },
+    "eer_full": {
+     "value": 0.22777777777777775,
+     "ci95": [
+      0.1611111111111111,
+      0.2888888888888889
+     ]
+    },
+    "scams_ever_yellow": 1.0,
+    "normal_ever_yellow": 0.9888888888888889,
+    "scams_ever_red": 1.0,
+    "normal_ever_red": 0.8555555555555555,
+    "median_p_full_scam": 0.9996077824753249,
+    "median_p_full_normal": 0.9846082904007252
+   }
+  },
+  "shake_trainplustest": {
+   "n": 1439,
+   "n_scam": 719,
+   "v2": {
+    "auc_full": {
+     "value": 0.9296302735280482,
+     "ci95": [
+      0.9167590499922732,
+      0.9421488178025035
+     ]
+    },
+    "eer_full": {
+     "value": 0.13967991809612115,
+     "ci95": [
+      0.12300260295935712,
+      0.15844343996291144
+     ]
+    },
+    "scams_ever_yellow": 0.6230876216968011,
+    "normal_ever_yellow": 0.08472222222222223,
+    "scams_ever_red": 0.1933240611961057,
+    "normal_ever_red": 0.018055555555555554,
+    "median_p_full_scam": 0.7900367881725003,
+    "median_p_full_normal": 0.5990580288097648
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 0.9320371658167208,
+     "ci95": [
+      0.9195535369340132,
+      0.9436952847318807
+     ]
+    },
+    "eer_full": {
+     "value": 0.13551035388657084,
+     "ci95": [
+      0.11883209704836967,
+      0.1549683201978056
+     ]
+    },
+    "scams_ever_yellow": 0.6397774687065368,
+    "normal_ever_yellow": 0.09444444444444444,
+    "scams_ever_red": 0.16550764951321278,
+    "normal_ever_red": 0.015277777777777777,
+    "median_p_full_scam": 0.7842699242325936,
+    "median_p_full_normal": 0.5946683226448277
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 0.8844131509813012,
+     "ci95": [
+      0.8669085632050687,
+      0.9010850815175397
+     ]
+    },
+    "eer_full": {
+     "value": 0.18693401329006337,
+     "ci95": [
+      0.1695622778550456,
+      0.2112579199505486
+     ]
+    },
+    "scams_ever_yellow": 1.0,
+    "normal_ever_yellow": 0.9833333333333333,
+    "scams_ever_red": 0.9986091794158554,
+    "normal_ever_red": 0.8388888888888889,
+    "median_p_full_scam": 0.9996390933642825,
+    "median_p_full_normal": 0.984875472145015
+   }
+  },
+  "menaattia_test": {
+   "n": 800,
+   "n_scam": 400,
+   "v2": {
+    "auc_full": {
+     "value": 0.896075,
+     "ci95": [
+      0.8743084375000001,
+      0.91662015625
+     ]
+    },
+    "eer_full": {
+     "value": 0.19999999999999998,
+     "ci95": [
+      0.17125,
+      0.22625
+     ]
+    },
+    "scams_ever_yellow": 0.0025,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.4507035930583304,
+    "median_p_full_normal": 0.2949432144630919
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 0.8961375,
+     "ci95": [
+      0.8739623437499999,
+      0.9163939062500001
+     ]
+    },
+    "eer_full": {
+     "value": 0.20249999999999999,
+     "ci95": [
+      0.16749999999999998,
+      0.22625
+     ]
+    },
+    "scams_ever_yellow": 0.0025,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.4556383568017892,
+    "median_p_full_normal": 0.2936213505109676
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 0.8928625,
+     "ci95": [
+      0.870099375,
+      0.91363921875
+     ]
+    },
+    "eer_full": {
+     "value": 0.20375,
+     "ci95": [
+      0.17625000000000002,
+      0.23375
+     ]
+    },
+    "scams_ever_yellow": 0.475,
+    "normal_ever_yellow": 0.0525,
+    "scams_ever_red": 0.0725,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.6411554855876517,
+    "median_p_full_normal": 0.2688758585122317
+   }
+  },
+  "menaattia_all": {
+   "n": 4000,
+   "n_scam": 2000,
+   "v2": {
+    "auc_full": {
+     "value": 0.90216125,
+     "ci95": [
+      0.89326288125,
+      0.9112746687500001
+     ]
+    },
+    "eer_full": {
+     "value": 0.18525000000000003,
+     "ci95": [
+      0.17349375,
+      0.1965
+     ]
+    },
+    "scams_ever_yellow": 0.0015,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.4506650681143497,
+    "median_p_full_normal": 0.2971657174487704
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 0.9021595,
+     "ci95": [
+      0.892994975,
+      0.91118136875
+     ]
+    },
+    "eer_full": {
+     "value": 0.1845,
+     "ci95": [
+      0.17274374999999997,
+      0.19674999999999998
+     ]
+    },
+    "scams_ever_yellow": 0.0025,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "median_p_full_scam": 0.45603060889339025,
+    "median_p_full_normal": 0.2960897150837631
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 0.89954725,
+     "ci95": [
+      0.891082625,
+      0.90859908125
+     ]
+    },
+    "eer_full": {
+     "value": 0.19624999999999998,
+     "ci95": [
+      0.18249375,
+      0.20775
+     ]
+    },
+    "scams_ever_yellow": 0.4705,
+    "normal_ever_yellow": 0.0535,
+    "scams_ever_red": 0.057,
+    "normal_ever_red": 0.0005,
+    "median_p_full_scam": 0.6322745398413057,
+    "median_p_full_normal": 0.2695160592739233
+   }
+  },
+  "youtube": {
+   "n": 20,
+   "n_scam": 20,
+   "v2": {
+    "scams_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "median_p_full_scam": 0.49802282988252944
+   },
+   "v21_pooled": {
+    "scams_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "median_p_full_scam": 0.489799290173202
+   },
+   "v21_family": {
+    "scams_ever_yellow": 0.95,
+    "scams_ever_red": 0.65,
+    "median_p_full_scam": 0.9476160573548755
+   }
+  },
+  "family_test": {
+   "n": 80,
+   "n_scam": 40,
+   "v2": {
+    "auc_full": {
+     "value": 0.97625,
+     "ci95": [
+      0.945625,
+      0.995
+     ]
+    },
+    "eer_full": {
+     "value": 0.125,
+     "ci95": [
+      0.025000000000000012,
+      0.18750000000000003
+     ]
+    },
+    "scams_ever_yellow": 0.0,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "hard_negatives": 25,
+    "hard_negatives_ever_yellow": 0.0,
+    "hard_negatives_ever_red": 0.0,
+    "median_p_full_scam": 0.5776893513601773,
+    "median_p_full_normal": 0.3427214956127669
+   },
+   "v21_pooled": {
+    "auc_full": {
+     "value": 0.97625,
+     "ci95": [
+      0.9475,
+      0.995
+     ]
+    },
+    "eer_full": {
+     "value": 0.1375,
+     "ci95": [
+      0.025000000000000012,
+      0.19999999999999998
+     ]
+    },
+    "scams_ever_yellow": 0.0,
+    "normal_ever_yellow": 0.0,
+    "scams_ever_red": 0.0,
+    "normal_ever_red": 0.0,
+    "hard_negatives": 25,
+    "hard_negatives_ever_yellow": 0.0,
+    "hard_negatives_ever_red": 0.0,
+    "median_p_full_scam": 0.5732873459973125,
+    "median_p_full_normal": 0.3421787165293244
+   },
+   "v21_family": {
+    "auc_full": {
+     "value": 0.9775,
+     "ci95": [
+      0.9468593750000001,
+      0.99625
+     ]
+    },
+    "eer_full": {
+     "value": 0.09999999999999999,
+     "ci95": [
+      0.025000000000000012,
+      0.16281249999999833
+     ]
+    },
+    "scams_ever_yellow": 1.0,
+    "normal_ever_yellow": 0.425,
+    "scams_ever_red": 0.875,
+    "normal_ever_red": 0.075,
+    "hard_negatives": 25,
+    "hard_negatives_ever_yellow": 0.36,
+    "hard_negatives_ever_red": 0.08,
+    "median_p_full_scam": 0.9858280021618375,
+    "median_p_full_normal": 0.42952923551831634
+   }
+  }
+ },
+ "parity_cases": 1590
+}

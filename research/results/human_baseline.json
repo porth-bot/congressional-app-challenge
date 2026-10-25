@@ -1,0 +1,10 @@
+{
+ "judgments": 35532,
+ "listeners": 1768,
+ "fake_clips_judged": 23415,
+ "real_clips_judged": 12117,
+ "fakes_caught": 0.7114670083279949,
+ "fakes_missed": 0.28853299167200513,
+ "real_called_fake": 0.35899975241396387,
+ "overall_accuracy": 0.6874366767983789
+}

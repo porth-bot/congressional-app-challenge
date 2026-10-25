@@ -7,3 +7,12 @@ audit/
 AUDIT.md
 
 .DS_Store
+
+# Research: the venv and downloaded audio stay local (scripts rebuild them)
+research/.venv/
+research/data/
+research/logs/
+__pycache__/
+
+# Submission drafts (video script, written answers) stay local until Parth decides
+submission/

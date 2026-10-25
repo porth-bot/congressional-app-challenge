@@ -1,0 +1,732 @@
+{
+ "human": {
+  "judgments": 35532,
+  "listeners": 1768,
+  "fakes_missed_pct": 29,
+  "real_called_fake_pct": 36
+ },
+ "survival": {
+  "f0_std": {
+   "studio": 0.32,
+   "phone_worst_train_codec": 0.32,
+   "survives": true
+  },
+  "f0_range": {
+   "studio": 0.24,
+   "phone_worst_train_codec": 0.23,
+   "survives": true
+  },
+  "shimmer": {
+   "studio": 0.29,
+   "phone_worst_train_codec": 0.2,
+   "survives": false
+  },
+  "flatness_mean": {
+   "studio": 0.34,
+   "phone_worst_train_codec": 0.19,
+   "survives": false
+  },
+  "pause_floor": {
+   "studio": 0.07,
+   "phone_worst_train_codec": -0.05,
+   "survives": false
+  },
+  "pause_flatness": {
+   "studio": 0.05,
+   "phone_worst_train_codec": -0.05,
+   "survives": false
+  },
+  "pause_rate": {
+   "studio": 0.04,
+   "phone_worst_train_codec": -0.03,
+   "survives": false
+  },
+  "pause_frac": {
+   "studio": 0.05,
+   "phone_worst_train_codec": -0.02,
+   "survives": false
+  },
+  "hf_ratio": {
+   "studio": 0.09,
+   "phone_worst_train_codec": 0.06,
+   "survives": false
+  },
+  "syll_rate": {
+   "studio": 0.2,
+   "phone_worst_train_codec": 0.2,
+   "survives": false
+  },
+  "jitter": {
+   "studio": 0.17,
+   "phone_worst_train_codec": 0.16,
+   "survives": false
+  },
+  "n_survivors_bio_spectral": 2
+ },
+ "voice": {
+  "cepstral_clean": {
+   "asv_test": {
+    "clean": {
+     "eer": 26.3,
+     "false_alarm": 6,
+     "miss": 41
+    },
+    "g711": {
+     "eer": 39.2,
+     "false_alarm": 41,
+     "miss": 38
+    },
+    "opus": {
+     "eer": 39.8,
+     "false_alarm": 38,
+     "miss": 42
+    },
+    "g723": {
+     "eer": 42.0,
+     "false_alarm": 84,
+     "miss": 9
+    }
+   },
+   "itw": {
+    "clean": {
+     "eer": 58.7,
+     "false_alarm": 90,
+     "miss": 12
+    },
+    "g711": {
+     "eer": 38.4,
+     "false_alarm": 38,
+     "miss": 38
+    },
+    "opus": {
+     "eer": 35.1,
+     "false_alarm": 40,
+     "miss": 29
+    },
+    "g723": {
+     "eer": 33.7,
+     "false_alarm": 69,
+     "miss": 11
+    }
+   }
+  },
+  "ssl_clean": {
+   "asv_test": {
+    "clean": {
+     "eer": 9.1,
+     "false_alarm": 2,
+     "miss": 19
+    },
+    "g711": {
+     "eer": 13.4,
+     "false_alarm": 14,
+     "miss": 13
+    },
+    "opus": {
+     "eer": 17.3,
+     "false_alarm": 55,
+     "miss": 4
+    },
+    "g723": {
+     "eer": 20.4,
+     "false_alarm": 63,
+     "miss": 4
+    }
+   },
+   "itw": {
+    "clean": {
+     "eer": 16.2,
+     "false_alarm": 33,
+     "miss": 5
+    },
+    "g711": {
+     "eer": 18.2,
+     "false_alarm": 47,
+     "miss": 5
+    },
+    "opus": {
+     "eer": 24.9,
+     "false_alarm": 94,
+     "miss": 0
+    },
+    "g723": {
+     "eer": 23.6,
+     "false_alarm": 88,
+     "miss": 2
+    }
+   }
+  },
+  "ssl_aug": {
+   "asv_test": {
+    "clean": {
+     "eer": 10.5,
+     "false_alarm": 2,
+     "miss": 26
+    },
+    "g711": {
+     "eer": 12.9,
+     "false_alarm": 2,
+     "miss": 25
+    },
+    "opus": {
+     "eer": 14.0,
+     "false_alarm": 5,
+     "miss": 25
+    },
+    "g723": {
+     "eer": 17.3,
+     "false_alarm": 14,
+     "miss": 20
+    }
+   },
+   "itw": {
+    "clean": {
+     "eer": 22.5,
+     "false_alarm": 24,
+     "miss": 21
+    },
+    "g711": {
+     "eer": 21.2,
+     "false_alarm": 24,
+     "miss": 18
+    },
+    "opus": {
+     "eer": 29.4,
+     "false_alarm": 56,
+     "miss": 9
+    },
+    "g723": {
+     "eer": 24.4,
+     "false_alarm": 51,
+     "miss": 6
+    }
+   }
+  },
+  "all_aug": {
+   "asv_test": {
+    "clean": {
+     "eer": 26.0,
+     "false_alarm": 8,
+     "miss": 43
+    },
+    "g711": {
+     "eer": 32.9,
+     "false_alarm": 25,
+     "miss": 42
+    },
+    "opus": {
+     "eer": 33.9,
+     "false_alarm": 27,
+     "miss": 40
+    },
+    "g723": {
+     "eer": 36.0,
+     "false_alarm": 53,
+     "miss": 23
+    }
+   },
+   "itw": {
+    "clean": {
+     "eer": 53.3,
+     "false_alarm": 70,
+     "miss": 30
+    },
+    "g711": {
+     "eer": 39.9,
+     "false_alarm": 32,
+     "miss": 53
+    },
+    "opus": {
+     "eer": 38.8,
+     "false_alarm": 32,
+     "miss": 47
+    },
+    "g723": {
+     "eer": 30.7,
+     "false_alarm": 39,
+     "miss": 23
+    }
+   }
+  },
+  "bio_spectral_aug": {
+   "asv_test": {
+    "clean": {
+     "eer": 35.6,
+     "false_alarm": 27,
+     "miss": 46
+    },
+    "g711": {
+     "eer": 34.2,
+     "false_alarm": 23,
+     "miss": 47
+    },
+    "opus": {
+     "eer": 38.1,
+     "false_alarm": 33,
+     "miss": 43
+    },
+    "g723": {
+     "eer": 37.5,
+     "false_alarm": 40,
+     "miss": 32
+    }
+   },
+   "itw": {
+    "clean": {
+     "eer": 39.3,
+     "false_alarm": 46,
+     "miss": 35
+    },
+    "g711": {
+     "eer": 42.7,
+     "false_alarm": 44,
+     "miss": 42
+    },
+    "opus": {
+     "eer": 40.1,
+     "false_alarm": 52,
+     "miss": 33
+    },
+    "g723": {
+     "eer": 38.0,
+     "false_alarm": 58,
+     "miss": 28
+    }
+   }
+  },
+  "mcnemar_aug_vs_clean": {
+   "asv_test/clean": {
+    "acc_aug": 86.3,
+    "acc_clean": 89.8,
+    "p": 8.443958194827311e-11
+   },
+   "asv_test/g711": {
+    "acc_aug": 86.3,
+    "acc_clean": 86.7,
+    "p": 0.7060922404424045
+   },
+   "asv_test/opus": {
+    "acc_aug": 85.0,
+    "acc_clean": 70.7,
+    "p": 1.0223953773773696e-27
+   },
+   "asv_test/g723": {
+    "acc_aug": 83.1,
+    "acc_clean": 66.4,
+    "p": 1.4092534909663805e-41
+   },
+   "itw/clean": {
+    "acc_aug": 77.4,
+    "acc_clean": 80.8,
+    "p": 0.00018792211597634277
+   },
+   "itw/g711": {
+    "acc_aug": 79.1,
+    "acc_clean": 74.3,
+    "p": 2.8749665923986166e-06
+   },
+   "itw/opus": {
+    "acc_aug": 67.6,
+    "acc_clean": 52.7,
+    "p": 1.4899671815452927e-45
+   },
+   "itw/g723": {
+    "acc_aug": 71.5,
+    "acc_clean": 55.1,
+    "p": 2.6807049177408786e-63
+   }
+  },
+  "wavlm_layer": 4
+ },
+ "fusion": {
+  "cutoffs": {
+   "warn": 0.26,
+   "stop": 0.56
+  },
+  "learned_weights": {
+   "voice": 0.88,
+   "words": 0.78,
+   "bias": 0.01
+  },
+  "family_auc": {
+   "10": {
+    "voice": 0.65,
+    "words": 0.59,
+    "fused": 0.65,
+    "fused_learned": 0.65,
+    "fused_naive": 0.66
+   },
+   "30": {
+    "voice": 0.65,
+    "words": 0.73,
+    "fused": 0.76,
+    "fused_learned": 0.76,
+    "fused_naive": 0.75
+   },
+   "50": {
+    "voice": 0.65,
+    "words": 0.86,
+    "fused": 0.87,
+    "fused_learned": 0.87,
+    "fused_naive": 0.84
+   },
+   "100": {
+    "voice": 0.65,
+    "words": 0.98,
+    "fused": 0.98,
+    "fused_learned": 0.98,
+    "fused_naive": 0.96
+   }
+  },
+  "family_catch_at_5pct_fa": {
+   "30": {
+    "voice": {
+     "clone": 12,
+     "impostor": 5
+    },
+    "words": {
+     "clone": 30,
+     "impostor": 29
+    },
+    "fused": {
+     "clone": 48,
+     "impostor": 31
+    },
+    "fused_learned": {
+     "clone": 46,
+     "impostor": 29
+    },
+    "fused_naive": {
+     "clone": 41,
+     "impostor": 16
+    }
+   },
+   "100": {
+    "voice": {
+     "clone": 12,
+     "impostor": 5
+    },
+    "words": {
+     "clone": 81,
+     "impostor": 83
+    },
+    "fused": {
+     "clone": 88,
+     "impostor": 83
+    },
+    "fused_learned": {
+     "clone": 88,
+     "impostor": 81
+    },
+    "fused_naive": {
+     "clone": 88,
+     "impostor": 69
+    }
+   }
+  },
+  "family_ever": {
+   "fused": {
+    "family": {
+     "yellow_or_red": 21,
+     "red": 6
+    },
+    "clone": {
+     "yellow_or_red": 98,
+     "red": 88
+    },
+    "impostor": {
+     "yellow_or_red": 96,
+     "red": 81
+    }
+   },
+   "words_only": {
+    "family": {
+     "yellow_or_red": 43,
+     "red": 3
+    },
+    "clone": {
+     "yellow_or_red": 100,
+     "red": 74
+    },
+    "impostor": {
+     "yellow_or_red": 100,
+     "red": 75
+    }
+   }
+  },
+  "cascade_family": {
+   "family_knows_0.9_scammer_knows_0.01": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 2
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 97
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 95
+    }
+   },
+   "family_knows_0.7_scammer_knows_0.01": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 6
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 96
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 95
+    }
+   },
+   "family_knows_0.9_scammer_knows_0.05": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 2
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 94
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 93
+    }
+   },
+   "family_knows_0.7_scammer_knows_0.05": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 6
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 94
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 93
+    }
+   },
+   "family_knows_0.9_scammer_knows_0.2": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 3
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 92
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 86
+    }
+   },
+   "family_knows_0.9_scammer_knows_0.5": {
+    "family": {
+     "asked_for_word": 20,
+     "warned_red": 4
+    },
+    "clone": {
+     "asked_for_word": 87,
+     "warned_red": 88
+    },
+    "impostor": {
+     "asked_for_word": 89,
+     "warned_red": 85
+    }
+   }
+  },
+  "cascade_lr": {
+   "lr_said_it": 0.011,
+   "lr_couldnt": 9.9
+  },
+  "external_ever_fused": {
+   "family": {
+    "yellow_or_red": 21,
+    "red": 16
+   },
+   "clone": {
+    "yellow_or_red": 53,
+    "red": 29
+   },
+   "impostor": {
+    "yellow_or_red": 38,
+    "red": 23
+   }
+  },
+  "family_cluster_auc_gain_fused_minus_words": {
+   "10": [
+    0.007,
+    0.102
+   ],
+   "30": [
+    -0.008,
+    0.069
+   ],
+   "50": [
+    -0.019,
+    0.029
+   ],
+   "100": [
+    -0.01,
+    0.005
+   ]
+  },
+  "external_cluster_auc_gain_fused_minus_words": {
+   "10": [
+    0.051,
+    0.121
+   ],
+   "30": [
+    0.02,
+    0.071
+   ],
+   "50": [
+    -0.005,
+    0.036
+   ],
+   "100": [
+    -0.013,
+    0.015
+   ]
+  },
+  "family_matched_red": {
+   "family_red_rate": 0.057,
+   "words_only_matched_cutoff": 0.558,
+   "clone": {
+    "combined": 88,
+    "words_only": 89
+   },
+   "impostor": {
+    "combined": 81,
+    "words_only": 91
+   }
+  }
+ },
+ "voice_g723_asv": {
+  "studio_trained": {
+   "false_alarm": 63,
+   "false_alarm_ci": [
+    56,
+    71
+   ],
+   "miss": 4,
+   "miss_ci": [
+    3,
+    6
+   ],
+   "balanced_accuracy": 66,
+   "balanced_accuracy_ci": [
+    63,
+    70
+   ],
+   "eer": 20,
+   "eer_ci": [
+    18,
+    23
+   ]
+  },
+  "studio_trained_recalibrated": {
+   "false_alarm": 24,
+   "false_alarm_ci": [
+    18,
+    31
+   ],
+   "miss": 18,
+   "miss_ci": [
+    14,
+    21
+   ],
+   "balanced_accuracy": 79,
+   "balanced_accuracy_ci": [
+    76,
+    82
+   ],
+   "eer": 20,
+   "eer_ci": [
+    18,
+    23
+   ]
+  },
+  "phone_trained": {
+   "false_alarm": 14,
+   "false_alarm_ci": [
+    10,
+    19
+   ],
+   "miss": 20,
+   "miss_ci": [
+    16,
+    23
+   ],
+   "balanced_accuracy": 83,
+   "balanced_accuracy_ci": [
+    81,
+    85
+   ],
+   "eer": 17,
+   "eer_ci": [
+    15,
+    19
+   ]
+  },
+  "phone_minus_studio": {
+   "balanced_accuracy_diff": 16.6,
+   "balanced_accuracy_diff_ci": [
+    13.8,
+    19.4
+   ],
+   "eer_diff": -3.1,
+   "eer_diff_ci": [
+    -5.1,
+    -1.9
+   ]
+  }
+ },
+ "voice_itw_eer_phone_minus_studio": {
+  "clean": [
+   3.8,
+   8.8
+  ],
+  "g711": [
+   0.5,
+   5.9
+  ],
+  "opus": [
+   0.5,
+   8.2
+  ],
+  "g723": [
+   -2.9,
+   2.8
+  ]
+ },
+ "app_voice_llr": {
+  "clone": 0.688,
+  "human": -0.79,
+  "poorline": 0.438
+ },
+ "stage2": {
+  "auc_full": {
+   "family_test": 0.978,
+   "shake_trainplustest": 0.884,
+   "menaattia_all": 0.9
+  },
+  "family_test_shipped": {
+   "scams_ever_yellow": 100,
+   "normal_ever_yellow": 42,
+   "scams_ever_red": 88,
+   "normal_ever_red": 8,
+   "hard_negatives": 25,
+   "hard_negatives_ever_yellow": 36,
+   "hard_negatives_ever_red": 8,
+   "median_p_full_scam": 99,
+   "median_p_full_normal": 43
+  },
+  "v1_family_auc": 0.814
+ }
+}

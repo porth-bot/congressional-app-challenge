@@ -1,0 +1,1847 @@
+{
+ "sources": [
+  {
+   "source": "scam_dialogue",
+   "split": "train",
+   "n": 1280,
+   "n_scam": 640,
+   "n_nonscam": 640,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "delivery",
+    "insurance",
+    "telemarketing",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "caller": 9014,
+    "receiver": 8468
+   },
+   "mean_chars": 1403.1
+  },
+  {
+   "source": "scam_dialogue",
+   "split": "test",
+   "n": 320,
+   "n_scam": 160,
+   "n_nonscam": 160,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "delivery",
+    "insurance",
+    "telemarketing",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "caller": 2278,
+    "receiver": 2137
+   },
+   "mean_chars": 1401.0
+  },
+  {
+   "source": "single_agent",
+   "split": "train",
+   "n": 1280,
+   "n_scam": 640,
+   "n_nonscam": 640,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "appointment",
+    "delivery",
+    "insurance",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "suspect": 9508,
+    "innocent": 8967
+   },
+   "mean_chars": 1480.2
+  },
+  {
+   "source": "single_agent",
+   "split": "test",
+   "n": 320,
+   "n_scam": 160,
+   "n_nonscam": 160,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "appointment",
+    "delivery",
+    "insurance",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "suspect": 2376,
+    "innocent": 2236
+   },
+   "mean_chars": 1473.2
+  },
+  {
+   "source": "multi_agent",
+   "split": "train",
+   "n": 1280,
+   "n_scam": 640,
+   "n_nonscam": 640,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "appointment",
+    "delivery",
+    "insurance",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "innocent": 7991,
+    "suspect": 7291
+   },
+   "mean_chars": 2978.4
+  },
+  {
+   "source": "multi_agent",
+   "split": "test",
+   "n": 320,
+   "n_scam": 160,
+   "n_nonscam": 160,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "appointment",
+    "delivery",
+    "insurance",
+    "wrong"
+   ],
+   "speaker_tags": {
+    "innocent": 2022,
+    "suspect": 1845
+   },
+   "mean_chars": 3058.9
+  },
+  {
+   "source": "youtube",
+   "split": "all",
+   "n": 20,
+   "n_scam": 20,
+   "n_nonscam": 0,
+   "types_scam": [
+    "refund",
+    "reward",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [],
+   "speaker_tags": {
+    "suspect": 291,
+    "innocent": 285
+   },
+   "mean_chars": 2683.8
+  },
+  {
+   "source": "menaattia",
+   "split": "train",
+   "n": 3200,
+   "n_scam": 1600,
+   "n_nonscam": 1600,
+   "types_scam": [
+    "unknown"
+   ],
+   "types_nonscam": [
+    "unknown"
+   ],
+   "speaker_tags": {
+    "caller": 4928,
+    "receiver": 4045
+   },
+   "mean_chars": 186.7
+  },
+  {
+   "source": "menaattia",
+   "split": "test",
+   "n": 800,
+   "n_scam": 400,
+   "n_nonscam": 400,
+   "types_scam": [
+    "unknown"
+   ],
+   "types_nonscam": [
+    "unknown"
+   ],
+   "speaker_tags": {
+    "caller": 1225,
+    "receiver": 1011
+   },
+   "mean_chars": 185.2
+  },
+  {
+   "source": "shakeleoatmeal",
+   "split": "train",
+   "n": 1259,
+   "n_scam": 629,
+   "n_nonscam": 630,
+   "types_scam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "speaker_tags": {
+    "caller": 5746,
+    "receiver": 5043
+   },
+   "mean_chars": 1204.2
+  },
+  {
+   "source": "shakeleoatmeal",
+   "split": "validation",
+   "n": 361,
+   "n_scam": 181,
+   "n_nonscam": 180,
+   "types_scam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "speaker_tags": {
+    "caller": 1689,
+    "receiver": 1484
+   },
+   "mean_chars": 1198.3
+  },
+  {
+   "source": "shakeleoatmeal",
+   "split": "test",
+   "n": 180,
+   "n_scam": 90,
+   "n_nonscam": 90,
+   "types_scam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "types_nonscam": [
+    "refund",
+    "ssn",
+    "support"
+   ],
+   "speaker_tags": {
+    "caller": 770,
+    "receiver": 672
+   },
+   "mean_chars": 1126.1
+  },
+  {
+   "source": "family",
+   "split": "train",
+   "n": 160,
+   "n_scam": 80,
+   "n_nonscam": 80,
+   "types_scam": [
+    "TS01",
+    "TS02",
+    "TS04",
+    "TS05",
+    "TS07",
+    "TS08",
+    "TS10",
+    "TS12"
+   ],
+   "types_nonscam": [
+    "TN01",
+    "TN02",
+    "TN04",
+    "TN05",
+    "TN07",
+    "TN08",
+    "TN10",
+    "TN12"
+   ],
+   "speaker_tags": {
+    "caller": 1156,
+    "receiver": 1064
+   },
+   "mean_chars": 1274.3
+  },
+  {
+   "source": "family",
+   "split": "validation",
+   "n": 80,
+   "n_scam": 40,
+   "n_nonscam": 40,
+   "types_scam": [
+    "TS03",
+    "TS06",
+    "TS09",
+    "TS11"
+   ],
+   "types_nonscam": [
+    "TN03",
+    "TN06",
+    "TN09",
+    "TN11"
+   ],
+   "speaker_tags": {
+    "caller": 615,
+    "receiver": 561
+   },
+   "mean_chars": 1307.1
+  },
+  {
+   "source": "family",
+   "split": "test",
+   "n": 80,
+   "n_scam": 40,
+   "n_nonscam": 40,
+   "types_scam": [
+    "XS01",
+    "XS02",
+    "XS03",
+    "XS04",
+    "XS05",
+    "XS06",
+    "XS07",
+    "XS08"
+   ],
+   "types_nonscam": [
+    "XN01",
+    "XN02",
+    "XN03",
+    "XN04",
+    "XN05",
+    "XN06",
+    "XN07",
+    "XN08"
+   ],
+   "speaker_tags": {
+    "caller": 604,
+    "receiver": 555
+   },
+   "mean_chars": 1350.1
+  }
+ ],
+ "exact_duplicate_groups": {
+  "groups": 1129,
+  "dialogues": 2258,
+  "by_sources": {
+   "scam_dialogue + single_agent": 1127,
+   "scam_dialogue": 2
+  }
+ },
+ "near_duplicate_pairs": {
+  "0.3": {
+   "scam_dialogue/train | single_agent/train": 846,
+   "scam_dialogue/train | scam_dialogue/train": 432,
+   "scam_dialogue/test | scam_dialogue/train": 160,
+   "scam_dialogue/test | single_agent/test": 148,
+   "scam_dialogue/test | single_agent/train": 92,
+   "scam_dialogue/train | single_agent/test": 83,
+   "multi_agent/train | multi_agent/train": 58,
+   "multi_agent/test | multi_agent/train": 31,
+   "scam_dialogue/test | scam_dialogue/test": 16,
+   "single_agent/train | single_agent/train": 7,
+   "single_agent/test | single_agent/train": 7,
+   "multi_agent/test | multi_agent/test": 4,
+   "shakeleoatmeal/train | single_agent/train": 2,
+   "shakeleoatmeal/validation | single_agent/train": 2,
+   "scam_dialogue/train | shakeleoatmeal/train": 2,
+   "scam_dialogue/train | shakeleoatmeal/validation": 2,
+   "shakeleoatmeal/train | single_agent/test": 1,
+   "shakeleoatmeal/train | shakeleoatmeal/validation": 1,
+   "scam_dialogue/test | shakeleoatmeal/train": 1,
+   "menaattia/test | menaattia/test": 1
+  },
+  "0.5": {
+   "scam_dialogue/train | single_agent/train": 832,
+   "scam_dialogue/test | single_agent/test": 147,
+   "scam_dialogue/train | scam_dialogue/train": 115,
+   "scam_dialogue/test | single_agent/train": 81,
+   "scam_dialogue/train | single_agent/test": 78,
+   "scam_dialogue/test | scam_dialogue/train": 39,
+   "multi_agent/train | multi_agent/train": 4,
+   "scam_dialogue/test | scam_dialogue/test": 4,
+   "multi_agent/test | multi_agent/train": 3,
+   "single_agent/test | single_agent/train": 1
+  },
+  "0.95": {
+   "scam_dialogue/train | single_agent/train": 832,
+   "scam_dialogue/test | single_agent/test": 147,
+   "scam_dialogue/test | single_agent/train": 81,
+   "scam_dialogue/train | single_agent/test": 78,
+   "scam_dialogue/test | scam_dialogue/test": 1,
+   "scam_dialogue/test | scam_dialogue/train": 1,
+   "scam_dialogue/train | scam_dialogue/train": 1
+  }
+ },
+ "near_duplicate_label_conflicts": 0,
+ "same_source_near_dups_by_type": {
+  "multi_agent|appointment": 4,
+  "multi_agent|wrong": 3,
+  "scam_dialogue|reward": 1,
+  "scam_dialogue|wrong": 157,
+  "single_agent|appointment": 1
+ },
+ "cross_source_near_dups_by_type": {
+  "delivery|delivery": 200,
+  "insurance|insurance": 200,
+  "refund|refund": 182,
+  "reward|reward": 190,
+  "ssn|ssn": 177,
+  "support|support": 189
+ },
+ "family_batch_overlap": {
+  "test_to_nearest_train": {
+   "max": 0.03873239457607269,
+   "p99": 0.030705232173204422,
+   "median": 0.006397191435098648,
+   "n_ge_0.3": 0,
+   "n_ge_0.5": 0,
+   "n_test": 80
+  },
+  "train_to_nearest_other_train": {
+   "max": 0.036082472652196884,
+   "median": 0.00826446246355772,
+   "n_ge_0.3": 0,
+   "n_ge_0.5": 0,
+   "n_train": 240
+  }
+ },
+ "pooled_bothbosu": {
+  "train_dialogues": 3840,
+  "train_clusters": 2956,
+  "test_dialogues": 960,
+  "test_near_copies_of_train": 177,
+  "leaked_by_source": {
+   "scam_dialogue": 95,
+   "single_agent": 79,
+   "multi_agent": 3
+  }
+ },
+ "format_and_length": [
+  {
+   "source": "scam_dialogue",
+   "caller_words_median_nonscam": 112.0,
+   "turns_median_nonscam": 11.0,
+   "has_newlines_nonscam": 0.0,
+   "caller_words_median_scam": 169.0,
+   "turns_median_scam": 17.0,
+   "has_newlines_scam": 0.0,
+   "auc_caller_length_only": 0.839,
+   "auc_turn_count_only": 0.903
+  },
+  {
+   "source": "single_agent",
+   "caller_words_median_nonscam": 95.0,
+   "turns_median_nonscam": 12.0,
+   "has_newlines_nonscam": 0.0,
+   "caller_words_median_scam": 175.0,
+   "turns_median_scam": 17.0,
+   "has_newlines_scam": 0.0,
+   "auc_caller_length_only": 0.909,
+   "auc_turn_count_only": 0.899
+  },
+  {
+   "source": "multi_agent",
+   "caller_words_median_nonscam": 191.5,
+   "turns_median_nonscam": 10.0,
+   "has_newlines_nonscam": 0.0,
+   "caller_words_median_scam": 368.5,
+   "turns_median_scam": 13.0,
+   "has_newlines_scam": 0.0,
+   "auc_caller_length_only": 0.794,
+   "auc_turn_count_only": 0.661
+  },
+  {
+   "source": "youtube",
+   "caller_words_median_scam": 267.5,
+   "turns_median_scam": 24.0,
+   "has_newlines_scam": 1.0
+  },
+  {
+   "source": "menaattia",
+   "caller_words_median_nonscam": 19.0,
+   "turns_median_nonscam": 2.0,
+   "has_newlines_nonscam": 0.0,
+   "caller_words_median_scam": 18.0,
+   "turns_median_scam": 3.0,
+   "has_newlines_scam": 0.0,
+   "auc_caller_length_only": 0.493,
+   "auc_turn_count_only": 0.543
+  },
+  {
+   "source": "shakeleoatmeal",
+   "caller_words_median_nonscam": 127.5,
+   "turns_median_nonscam": 8.0,
+   "has_newlines_nonscam": 0.926,
+   "caller_words_median_scam": 118.0,
+   "turns_median_scam": 8.0,
+   "has_newlines_scam": 0.908,
+   "auc_caller_length_only": 0.458,
+   "auc_turn_count_only": 0.495
+  },
+  {
+   "source": "family",
+   "caller_words_median_nonscam": 129.5,
+   "turns_median_nonscam": 13.0,
+   "has_newlines_nonscam": 1.0,
+   "caller_words_median_scam": 178.0,
+   "turns_median_scam": 14.0,
+   "has_newlines_scam": 1.0,
+   "auc_caller_length_only": 0.679,
+   "auc_turn_count_only": 0.526
+  }
+ ],
+ "receiver_says_scam_or_fraud": [
+  {
+   "source": "scam_dialogue",
+   "receiver_says_scam_nonscam": 0.309,
+   "receiver_says_scam_scam": 0.194
+  },
+  {
+   "source": "single_agent",
+   "receiver_says_scam_nonscam": 0.302,
+   "receiver_says_scam_scam": 0.212
+  },
+  {
+   "source": "multi_agent",
+   "receiver_says_scam_nonscam": 0.049,
+   "receiver_says_scam_scam": 0.476
+  },
+  {
+   "source": "youtube",
+   "receiver_says_scam_scam": 0.05
+  },
+  {
+   "source": "menaattia",
+   "receiver_says_scam_nonscam": 0.0,
+   "receiver_says_scam_scam": 0.012
+  },
+  {
+   "source": "shakeleoatmeal",
+   "receiver_says_scam_nonscam": 0.05,
+   "receiver_says_scam_scam": 0.054
+  },
+  {
+   "source": "family",
+   "receiver_says_scam_nonscam": 0.019,
+   "receiver_says_scam_scam": 0.013
+  }
+ ],
+ "cv_auc_by_speaker": {
+  "caller_only": 1.0,
+  "receiver_only": 0.9998
+ },
+ "label_skewed_caller_words": {
+  "scam_dialogue": {
+   "scam": [
+    [
+     "hello",
+     639,
+     256
+    ],
+    [
+     "suspicious",
+     179,
+     0
+    ],
+    [
+     "serious",
+     161,
+     0
+    ],
+    [
+     "administration",
+     160,
+     0
+    ],
+    [
+     "officer",
+     160,
+     0
+    ],
+    [
+     "virus",
+     152,
+     0
+    ],
+    [
+     "selected",
+     148,
+     0
+    ],
+    [
+     "a",
+     640,
+     502
+    ],
+    [
+     "infected",
+     130,
+     0
+    ],
+    [
+     "cooperate",
+     116,
+     0
+    ],
+    [
+     "microsoft",
+     112,
+     0
+    ],
+    [
+     "badge",
+     110,
+     0
+    ],
+    [
+     "remote",
+     91,
+     0
+    ],
+    [
+     "congratulations",
+     89,
+     0
+    ],
+    [
+     "download",
+     87,
+     0
+    ],
+    [
+     "afraid",
+     85,
+     0
+    ],
+    [
+     "activity",
+     201,
+     1
+    ],
+    [
+     "compromised",
+     77,
+     0
+    ],
+    [
+     "issue",
+     256,
+     2
+    ],
+    [
+     "suspended",
+     74,
+     0
+    ],
+    [
+     "walmart",
+     71,
+     0
+    ],
+    [
+     "remotely",
+     68,
+     0
+    ],
+    [
+     "fraudulent",
+     67,
+     0
+    ],
+    [
+     "lets",
+     67,
+     0
+    ],
+    [
+     "from",
+     639,
+     475
+    ],
+    [
+     "act",
+     62,
+     0
+    ],
+    [
+     "requires",
+     61,
+     0
+    ],
+    [
+     "need",
+     604,
+     70
+    ],
+    [
+     "rewards",
+     58,
+     0
+    ],
+    [
+     "immediate",
+     57,
+     0
+    ]
+   ],
+   "nonscam": [
+    [
+     "dialed",
+     0,
+     107
+    ],
+    [
+     "wondering",
+     0,
+     100
+    ],
+    [
+     "life",
+     0,
+     84
+    ],
+    [
+     "thanks",
+     0,
+     83
+    ],
+    [
+     "coverage",
+     0,
+     83
+    ],
+    [
+     "insurance",
+     1,
+     197
+    ],
+    [
+     "rating",
+     1,
+     177
+    ],
+    [
+     "bureau",
+     1,
+     177
+    ],
+    [
+     "licensed",
+     0,
+     66
+    ],
+    [
+     "pm",
+     0,
+     66
+    ],
+    [
+     "arrive",
+     0,
+     61
+    ],
+    [
+     "abc",
+     0,
+     59
+    ],
+    [
+     "between",
+     0,
+     58
+    ],
+    [
+     "health",
+     0,
+     57
+    ],
+    [
+     "letting",
+     0,
+     55
+    ],
+    [
+     "benefit",
+     0,
+     52
+    ],
+    [
+     "glad",
+     0,
+     52
+    ],
+    [
+     "save",
+     0,
+     51
+    ],
+    [
+     "home",
+     0,
+     48
+    ],
+    [
+     "book",
+     0,
+     48
+    ],
+    [
+     "safeguard",
+     0,
+     48
+    ],
+    [
+     "johns",
+     0,
+     46
+    ],
+    [
+     "pride",
+     0,
+     44
+    ],
+    [
+     "whose",
+     0,
+     39
+    ],
+    [
+     "learning",
+     1,
+     104
+    ],
+    [
+     "comfortable",
+     0,
+     36
+    ],
+    [
+     "efficiently",
+     0,
+     35
+    ],
+    [
+     "scheduled",
+     0,
+     35
+    ],
+    [
+     "bye",
+     0,
+     35
+    ],
+    [
+     "policies",
+     1,
+     94
+    ]
+   ]
+  },
+  "single_agent": {
+   "scam": [
+    [
+     "hello",
+     640,
+     113
+    ],
+    [
+     "administration",
+     160,
+     0
+    ],
+    [
+     "officer",
+     160,
+     0
+    ],
+    [
+     "serious",
+     152,
+     0
+    ],
+    [
+     "selected",
+     149,
+     0
+    ],
+    [
+     "from",
+     640,
+     518
+    ],
+    [
+     "cooperate",
+     119,
+     0
+    ],
+    [
+     "badge",
+     109,
+     0
+    ],
+    [
+     "randomly",
+     97,
+     0
+    ],
+    [
+     "congratulations",
+     93,
+     0
+    ],
+    [
+     "advanced",
+     85,
+     0
+    ],
+    [
+     "afraid",
+     84,
+     0
+    ],
+    [
+     "fee",
+     83,
+     0
+    ],
+    [
+     "action",
+     81,
+     0
+    ],
+    [
+     "walmart",
+     79,
+     0
+    ],
+    [
+     "tool",
+     77,
+     0
+    ],
+    [
+     "fraudulent",
+     73,
+     0
+    ],
+    [
+     "detected",
+     70,
+     0
+    ],
+    [
+     "act",
+     69,
+     0
+    ],
+    [
+     "suspended",
+     67,
+     0
+    ],
+    [
+     "trust",
+     165,
+     1
+    ],
+    [
+     "immediate",
+     64,
+     0
+    ],
+    [
+     "rewards",
+     63,
+     0
+    ],
+    [
+     "loyal",
+     62,
+     0
+    ],
+    [
+     "monitors",
+     58,
+     0
+    ],
+    [
+     "liberty",
+     55,
+     0
+    ],
+    [
+     "chosen",
+     53,
+     0
+    ],
+    [
+     "urgent",
+     51,
+     0
+    ],
+    [
+     "essence",
+     49,
+     0
+    ],
+    [
+     "detects",
+     49,
+     0
+    ]
+   ],
+   "nonscam": [
+    [
+     "appointment",
+     0,
+     161
+    ],
+    [
+     "dr",
+     0,
+     146
+    ],
+    [
+     "scheduled",
+     0,
+     135
+    ],
+    [
+     "smiths",
+     0,
+     102
+    ],
+    [
+     "pm",
+     1,
+     226
+    ],
+    [
+     "dialed",
+     0,
+     98
+    ],
+    [
+     "thanks",
+     0,
+     95
+    ],
+    [
+     "hi",
+     14,
+     532
+    ],
+    [
+     "insurance",
+     1,
+     212
+    ],
+    [
+     "wondering",
+     0,
+     76
+    ],
+    [
+     "coverage",
+     0,
+     72
+    ],
+    [
+     "life",
+     0,
+     67
+    ],
+    [
+     "consultation",
+     0,
+     66
+    ],
+    [
+     "medical",
+     0,
+     64
+    ],
+    [
+     "arrive",
+     0,
+     63
+    ],
+    [
+     "licensed",
+     0,
+     61
+    ],
+    [
+     "abc",
+     0,
+     57
+    ],
+    [
+     "safeguard",
+     0,
+     48
+    ],
+    [
+     "book",
+     0,
+     47
+    ],
+    [
+     "results",
+     0,
+     44
+    ],
+    [
+     "ordered",
+     1,
+     113
+    ],
+    [
+     "health",
+     0,
+     42
+    ],
+    [
+     "bureau",
+     1,
+     107
+    ],
+    [
+     "rating",
+     1,
+     104
+    ],
+    [
+     "reschedule",
+     0,
+     38
+    ],
+    [
+     "schedule",
+     0,
+     37
+    ],
+    [
+     "bye",
+     0,
+     33
+    ],
+    [
+     "delivered",
+     1,
+     90
+    ],
+    [
+     "save",
+     0,
+     30
+    ],
+    [
+     "letting",
+     0,
+     30
+    ]
+   ]
+  },
+  "multi_agent": {
+   "scam": [
+    [
+     "detected",
+     213,
+     0
+    ],
+    [
+     "administration",
+     167,
+     0
+    ],
+    [
+     "cooperate",
+     166,
+     0
+    ],
+    [
+     "officer",
+     161,
+     0
+    ],
+    [
+     "selected",
+     159,
+     0
+    ],
+    [
+     "essence",
+     148,
+     0
+    ],
+    [
+     "activity",
+     289,
+     1
+    ],
+    [
+     "suspended",
+     135,
+     0
+    ],
+    [
+     "fraudulent",
+     133,
+     0
+    ],
+    [
+     "can",
+     640,
+     507
+    ],
+    [
+     "debit",
+     132,
+     0
+    ],
+    [
+     "flagged",
+     131,
+     0
+    ],
+    [
+     "winner",
+     128,
+     0
+    ],
+    [
+     "won",
+     124,
+     0
+    ],
+    [
+     "sweepstakes",
+     123,
+     0
+    ],
+    [
+     "malware",
+     121,
+     0
+    ],
+    [
+     "your",
+     640,
+     524
+    ],
+    [
+     "routing",
+     115,
+     0
+    ],
+    [
+     "overpayment",
+     114,
+     0
+    ],
+    [
+     "allow",
+     102,
+     0
+    ],
+    [
+     "action",
+     228,
+     1
+    ],
+    [
+     "virus",
+     97,
+     0
+    ],
+    [
+     "remotely",
+     97,
+     0
+    ],
+    [
+     "computers",
+     96,
+     0
+    ],
+    [
+     "fraud",
+     95,
+     0
+    ],
+    [
+     "infected",
+     91,
+     0
+    ],
+    [
+     "software",
+     89,
+     0
+    ],
+    [
+     "device",
+     88,
+     0
+    ],
+    [
+     "transaction",
+     87,
+     0
+    ],
+    [
+     "a",
+     640,
+     554
+    ]
+   ],
+   "nonscam": [
+    [
+     "appointment",
+     0,
+     166
+    ],
+    [
+     "hows",
+     0,
+     161
+    ],
+    [
+     "speedy",
+     0,
+     156
+    ],
+    [
+     "hey",
+     0,
+     156
+    ],
+    [
+     "deliveries",
+     0,
+     156
+    ],
+    [
+     "dialed",
+     0,
+     147
+    ],
+    [
+     "pm",
+     1,
+     302
+    ],
+    [
+     "auto",
+     0,
+     144
+    ],
+    [
+     "coverage",
+     0,
+     138
+    ],
+    [
+     "plans",
+     0,
+     119
+    ],
+    [
+     "sarah",
+     0,
+     112
+    ],
+    [
+     "dr",
+     0,
+     111
+    ],
+    [
+     "thursday",
+     0,
+     110
+    ],
+    [
+     "scheduled",
+     1,
+     222
+    ],
+    [
+     "health",
+     0,
+     93
+    ],
+    [
+     "hangs",
+     0,
+     90
+    ],
+    [
+     "reschedule",
+     0,
+     82
+    ],
+    [
+     "medical",
+     0,
+     82
+    ],
+    [
+     "smiths",
+     0,
+     81
+    ],
+    [
+     "upcoming",
+     0,
+     77
+    ],
+    [
+     "weekend",
+     0,
+     73
+    ],
+    [
+     "mike",
+     0,
+     63
+    ],
+    [
+     "driver",
+     0,
+     58
+    ],
+    [
+     "sworn",
+     0,
+     58
+    ],
+    [
+     "im",
+     584,
+     640
+    ],
+    [
+     "rates",
+     0,
+     55
+    ],
+    [
+     "wanted",
+     0,
+     50
+    ],
+    [
+     "fit",
+     0,
+     49
+    ],
+    [
+     "quote",
+     0,
+     47
+    ],
+    [
+     "project",
+     0,
+     44
+    ]
+   ]
+  }
+ },
+ "name_rates": {
+  "scam_dialogue": {
+   "john": {
+    "scam": 0.459,
+    "nonscam": 0.6
+   },
+   "johnson": {
+    "scam": 0.369,
+    "nonscam": 0.031
+   },
+   "karen": {
+    "scam": 0.069,
+    "nonscam": 0.104
+   },
+   "david": {
+    "scam": 0.195,
+    "nonscam": 0.022
+   },
+   "rachel": {
+    "scam": 0.036,
+    "nonscam": 0.011
+   },
+   "emily": {
+    "scam": 0.0,
+    "nonscam": 0.006
+   },
+   "smith": {
+    "scam": 0.04,
+    "nonscam": 0.086
+   },
+   "officer": {
+    "scam": 0.25,
+    "nonscam": 0.0
+   },
+   "thompson": {
+    "scam": 0.051,
+    "nonscam": 0.005
+   },
+   "lee": {
+    "scam": 0.001,
+    "nonscam": 0.003
+   },
+   "mike": {
+    "scam": 0.001,
+    "nonscam": 0.007
+   },
+   "sarah": {
+    "scam": 0.0,
+    "nonscam": 0.01
+   },
+   "xyz": {
+    "scam": 0.029,
+    "nonscam": 0.535
+   },
+   "abc": {
+    "scam": 0.0,
+    "nonscam": 0.095
+   },
+   "jake": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "ethan": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   }
+  },
+  "single_agent": {
+   "john": {
+    "scam": 0.479,
+    "nonscam": 0.463
+   },
+   "johnson": {
+    "scam": 0.36,
+    "nonscam": 0.055
+   },
+   "karen": {
+    "scam": 0.05,
+    "nonscam": 0.194
+   },
+   "david": {
+    "scam": 0.204,
+    "nonscam": 0.028
+   },
+   "rachel": {
+    "scam": 0.035,
+    "nonscam": 0.018
+   },
+   "emily": {
+    "scam": 0.0,
+    "nonscam": 0.014
+   },
+   "smith": {
+    "scam": 0.041,
+    "nonscam": 0.17
+   },
+   "officer": {
+    "scam": 0.25,
+    "nonscam": 0.0
+   },
+   "thompson": {
+    "scam": 0.049,
+    "nonscam": 0.005
+   },
+   "lee": {
+    "scam": 0.001,
+    "nonscam": 0.0
+   },
+   "mike": {
+    "scam": 0.001,
+    "nonscam": 0.001
+   },
+   "sarah": {
+    "scam": 0.0,
+    "nonscam": 0.015
+   },
+   "xyz": {
+    "scam": 0.024,
+    "nonscam": 0.36
+   },
+   "abc": {
+    "scam": 0.0,
+    "nonscam": 0.091
+   },
+   "jake": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "ethan": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   }
+  },
+  "multi_agent": {
+   "john": {
+    "scam": 0.106,
+    "nonscam": 0.107
+   },
+   "johnson": {
+    "scam": 0.46,
+    "nonscam": 0.249
+   },
+   "karen": {
+    "scam": 0.265,
+    "nonscam": 0.475
+   },
+   "david": {
+    "scam": 0.106,
+    "nonscam": 0.01
+   },
+   "rachel": {
+    "scam": 0.378,
+    "nonscam": 0.224
+   },
+   "emily": {
+    "scam": 0.155,
+    "nonscam": 0.214
+   },
+   "smith": {
+    "scam": 0.01,
+    "nonscam": 0.128
+   },
+   "officer": {
+    "scam": 0.254,
+    "nonscam": 0.0
+   },
+   "thompson": {
+    "scam": 0.237,
+    "nonscam": 0.043
+   },
+   "lee": {
+    "scam": 0.029,
+    "nonscam": 0.085
+   },
+   "mike": {
+    "scam": 0.0,
+    "nonscam": 0.099
+   },
+   "sarah": {
+    "scam": 0.001,
+    "nonscam": 0.174
+   },
+   "xyz": {
+    "scam": 0.001,
+    "nonscam": 0.045
+   },
+   "abc": {
+    "scam": 0.0,
+    "nonscam": 0.009
+   },
+   "jake": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "ethan": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   }
+  },
+  "shakeleoatmeal": {
+   "john": {
+    "scam": 0.11,
+    "nonscam": 0.043
+   },
+   "johnson": {
+    "scam": 0.089,
+    "nonscam": 0.073
+   },
+   "karen": {
+    "scam": 0.078,
+    "nonscam": 0.149
+   },
+   "david": {
+    "scam": 0.024,
+    "nonscam": 0.009
+   },
+   "rachel": {
+    "scam": 0.09,
+    "nonscam": 0.098
+   },
+   "emily": {
+    "scam": 0.203,
+    "nonscam": 0.406
+   },
+   "smith": {
+    "scam": 0.037,
+    "nonscam": 0.023
+   },
+   "officer": {
+    "scam": 0.096,
+    "nonscam": 0.142
+   },
+   "thompson": {
+    "scam": 0.214,
+    "nonscam": 0.147
+   },
+   "lee": {
+    "scam": 0.044,
+    "nonscam": 0.043
+   },
+   "mike": {
+    "scam": 0.002,
+    "nonscam": 0.0
+   },
+   "sarah": {
+    "scam": 0.014,
+    "nonscam": 0.071
+   },
+   "xyz": {
+    "scam": 0.01,
+    "nonscam": 0.037
+   },
+   "abc": {
+    "scam": 0.004,
+    "nonscam": 0.04
+   },
+   "jake": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "ethan": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   }
+  },
+  "menaattia": {
+   "john": {
+    "scam": 0.004,
+    "nonscam": 0.007
+   },
+   "johnson": {
+    "scam": 0.001,
+    "nonscam": 0.003
+   },
+   "karen": {
+    "scam": 0.0,
+    "nonscam": 0.007
+   },
+   "david": {
+    "scam": 0.001,
+    "nonscam": 0.006
+   },
+   "rachel": {
+    "scam": 0.0,
+    "nonscam": 0.015
+   },
+   "emily": {
+    "scam": 0.0,
+    "nonscam": 0.016
+   },
+   "smith": {
+    "scam": 0.002,
+    "nonscam": 0.004
+   },
+   "officer": {
+    "scam": 0.007,
+    "nonscam": 0.002
+   },
+   "thompson": {
+    "scam": 0.0,
+    "nonscam": 0.001
+   },
+   "lee": {
+    "scam": 0.001,
+    "nonscam": 0.006
+   },
+   "mike": {
+    "scam": 0.0,
+    "nonscam": 0.011
+   },
+   "sarah": {
+    "scam": 0.001,
+    "nonscam": 0.012
+   },
+   "xyz": {
+    "scam": 0.0,
+    "nonscam": 0.0
+   },
+   "abc": {
+    "scam": 0.0,
+    "nonscam": 0.001
+   },
+   "jake": {
+    "scam": 0.0,
+    "nonscam": 0.009
+   },
+   "ethan": {
+    "scam": 0.0,
+    "nonscam": 0.002
+   }
+  }
+ },
+ "scam_story_mentions_bothbosu": {
+  "family_words (grandma, grandpa, grandson, granddaughter, grandmother, grandfather, grandchild)": {
+   "scam_dialogues": 12,
+   "normal_dialogues": 6,
+   "of_total": 4800
+  },
+  "bail": {
+   "scam_dialogues": 0,
+   "normal_dialogues": 0,
+   "of_total": 4800
+  },
+  "arrest": {
+   "scam_dialogues": 69,
+   "normal_dialogues": 1,
+   "of_total": 4800
+  },
+  "crypto (bitcoin, crypto, cryptocurrency)": {
+   "scam_dialogues": 0,
+   "normal_dialogues": 0,
+   "of_total": 4800
+  },
+  "gift card": {
+   "scam_dialogues": 517,
+   "normal_dialogues": 25,
+   "of_total": 4800
+  }
+ }
+}
