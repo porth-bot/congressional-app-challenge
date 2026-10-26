@@ -28,7 +28,7 @@
   --ease:cubic-bezier(.2,.7,.15,1);
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]):not([data-mode="light"]){
+  :root[data-mode="system"]{
     color-scheme:dark;
     --bg:#0C0E13; --surface:#13161D; --surface-2:#1A1E27; --hover:#1A1F29; --press:#232936;
     --border:#242A35; --border-strong:#343C4B;
@@ -41,7 +41,7 @@
     --scrim:rgba(0,0,0,.58); --d-frame:#000000;
   }
 }
-:root[data-theme="dark"]:not([data-mode="light"]),:root[data-mode="dark"]{
+:root[data-mode="dark"]{
   color-scheme:dark;
   --bg:#0C0E13; --surface:#13161D; --surface-2:#1A1E27; --hover:#1A1F29; --press:#232936;
   --border:#242A35; --border-strong:#343C4B;
@@ -512,8 +512,8 @@ sup{font-family:var(--mono);font-size:.7em;line-height:0;vertical-align:.7em;mar
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
-<script>/* Light unless the viewer picks otherwise: a judge opening this on a dark-themed machine should still see the light app. */
-try{var r=document.documentElement;r.setAttribute("data-mode","light");var m=localStorage.getItem("liveline-mode");if(m==="dark")r.setAttribute("data-mode","dark");else if(m==="system")r.removeAttribute("data-mode");}catch(e){}</script>
+<script>/* Light unless the viewer chose otherwise. The CSS already defaults to light with no attribute set, so a slow load or a blocked script still paints light. */
+try{var m=localStorage.getItem("liveline-mode");if(m==="dark"||m==="system")document.documentElement.setAttribute("data-mode",m);}catch(e){}</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -1394,9 +1394,9 @@ window.LIVELINE_STAGE2_MODEL={"format":"liveline-stage2-text-v2.1","about":"Scam
 
   /* ---------- Theme ---------- */
   var darkMq=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)");
-  function mode(){var m=root.getAttribute("data-mode");return m||"system";}
-  function isDark(){var m=root.getAttribute("data-mode");if(m)return m==="dark";var t=root.getAttribute("data-theme");if(t)return t==="dark";return !!(darkMq&&darkMq.matches);}
-  function setMode(m){if(m==="system")root.removeAttribute("data-mode");else root.setAttribute("data-mode",m);try{localStorage.setItem("liveline-mode",m);}catch(e){}syncTheme();}
+  function mode(){return root.getAttribute("data-mode")||"light";}
+  function isDark(){var m=mode();return m==="dark"||(m==="system"&&!!(darkMq&&darkMq.matches));}
+  function setMode(m){root.setAttribute("data-mode",m);try{localStorage.setItem("liveline-mode",m);}catch(e){}syncTheme();}
   function syncTheme(){
     var d=isDark(),b=$("#theme-btn");b.innerHTML=icon(d?"i-sun":"i-moon");b.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme");
     $$("#theme-seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x.dataset.m===mode()));});
