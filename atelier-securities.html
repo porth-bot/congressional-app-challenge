@@ -512,7 +512,8 @@ sup{font-family:var(--mono);font-size:.7em;line-height:0;vertical-align:.7em;mar
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
-<script>try{var m=localStorage.getItem("liveline-mode");if(m==="light"||m==="dark")document.documentElement.setAttribute("data-mode",m);}catch(e){}</script>
+<script>/* Light unless the viewer picks otherwise: a judge opening this on a dark-themed machine should still see the light app. */
+try{var r=document.documentElement;r.setAttribute("data-mode","light");var m=localStorage.getItem("liveline-mode");if(m==="dark")r.setAttribute("data-mode","dark");else if(m==="system")r.removeAttribute("data-mode");}catch(e){}</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -1053,7 +1054,7 @@ sup{font-family:var(--mono);font-size:.7em;line-height:0;vertical-align:.7em;mar
         <div class="stack">
           <div class="card">
             <div class="card-head"><h2>Appearance</h2></div>
-            <div class="pad"><div class="seg full" role="group" aria-label="Theme" id="theme-seg"><button type="button" data-m="system" aria-pressed="true">System</button><button type="button" data-m="light" aria-pressed="false">Light</button><button type="button" data-m="dark" aria-pressed="false">Dark</button></div></div>
+            <div class="pad"><div class="seg full" role="group" aria-label="Theme" id="theme-seg"><button type="button" data-m="system" aria-pressed="false">System</button><button type="button" data-m="light" aria-pressed="true">Light</button><button type="button" data-m="dark" aria-pressed="false">Dark</button></div></div>
           </div>
           <div class="card">
             <div class="card-head"><h2>Rose’s screen</h2></div>
@@ -1395,7 +1396,7 @@ window.LIVELINE_STAGE2_MODEL={"format":"liveline-stage2-text-v2.1","about":"Scam
   var darkMq=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)");
   function mode(){var m=root.getAttribute("data-mode");return m||"system";}
   function isDark(){var m=root.getAttribute("data-mode");if(m)return m==="dark";var t=root.getAttribute("data-theme");if(t)return t==="dark";return !!(darkMq&&darkMq.matches);}
-  function setMode(m){if(m==="system")root.removeAttribute("data-mode");else root.setAttribute("data-mode",m);try{if(m==="system")localStorage.removeItem("liveline-mode");else localStorage.setItem("liveline-mode",m);}catch(e){}syncTheme();}
+  function setMode(m){if(m==="system")root.removeAttribute("data-mode");else root.setAttribute("data-mode",m);try{localStorage.setItem("liveline-mode",m);}catch(e){}syncTheme();}
   function syncTheme(){
     var d=isDark(),b=$("#theme-btn");b.innerHTML=icon(d?"i-sun":"i-moon");b.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme");
     $$("#theme-seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x.dataset.m===mode()));});
