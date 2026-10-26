@@ -272,7 +272,3 @@ On the public transcripts (not family calls) fewer calls reach step 3, so it doe
 - G.723.1 stands in for cellular AMR-NB, which ffmpeg cannot encode. Modern HD Voice and VoLTE calls carry more of the spectrum than our three codecs.
 - No comparison against existing products (Hiya AI Voice Detection flags synthetic voices on calls; Google Pixel Scam Detection flags scam-like conversation), and no published detector run on our phone copies. ASVspoof 2021 already studied codec effects at scale; ours is a small rebuild to choose a model.
 - The voice benchmark uses 1,000 clips per class per corpus, not the full datasets.
-
-## AI use
-
-We used an AI coding assistant throughout. It wrote first drafts of the research scripts and the app code, the 320 family-emergency transcripts, the scripted test calls and practice drills, and drafts of this documentation, and it ran many of the experiments at our direction. Every number here comes from scripts in this repository that anyone can rerun.
