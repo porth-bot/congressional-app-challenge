@@ -10,8 +10,8 @@ We're Parth Rana and Joseph David, and we built it for the 2026 Congressional Ap
 
 ```mermaid
 flowchart TD
-    call["Call from an unknown number"] --> voice["Step 1: Voice model<br/>always on"]
-    call --> words["Step 2: Words model<br/>always on"]
+    incoming["Call from an unknown number"] --> voice["Step 1: Voice model<br/>always on"]
+    incoming --> words["Step 2: Words model<br/>always on"]
     voice --> score["Combined score<br/>(Bayes' rule)"]
     words --> score
     score -->|"under 26%"| green["Green: seems safe"]
